@@ -1,0 +1,1 @@
+require("titanium-recipe-updates")

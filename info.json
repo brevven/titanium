@@ -1,0 +1,15 @@
+{
+    "name": "bztitanium",
+    "version": "0.1.0",
+    "factorio_version": "0.17",
+    "title": "Titanium",
+    "author": "Brevven",
+    "contact": "",
+    "homepage": "",
+    "dependencies": [
+	    "base >= 0.17",
+	    "? aai-industry",
+	    "? space-exploration"
+    ],
+    "description": "Adds titanium to the base game"
+}
