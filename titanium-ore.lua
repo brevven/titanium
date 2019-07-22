@@ -26,7 +26,7 @@ data:extend(
 	  hardness = 1,
 	  mining_particle = "titanium-ore-particle",
 	  mining_time = 2,
-	  fluid_amount=10,
+	  fluid_amount=3,
 	  required_fluid= "lubricant",
 	  result = "titanium-ore"
 	},
