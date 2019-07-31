@@ -44,12 +44,16 @@ data:extend(
     unit =
     {
       count = 75,
-      ingredients =
-      {
-        {"automation-science-pack", 1},
-        {"logistic-science-pack", 1},
-        {"chemical-science-pack", 1}
-      },
+      ingredients = (mods["Pre0-17-60Oil"] and
+		      {
+			      {"automation-science-pack", 1},
+			      {"logistic-science-pack", 1}
+		      } or
+		      {
+			      {"automation-science-pack", 1},
+			      {"logistic-science-pack", 1},
+			      {"chemical-science-pack", 1}
+		      }),
       time = 30
     },
     prerequisites = {"lubricant"},
