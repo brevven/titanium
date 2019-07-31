@@ -5,7 +5,7 @@ v = bztitanium_$(shell jq -r .version info.json)
 copy:
 	mkdir -p ../$(v)
 	cp -rf * ../$(v)
-	rm ../$(v).zip
+	rm -f ../$(v).zip
 	cd ..; zip -9 -r -y $(v).zip $(v) -x "*.xcf" -x "*.git*"
 
 
