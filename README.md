@@ -7,4 +7,6 @@ Not compatible with RSO yet.
 
 ## Version History
 
+- 0.1.1 Updated science requirements for factorio 0.17.60 update.
+
 - 0.1.0 Initial version. No mod compatibility guarantees yet!
