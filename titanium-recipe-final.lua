@@ -28,5 +28,9 @@ if data.raw.recipe["se-space-pipe"] then
   util.steel_to_titanium(data.raw.recipe["se-space-splitter"])
   util.steel_to_titanium(data.raw.recipe["se-space-splitter"].normal)
   util.steel_to_titanium(data.raw.recipe["se-space-splitter"].expensive)
+  util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"])
+  util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"].normal)
+  util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"].expensive)
   util.add_titanium_prerequisite(data.raw.technology["se-space-platform-scaffold"])
 end
+
