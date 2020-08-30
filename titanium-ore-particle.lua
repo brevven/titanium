@@ -1,7 +1,7 @@
 data:extend(
 {
   {
-    type = "particle",
+    type = "optimized-particle",
     name = "titanium-ore-particle",
     flags = {"not-on-map"},
     life_time = 180,
