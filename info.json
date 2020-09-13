@@ -1,7 +1,7 @@
 {
     "name": "bztitanium",
     "version": "0.4.0",
-    "factorio_version": "0.18",
+    "factorio_version": "1.0",
     "title": "Titanium",
     "author": "Brevven",
     "contact": "",
@@ -13,6 +13,6 @@
 	    "? Krastorio2",
 	    "? Pre0-17-60Oil"
     ],
-    "description": "Adds titanium to the base game"
+    "description": "Adds titanium to the base game.\n\nTitanium is used in Low Density Structures, Flying Robot Frames and a few other places.\n\nCompatible with Krastorio2 and Space Exploration."
 }
 
