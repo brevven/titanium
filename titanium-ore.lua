@@ -72,7 +72,7 @@ data:extend(
     icon = "__bztitanium__/graphics/icons/titanium-ore.png",
     subgroup = "raw-resource",
     order = "t-c-a",
-    stack_size = 50
+    stack_size = (mods["Krastorio2"] and 200 or 50)
 },
 }
 )
