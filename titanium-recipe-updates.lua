@@ -19,3 +19,9 @@ util.add_titanium_prerequisite(data.raw.technology["solar-panel-equipment"])
 -- Also add titanium to steam turbines
 util.add_titanium_ingredient(20, data.raw.recipe["steam-turbine"])
 util.add_titanium_prerequisite(data.raw.technology["nuclear-power"])
+
+-- Krastorio 2 changes
+if mods["Krastorio2"] then
+  util.add_titanium_prerequisite(data.raw.technology["kr-electric-mining-drill-mk2"])
+  util.add_titanium_prerequisite(data.raw.technology["kr-quarry-minerals-extraction"])
+end

@@ -1,5 +1,5 @@
 -- Titanium recipe & tech changes
--- These are in "final" for compatibility with other mods such as Space Exploration and AAI
+-- These are in "final" for compatibility with other mods such as Space Exploration, AAI and Krastorio 2
 
 local util = require("__bztitanium__.data-util");
 
@@ -34,3 +34,17 @@ if data.raw.recipe["se-space-pipe"] then
   util.add_titanium_prerequisite(data.raw.technology["se-space-platform-scaffold"])
 end
 
+
+-- Krastorio 2 changes
+if mods["Krastorio2"] then
+  -- Titanium modifies flying robot frames, so use them in a reasonable tech card in Krastorio 2
+  util.replace_ingredient(data.raw.recipe["advanced-tech-card"], "electric-engine-unit", "flying-robot-frame")
+
+  -- Flavor changes
+  util.rare_to_titanium(data.raw.recipe["kr-electric-mining-drill-mk2"])
+  util.rare_to_titanium(data.raw.recipe["kr-advanced-transport-belt"])
+  util.rare_to_titanium(data.raw.recipe["kr-advanced-loader"])
+
+  util.steel_to_titanium(data.raw.recipe["kr-quarry-drill"])
+  util.steel_to_titanium(data.raw.recipe["kr-singularity-lab"])
+end
