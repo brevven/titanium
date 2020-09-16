@@ -48,3 +48,25 @@ if mods["Krastorio2"] then
   util.steel_to_titanium(data.raw.recipe["kr-quarry-drill"])
   util.steel_to_titanium(data.raw.recipe["kr-singularity-lab"])
 end
+
+-- Aircraft changes
+
+if mods["Aircraft"] then
+  util.steel_to_titanium(data.raw.recipe["gunship"])
+  util.steel_to_titanium(data.raw.recipe["gunship"].normal)
+  util.steel_to_titanium(data.raw.recipe["gunship"].expensive)
+  util.steel_to_titanium(data.raw.recipe["cargo-plane"])
+  util.steel_to_titanium(data.raw.recipe["cargo-plane"].normal)
+  util.steel_to_titanium(data.raw.recipe["cargo-plane"].expensive)
+  util.steel_to_titanium(data.raw.recipe["flying-fortress"])
+  util.steel_to_titanium(data.raw.recipe["flying-fortress"].normal)
+  util.steel_to_titanium(data.raw.recipe["flying-fortress"].expensive)
+  util.add_titanium_ingredient(10, data.raw.recipe["aircraft-afterburner"])
+  util.add_titanium_ingredient(10, data.raw.recipe["aircraft-afterburner"].normal)
+  util.add_titanium_ingredient(20, data.raw.recipe["aircraft-afterburner"].expensive)
+
+  -- jet doesn't use steel in base aircraft mod, but leave this here just in case that changes
+  util.steel_to_titanium(data.raw.recipe["jet"])
+  util.steel_to_titanium(data.raw.recipe["jet"].normal)
+  util.steel_to_titanium(data.raw.recipe["jet"].expensive)
+end

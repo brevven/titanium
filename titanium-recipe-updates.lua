@@ -25,3 +25,7 @@ if mods["Krastorio2"] then
   util.add_titanium_prerequisite(data.raw.technology["kr-electric-mining-drill-mk2"])
   util.add_titanium_prerequisite(data.raw.technology["kr-quarry-minerals-extraction"])
 end
+
+if mods["Aircraft"] then
+  util.add_titanium_prerequisite(data.raw.technology["advanced-aerodynamics"])
+end
