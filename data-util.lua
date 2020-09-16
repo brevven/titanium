@@ -2,7 +2,9 @@ local data_util = {}
 
 --- Add a given quantity of titanium plates to a given recipe
 function data_util.add_titanium_ingredient(quantity, recipe)
-	table.insert(recipe.ingredients, {"titanium-plate", quantity})
+  if recipe ~= nil and recipe.ingredients ~= nil then
+    table.insert(recipe.ingredients, {"titanium-plate", quantity})
+  end
 end
 
 --- Add titanium processing as a prerequisite to a given technology
