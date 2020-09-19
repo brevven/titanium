@@ -3,6 +3,7 @@
 
 v = bztitanium_$(shell jq -r .version info.json)
 copy:
+	rm -rf ../$(v)
 	mkdir -p ../$(v)
 	cp -rf * ../$(v)
 	rm -f ../$(v).zip
