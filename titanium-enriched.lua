@@ -91,6 +91,10 @@ data:extend(
         {
           type = "unlock-recipe",
           recipe = "enriched-titanium-plate"
+        },
+        {
+          type = "unlock-recipe",
+          recipe = "dirty-water-filtration-titanium",
         }
       },
       prerequisites = {"kr-enriched-ores", "titanium-processing"},
@@ -105,7 +109,48 @@ data:extend(
         },
         time = 30
       }
-  }
+  },
+	{
+		type = "recipe",
+		name = "dirty-water-filtration-titanium",
+		category = "fluid-filtration",
+		icons =
+		{
+			{
+				icon = data.raw.fluid["dirty-water"].icon,
+				icon_size = data.raw.fluid["dirty-water"].icon_size
+			},
+			{
+				icon = data.raw.item["titanium-ore"].icon,
+				icon_size =	data.raw.item["titanium-ore"].icon_size,
+				scale = 0.20 * (data.raw.fluid["dirty-water"].icon_size/data.raw.item["titanium-ore"].icon_size),
+				shift = {0, 4}
+			}
+		},
+		icon_size = data.raw.fluid["dirty-water"].icon_size,
+		energy_required = 2,
+		enabled = false,
+		allow_as_intermediate = false,
+		always_show_made_in = true,
+		always_show_products = true,
+		ingredients =
+		{
+			{type = "fluid", name = "dirty-water", amount = 100, catalyst_amount = 100},
+		},
+		results =
+		{
+			{type = "fluid", name = "water", amount = 100, catalyst_amount = 100},
+			{type = "item",  name = "stone", probability = 0.30, amount = 1},
+			{type = "item",  name = "titanium-ore", probability = 0.05, amount = 1}
+		},
+		crafting_machine_tint =
+		{
+			primary = {r = 0.60, g = 0.20, b = 0, a = 0.6},
+			secondary = {r = 1.0, g = 0.843, b = 0.0, a = 0.9}
+		},
+		subgroup = "raw-material",
+		order = "w013[dirty-water-filtration-titanium]"
+	}
 }
 )
 end
