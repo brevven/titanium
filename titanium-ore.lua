@@ -27,7 +27,7 @@ data:extend(
 	  mining_particle = "titanium-ore-particle",
 	  mining_time = 2,
 	  fluid_amount=3,
-	  required_fluid= "lubricant",
+	  required_fluid=(settings.startup["bztitanium-mining-fluid"] and settings.startup["bztitanium-mining-fluid"].value or "lubricant"),
 	  result = "titanium-ore"
 	},
 	collision_box = {{ -0.1, -0.1}, {0.1, 0.1}},
