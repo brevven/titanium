@@ -1,52 +1,52 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.3
 Date: 2020-09-20
-  Settings: 
+  Settings:
     - Allow some choice of mining fluid.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.2
 Date: 2020-09-20
-  Features: 
+  Features:
     - Use in memory storage units, because why not.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.1
 Date: 2020-09-19
-  Changes: 
+  Changes:
     - Krastorio 2 compatibility: dirty water filtration for titanium.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.0
 Date: 2020-09-15
-  Features: 
+  Features:
     - Support Aircraft mod.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.1
 Date: 2020-09-14
-  Changes: 
+  Changes:
     - Some more flavorful recipe changes for Krastorio 2.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.0
 Date: 2020-09-13
-  Features: 
+  Features:
     - Support for Krastorio 2, including enriched titanium.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2020-08-30
-  Changes: 
+  Changes:
     - Support alternate LDS in Space Exploration.
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.0
 Date: 2020-08-09
-  Changes: 
+  Changes:
     - Compatible with Factorio 1.0
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 2019-07-31
-  Changes: 
+  Changes:
     - Updated science requirements for factorio 0.17.60 update.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 2019-07-22
-  Features: 
+  Features:
     - Initial version.
     - No mod compatibility guarantees.
     - Some Space Exploration compatibility.
