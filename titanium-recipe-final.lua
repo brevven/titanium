@@ -50,7 +50,6 @@ if mods["Krastorio2"] then
 end
 
 -- Aircraft changes
-
 if mods["Aircraft"] then
   util.steel_to_titanium(data.raw.recipe["gunship"])
   util.steel_to_titanium(data.raw.recipe["gunship"].normal)
@@ -70,3 +69,13 @@ if mods["Aircraft"] then
   util.steel_to_titanium(data.raw.recipe["jet"].normal)
   util.steel_to_titanium(data.raw.recipe["jet"].expensive)
 end
+
+-- Memory storage changes
+if data.raw.item["memory-unit"] then
+  util.steel_to_titanium(data.raw.recipe["memory-unit"])
+  util.steel_to_titanium(data.raw.recipe["memory-unit"].normal)
+  util.steel_to_titanium(data.raw.recipe["memory-unit"].expensive)
+end
+
+
+
