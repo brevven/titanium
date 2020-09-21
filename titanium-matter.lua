@@ -21,43 +21,41 @@ data:extend(
     },
     prerequisites = {"kr-matter-processing"},
     unit =
-		{
-			count = 350,
-			ingredients = 
-			{
-				{"production-science-pack", 1},
-				{"utility-science-pack", 1},
-				{"matter-tech-card", 1}				
-			},
-			time = 45
-		}
+  	{
+      count = 350,
+      ingredients =
+      {
+        {"production-science-pack", 1},
+        {"utility-science-pack", 1},
+        {"matter-tech-card", 1}
+      },
+      time = 45
+    }
   },
 })
 
 local titanium_ore_matter = 
 	{
-		item_name = "titanium-ore",
-		minimum_conversion_quantity = 10, 
-		matter_value = 8,
-		energy_required = 1,
-		need_stabilizer = true,
-		unlocked_by_technology = "titanium-matter-processing"
+    item_name = "titanium-ore",
+    minimum_conversion_quantity = 10,
+    matter_value = 8,
+    energy_required = 1,
+    need_stabilizer = true,
+    unlocked_by_technology = "titanium-matter-processing"
 	}
 matter.createMatterRecipe(titanium_ore_matter)
 
 
 local titanium_plate_matter = 
 	{
-		item_name = "titanium-ore",
-		minimum_conversion_quantity = 10, 
-		matter_value = 14,
-		energy_required = 1,
-		need_stabilizer = true,
-		unlocked_by_technology = "titanium-matter-processing"
+    item_name = "titanium-plate",
+    minimum_conversion_quantity = 10,
+    matter_value = 14,
+    energy_required = 2,
+    only_deconversion = true,
+    need_stabilizer = true,
+    unlocked_by_technology = "titanium-matter-processing"
 	}
-matter.createMatterRecipe(titanium_ore_matter)
-
-
-
+matter.createMatterRecipe(titanium_plate_matter)
 
 end
