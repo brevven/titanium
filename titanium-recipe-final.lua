@@ -47,6 +47,15 @@ if mods["Krastorio2"] then
 
   util.steel_to_titanium(data.raw.recipe["kr-quarry-drill"])
   util.steel_to_titanium(data.raw.recipe["kr-singularity-lab"])
+
+  util.steel_to_titanium(data.raw.recipe["stack-inserter"])
+  util.steel_to_titanium(data.raw.recipe["stack-inserter"].normal)
+  util.steel_to_titanium(data.raw.recipe["stack-inserter"].expensive)
+  util.steel_to_titanium(data.raw.recipe["stack-filter-inserter"])
+  util.steel_to_titanium(data.raw.recipe["stack-filter-inserter"].normal)
+  util.steel_to_titanium(data.raw.recipe["stack-filter-inserter"].expensive)
+
+  util.add_titanium_ingredient(40, "kr-advanced-steam-turbine")
 end
 
 -- Aircraft changes
