@@ -91,6 +91,12 @@ if mods["HelicopterRevival"] or mods["Helicopters"] then
   util.steel_to_titanium(data.raw.recipe["heli-recipe"].expensive)
 end
 
+if mods["adamo-chopper"] then
+  util.steel_to_titanium(data.raw.recipe["chopper-recipe"])
+  util.steel_to_titanium(data.raw.recipe["chopper-recipe"].normal)
+  util.steel_to_titanium(data.raw.recipe["chopper-recipe"].expensive)
+end
+
 if mods["jetpack"] then
   util.steel_to_titanium(data.raw.recipe["jetpack-1"])
   util.steel_to_titanium(data.raw.recipe["jetpack-1"].normal)

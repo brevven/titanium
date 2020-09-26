@@ -5,7 +5,8 @@ Date: 2020-09-26
     - Support for jetpacks
     - Support for hovercrafts
     - Support for better cargo planes
-    - Support for raven
+    - Support for raven vehicle
+    - Support for chopper
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.4
 Date: 2020-09-25
