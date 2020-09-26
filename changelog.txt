@@ -3,6 +3,7 @@ Version: 0.5.4
 Date: 2020-09-26
   Changes:
     - Krastorio 2 update: Add titanium to a few more recipes.
+    - Support for HelicopterRevival
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.3
 Date: 2020-09-20

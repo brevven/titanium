@@ -79,6 +79,12 @@ if mods["Aircraft"] then
   util.steel_to_titanium(data.raw.recipe["jet"].expensive)
 end
 
+if mods["HelicopterRevival"] or mods["Helicopters"] then
+  util.steel_to_titanium(data.raw.recipe["heli-recipe"])
+  util.steel_to_titanium(data.raw.recipe["heli-recipe"].normal)
+  util.steel_to_titanium(data.raw.recipe["heli-recipe"].expensive)
+end
+
 -- Memory storage changes
 if data.raw.item["memory-unit"] then
   util.steel_to_titanium(data.raw.recipe["memory-unit"])
