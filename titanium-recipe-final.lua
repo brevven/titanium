@@ -58,7 +58,7 @@ if mods["Krastorio2"] then
   util.add_titanium_ingredient(40, "kr-advanced-steam-turbine")
 end
 
--- Aircraft changes
+-- Various vehicle/transport mod changes
 if mods["Aircraft"] then
   util.steel_to_titanium(data.raw.recipe["gunship"])
   util.steel_to_titanium(data.raw.recipe["gunship"].normal)
