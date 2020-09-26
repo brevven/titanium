@@ -103,6 +103,12 @@ if mods["Hovercrafts"] then
   util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].expensive)
 end
 
+if mods["Raven"] then
+  util.add_titanium_ingredient(100, data.raw.recipe["raven"])
+  util.add_titanium_ingredient(100, data.raw.recipe["raven"].normal)
+  util.add_titanium_ingredient(100, data.raw.recipe["raven"].expensive)
+end
+
 -- Memory storage changes
 if data.raw.item["memory-unit"] then
   util.steel_to_titanium(data.raw.recipe["memory-unit"])
