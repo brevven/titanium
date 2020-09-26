@@ -91,6 +91,12 @@ if mods["jetpack"] then
   util.steel_to_titanium(data.raw.recipe["jetpack-1"].expensive)
 end
 
+if mods["Hovercrafts"] then
+  util.steel_to_titanium(data.raw.recipe["hcraft-recipe"])
+  util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].normal)
+  util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].expensive)
+end
+
 -- Memory storage changes
 if data.raw.item["memory-unit"] then
   util.steel_to_titanium(data.raw.recipe["memory-unit"])
