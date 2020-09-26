@@ -4,6 +4,7 @@ Date: 2020-09-26
   Changes:
     - Support for jetpacks
     - Support for hovercrafts
+    - Support for better cargo planes
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.4
 Date: 2020-09-25
