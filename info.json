@@ -1,6 +1,6 @@
 {
     "name": "bztitanium",
-    "version": "0.5.5",
+    "version": "0.6.0",
     "factorio_version": "1.0",
     "title": "Titanium",
     "author": "Brevven",
@@ -11,9 +11,9 @@
 	    "? aai-industry",
 	    "? space-exploration",
 	    "? Krastorio2",
-	    "? Aircraft",
+      "? FactorioExtended-Plus-Core",
 	    "? Pre0-17-60Oil"
     ],
-    "description": "Adds titanium to the base game.\n\nTitanium is used in Low Density Structures, Flying Robot Frames and a few other places.\n\nCompatible with Krastorio 2, Space Exploration, Aircraft and other mods."
+    "description": "Adds titanium to the base game.\n\nTitanium is used in Low Density Structures, Flying Robot Frames and a few other places.\n\nCompatible with Krastorio 2, Space Exploration, Aircraft, FE+ and other mods."
 }
 

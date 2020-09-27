@@ -1,7 +1,12 @@
 local resource_autoplace = require('resource-autoplace');
 
-data:extend(
-{
+local util = require("__bztitanium__.data-util");
+
+if mods["FactorioExtended-Plus-Core"] then
+  util.remove_raw("item", "titanium-ore")
+end
+
+data:extend({
 	{
 	type = "autoplace-control",
 	category = "resource",
@@ -65,15 +70,14 @@ data:extend(
 	      }
 	},
   },
-{
-    type = "item",
-    name = "titanium-ore",
-    icon_size = 32,
-    icon = "__bztitanium__/graphics/icons/titanium-ore.png",
-    subgroup = "raw-resource",
-    order = "t-c-a",
-    stack_size = (mods["Krastorio2"] and 200 or 50)
-},
-}
-)
+  {
+      type = "item",
+      name = "titanium-ore",
+      icon_size = 32,
+      icon = "__bztitanium__/graphics/icons/titanium-ore.png",
+      subgroup = "raw-resource",
+      order = "t-c-a",
+      stack_size = (mods["Krastorio2"] and 200 or 50)
+  },
+})
 

@@ -1,4 +1,14 @@
 -- Titanium smelting
+
+local util = require("__bztitanium__.data-util");
+
+if mods["FactorioExtended-Plus-Core"] then
+  util.remove_raw("recipe", "titanium-ore")
+  util.remove_raw("item", "titanium-alloy")
+  util.remove_raw("recipe", "titanium-alloy")
+  util.remove_raw("technology", "titanium-processing")
+end
+
 data:extend(
 {
   {
@@ -15,25 +25,25 @@ data:extend(
           enabled = false,
           energy_required = 16,
           ingredients = {{"titanium-ore", 10}},
-          results = {{type="item", name="titanium-plate", amount_min=2, amount_max=3}},
+          results = {{type="item", name= util.titanium_plate, amount_min=2, amount_max=3}},
         } or
         {
           enabled = false,
           energy_required = 8,
           ingredients = {{"titanium-ore", 5}},
-          result = "titanium-plate"
+          result = util.titanium_plate
         }),
     expensive =
     {
       enabled = false,
       energy_required = 16,
       ingredients = {{"titanium-ore", 10}},
-      result = "titanium-plate"
+      result = util.titanium_plate
     }
   },
   {
     type = "item",
-    name = "titanium-plate",
+    name = util.titanium_plate,
     icon = "__bztitanium__/graphics/icons/titanium-plate.png",
     icon_size = 32,
     subgroup = "raw-material",
