@@ -15,6 +15,7 @@ data:extend(
     type = "recipe",
     name = "titanium-plate",
     category = "smelting",
+    order = "d[titanium-plate]",
     icons = (mods["Krastorio2"] and
         {
           { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 32 },
