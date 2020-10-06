@@ -16,6 +16,7 @@ util.add_titanium_prerequisite(data.raw.technology["robotics"])
 
 -- Additions for Space Exploration mod.
 if data.raw.recipe["se-space-pipe"] then
+  -- Space Exploration space stuff
   util.steel_to_titanium(data.raw.recipe["se-space-pipe"])
   util.steel_to_titanium(data.raw.recipe["se-space-pipe"].normal)
   util.steel_to_titanium(data.raw.recipe["se-space-pipe"].expensive)
@@ -28,10 +29,20 @@ if data.raw.recipe["se-space-pipe"] then
   util.steel_to_titanium(data.raw.recipe["se-space-splitter"])
   util.steel_to_titanium(data.raw.recipe["se-space-splitter"].normal)
   util.steel_to_titanium(data.raw.recipe["se-space-splitter"].expensive)
+  util.steel_to_titanium(data.raw.recipe["se-space-rail"])
+  util.steel_to_titanium(data.raw.recipe["se-space-rail"].normal)
+  util.steel_to_titanium(data.raw.recipe["se-space-rail"].expensive)
+
+  -- Space Exploration alternative LDS
   util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"])
   util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"].normal)
   util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"].expensive)
   util.add_titanium_prerequisite(data.raw.technology["se-space-platform-scaffold"])
+
+  -- Space Exploration buildings
+  util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"])
+  util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"].normal)
+  util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"].expensive)
 end
 
 
