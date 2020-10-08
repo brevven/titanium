@@ -43,6 +43,10 @@ if data.raw.recipe["se-space-pipe"] then
   util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"])
   util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"].normal)
   util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"].expensive)
+
+  -- Organization
+  data.raw.item["titanium-plate"].subgroup = "plates"
+
 end
 
 
