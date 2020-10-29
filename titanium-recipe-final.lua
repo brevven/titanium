@@ -32,12 +32,14 @@ if data.raw.recipe["se-space-pipe"] then
   util.steel_to_titanium(data.raw.recipe["se-space-rail"])
   util.steel_to_titanium(data.raw.recipe["se-space-rail"].normal)
   util.steel_to_titanium(data.raw.recipe["se-space-rail"].expensive)
+  util.add_titanium_ingredient(1, data.raw.recipe["se-space-platform-scaffold"])
+  util.add_titanium_ingredient(1, data.raw.recipe["se-space-platform-scaffold"].normal)
+  util.add_titanium_ingredient(1, data.raw.recipe["se-space-platform-scaffold"].expensive)
 
   -- Space Exploration alternative LDS
   util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"])
   util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"].normal)
   util.steel_to_titanium(data.raw.recipe["se-low-density-structure-beryllium"].expensive)
-  util.add_titanium_prerequisite(data.raw.technology["se-space-platform-scaffold"])
 
   -- Space Exploration buildings
   util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"])
