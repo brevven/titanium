@@ -49,6 +49,15 @@ if data.raw.recipe["se-space-pipe"] then
   -- Organization
   data.raw.item["titanium-plate"].subgroup = "plates"
 
+  -- deadlock loaders for SE -- mods["deadlock-beltboxes-loaders"]
+  if mods["Deadlock-SE-bridge"] then
+    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"])
+    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"].normal)
+    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"].expensive)
+    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"])
+    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"].normal)
+    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"].expensive)
+  end
 end
 
 
