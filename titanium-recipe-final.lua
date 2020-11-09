@@ -70,6 +70,10 @@ if mods["Krastorio2"] then
   util.rare_to_titanium(data.raw.recipe["kr-electric-mining-drill-mk2"])
   util.rare_to_titanium(data.raw.recipe["kr-advanced-transport-belt"])
   util.rare_to_titanium(data.raw.recipe["kr-advanced-loader"])
+  if mods["deadlock-beltboxes-loaders"] then
+    util.rare_to_titanium(data.raw.recipe["kr-advanced-transport-belt-beltbox"])
+    util.rare_to_titanium(data.raw.recipe["kr-advanced-transport-belt-loader"])
+  end
 
   util.steel_to_titanium(data.raw.recipe["kr-quarry-drill"])
   util.steel_to_titanium(data.raw.recipe["kr-singularity-lab"])
