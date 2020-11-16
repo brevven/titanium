@@ -18,7 +18,7 @@ data:extend(
     order = "d[titanium-plate]",
     icons = (mods["Krastorio2"] and
         {
-          { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 32 },
+          { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64 },
           { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 32, scale=0.5, shift= {-8, -8}},
         } or nil),
     normal = (mods["Krastorio2"] and
@@ -46,7 +46,7 @@ data:extend(
     type = "item",
     name = util.titanium_plate,
     icon = "__bztitanium__/graphics/icons/titanium-plate.png",
-    icon_size = 32,
+    icon_size = 64,
     subgroup = "raw-material",
     order = "b[titanium-plate]",
     stack_size = (mods["Krastorio2"] and 200 or 100)

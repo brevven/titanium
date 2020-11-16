@@ -48,7 +48,7 @@ data:extend(
       name = "enriched-titanium-plate",
       icons =
       {
-        { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 32 },
+        { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64 },
         { icon = "__bztitanium__/graphics/icons/enriched-titanium.png", icon_size = 64, scale=0.25, shift= {-8, -8}},
       },
       category = "smelting",
