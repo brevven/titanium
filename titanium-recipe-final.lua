@@ -85,7 +85,7 @@ if mods["Krastorio2"] then
   util.steel_to_titanium(data.raw.recipe["stack-filter-inserter"].normal)
   util.steel_to_titanium(data.raw.recipe["stack-filter-inserter"].expensive)
 
-  util.add_titanium_ingredient(40, "kr-advanced-steam-turbine")
+  util.add_titanium_ingredient(40, data.raw.recipe["kr-advanced-steam-turbine"])
 end
 
 -- Memory storage changes
