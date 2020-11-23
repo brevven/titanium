@@ -45,7 +45,7 @@ if mods["jetpack"] then
   util.steel_to_titanium(data.raw.recipe["jetpack-1"].expensive)
 end
 
-if mods["Hovercrafts"] then
+if mods["Hovercrafts"] or mods["Hovercrafts_Realism"] then
   util.steel_to_titanium(data.raw.recipe["hcraft-recipe"])
   util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].normal)
   util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].expensive)

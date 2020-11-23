@@ -3,6 +3,7 @@ Version: 0.6.10
 Date: 2020-11-21
   Features:
     - Hover-Car support
+    - Extend Hovercrafts support to Hovercrafts_Realism
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.9
 Date: 2020-11-21
