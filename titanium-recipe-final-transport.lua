@@ -57,3 +57,12 @@ if mods["Raven"] then
   util.add_titanium_ingredient(100, data.raw.recipe["raven"].expensive)
 end
 
+if mods["Hover-Car"] then
+  util.steel_to_titanium(data.raw.recipe["hover-car-recipe"])
+  util.steel_to_titanium(data.raw.recipe["hover-car-recipe"].normal)
+  util.steel_to_titanium(data.raw.recipe["hover-car-recipe"].expensive)
+  util.steel_to_titanium(data.raw.recipe["hover-car-mk2-recipe"])
+  util.steel_to_titanium(data.raw.recipe["hover-car-mk2-recipe"].normal)
+  util.steel_to_titanium(data.raw.recipe["hover-car-mk2-recipe"].expensive)
+end
+
