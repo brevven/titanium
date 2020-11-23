@@ -49,6 +49,7 @@ if mods["Hovercrafts"] or mods["Hovercrafts_Realism"] then
   util.steel_to_titanium(data.raw.recipe["hcraft-recipe"])
   util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].normal)
   util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].expensive)
+  util.add_titanium_prerequisite(data.raw.technology["hcraft-tech"])
 end
 
 if mods["Raven"] then
