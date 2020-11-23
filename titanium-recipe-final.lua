@@ -94,3 +94,24 @@ if data.raw.item["memory-unit"] then
   util.steel_to_titanium(data.raw.recipe["memory-unit"].normal)
   util.steel_to_titanium(data.raw.recipe["memory-unit"].expensive)
 end
+
+-- Underwater pipes changes
+if data.raw.item["underwater-pipe"] then
+  if data.raw.technology["underwater-pipes"] then
+    local index = -1
+    for i, elem in pairs(data.raw.technology["underwater-pipes"].prerequisites) do 
+      if elem == "steel-processing" then
+        index = i
+      end
+    end
+    if index > -1 then
+      table.remove(data.raw.technology["underwater-pipes"].prerequisites, index)
+    end
+  end
+  util.add_titanium_prerequisite(data.raw.technology["underwater-pipes"])
+
+  util.steel_to_titanium(data.raw.recipe["underwater-pipe"])
+  util.steel_to_titanium(data.raw.recipe["underwater-pipe"].normal)
+  util.steel_to_titanium(data.raw.recipe["underwater-pipe"].expensive)
+end
+
