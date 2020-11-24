@@ -1,6 +1,7 @@
 .PHONY: copy install
 
-v = bztitanium_$(shell jq -r .version info.json)
+pwd = $(shell pwd)
+v = $(shell basename "$(pwd)")_$(shell jq -r .version info.json)
 
 copy:
 	rm -rf ../$(v)
