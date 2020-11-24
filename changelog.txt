@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.6.11
+Date: 2020-11-23
+  Fixes:
+    - Smooth a rough edge on new plate graphics
+    - Stacked plate (deadlock) graphics now match new graphics
+---------------------------------------------------------------------------------------------------
 Version: 0.6.10
 Date: 2020-11-22
   Features:
