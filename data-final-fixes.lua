@@ -4,7 +4,7 @@ require("titanium-recipe-final")
 require("titanium-recipe-final-se")
 
 
--- Module fixes, including for Krastorio
+-- Module fixes, including for Krastorio 2
 require("titanium-recipe-modules")
 
 

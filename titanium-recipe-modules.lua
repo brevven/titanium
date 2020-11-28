@@ -1,4 +1,4 @@
-
+-- Enable prod modules for all titanium plate and ore recipes
 
 recipes = {"titanium-plate"}
 if mods["Krastorio2"] then
