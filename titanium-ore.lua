@@ -44,29 +44,29 @@ data:extend({
       base_density = 3,
       has_starting_area_placement = false,
       regular_rq_factor_multiplier = 0.8
-	},
+    },
 
-	stage_counts = {15000, 9500, 5500, 2900, 1300, 400, 150, 80},
-	    stages =
-	    {
-	      sheet =
-	      {
-		filename = "__bztitanium__/graphics/entity/ores/titanium-ore.png",
-		priority = "extra-high",
-		size = 64,
-		frame_count = 8,
-		variation_count = 8,
-		hr_version =
-		{
-		filename = "__bztitanium__/graphics/entity/ores/hr-titanium-ore.png",
-		  priority = "extra-high",
-		  size = 128,
-		  frame_count = 8,
-		  variation_count = 8,
-		  scale = 0.5
-		}
-	      }
-	},
+    stage_counts = {15000, 9500, 5500, 2900, 1300, 400, 150, 80},
+        stages =
+        {
+          sheet =
+          {
+      filename = "__bztitanium__/graphics/entity/ores/titanium-ore.png",
+      priority = "extra-high",
+      size = 64,
+      frame_count = 8,
+      variation_count = 8,
+      hr_version =
+      {
+      filename = "__bztitanium__/graphics/entity/ores/hr-titanium-ore.png",
+        priority = "extra-high",
+        size = 128,
+        frame_count = 8,
+        variation_count = 8,
+        scale = 0.5
+      }
+          }
+    },
   },
   {
       type = "item",
