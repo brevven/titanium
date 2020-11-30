@@ -73,6 +73,12 @@ data:extend({
       name = "titanium-ore",
       icon_size = 32,
       icon = "__bztitanium__/graphics/icons/titanium-ore.png",
+      pictures = {  -- Needed for Space Exploration core fragments, version 5.x
+        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=32, scale=0.5},
+        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=32, scale=0.5},
+        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=32, scale=0.5},
+        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=32, scale=0.5},
+      },
       subgroup = "raw-resource",
       order = "t-c-a",
       stack_size = (mods["Krastorio2"] and 200 or 50)
