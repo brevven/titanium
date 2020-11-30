@@ -1,10 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.0
 Date: 2020-11-27
-  Changes:
-    - Capitalization
   Features:
-    - Initial support for 5Dim's mod. (Not available until 5Dim's is updated to 1.1)
+    - Space Exploration Vulcanite + Titanium smelting (with and without Krastorio 2)
+    - Initial work for 5Dim's mod. (Not available until 5Dim's is updated to 1.1)
+  Changes:
+    - Minor capitalization fixes
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.0
 Date: 2020-11-23
