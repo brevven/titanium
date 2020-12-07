@@ -9,6 +9,11 @@ if mods["FactorioExtended-Plus-Core"] then
   util.remove_raw("technology", "titanium-processing")
 end
 
+if mods["modmashsplinterresources"] then
+  util.remove_raw("item", "titanium-plate")
+  util.remove_raw("recipe", "titanium-extraction-process")
+end
+
 data:extend(
 {
   {

@@ -19,5 +19,8 @@ require("titanium-recipe-final-transport")
 -- 5Dim's final fixes
 require("titanium-recipe-final-5d")
 
+-- Modmash final fixes
+require("titanium-recipe-final-modmash")
+
 
 require("titanium-data-final-settings")
