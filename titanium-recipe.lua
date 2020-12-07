@@ -13,7 +13,7 @@ data:extend(
 {
   {
     type = "recipe",
-    name = "titanium-plate",
+    name = util.titanium_plate,
     category = "smelting",
     order = "d[titanium-plate]",
     icons = (mods["Krastorio2"] and
@@ -60,7 +60,7 @@ data:extend(
     {
       {
         type = "unlock-recipe",
-        recipe = "titanium-plate"
+        recipe = util.titanium_plate
       }
     },
     unit =

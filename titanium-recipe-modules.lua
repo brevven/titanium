@@ -25,3 +25,18 @@ for i, recipe in pairs(recipes) do
     end
   end
 end
+
+
+-- FE+ allows modules for Titanium ore, we can't do that.
+if mods["FactorioExtended-Plus-Core"] then
+  for j, module in pairs(data.raw.module) do
+    if module.limitation and #module.limitation > 0 then
+      for i=1,#module.limitation,1 do
+        if module.limitation[i] == "titanium-ore" then
+          table.remove(module.limitation, i)
+          break
+        end
+      end
+    end
+  end
+end

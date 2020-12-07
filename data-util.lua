@@ -10,15 +10,11 @@ end
 
 -- Remove an element of type t and name from data.raw
 function data_util.remove_raw(t, name)
-  local index = -1
-  for i, elem in pairs(data.raw) do
-    if elem.type == t and elem.name == name then
-      index = i
+  for i, elem in pairs(data.raw[t]) do
+    if elem.name == name then 
+      data.raw[t][i] = nil
       break
     end
-  end
-  if index > -1 then
-    table.remove(data.raw, index)
   end
 end
 
