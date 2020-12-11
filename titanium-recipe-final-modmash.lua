@@ -1,3 +1,5 @@
+local util = require("__bztitanium__.data-util");
+
 if mods["modmashsplinter"] then
   if mods["modmashsplinterresources"] then
     util.remove_raw("recipe", "titanium-extraction-process")
