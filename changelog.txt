@@ -3,6 +3,8 @@ Version: 0.8.3
 Date: 2020-12-07
   Features:
     - Compatible with Modmash
+  Fixes:
+    - FE+ compatibility tweak
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.3
 Date: 2020-12-07
