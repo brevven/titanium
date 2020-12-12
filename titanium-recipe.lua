@@ -24,7 +24,7 @@ data:extend(
     icons = (mods["Krastorio2"] and
         {
           { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64 },
-          { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 32, scale=0.5, shift= {-8, -8}},
+          { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, scale=0.25, shift= {-8, -8}},
         } or nil),
     normal = (mods["Krastorio2"] and
         {

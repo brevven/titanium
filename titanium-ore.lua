@@ -20,7 +20,7 @@ data:extend({
 	},
 	{
     type = "resource",
-    icon_size = 32,
+    icon_size = 64,
     name = "titanium-ore",
     icon = "__bztitanium__/graphics/icons/titanium-ore.png",
     flags = {"placeable-neutral"},
@@ -71,13 +71,13 @@ data:extend({
   {
       type = "item",
       name = "titanium-ore",
-      icon_size = 32,
+      icon_size = 64,
       icon = "__bztitanium__/graphics/icons/titanium-ore.png",
-      pictures = {  -- Needed for Space Exploration core fragments, version 5.x
-        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=32, scale=0.5},
-        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=32, scale=0.5},
-        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=32, scale=0.5},
-        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=32, scale=0.5},
+      pictures = {
+        {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=64, scale=0.25},
+        {filename="__bztitanium__/graphics/icons/titanium-ore-2.png", size=64, scale=0.25},
+        {filename="__bztitanium__/graphics/icons/titanium-ore-3.png", size=64, scale=0.25},
+        {filename="__bztitanium__/graphics/icons/titanium-ore-4.png", size=64, scale=0.25},
       },
       subgroup = "raw-resource",
       order = "t-c-a",

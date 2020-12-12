@@ -1,6 +1,6 @@
 -- Deadlock stacking recipes
 if deadlock then
-  deadlock.add_stack("titanium-ore",  "__bztitanium__/graphics/icons/titanium-ore-stacked.png", "deadlock-stacking-2", 32)
+  deadlock.add_stack("titanium-ore",  "__bztitanium__/graphics/icons/titanium-ore-stacked.png", "deadlock-stacking-2", 64)
   deadlock.add_stack("titanium-plate", "__bztitanium__/graphics/icons/titanium-plate-stacked.png" , "deadlock-stacking-2", 64)
   if mods["Krastorio2"] then
     deadlock.add_stack("enriched-titanium", "__bztitanium__/graphics/icons/enriched-titanium-stacked.png" , "deadlock-stacking-2", 64)
