@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.9.2
+Date: 2020-12-17
+  Features:
+    - Russian localization, thanks to thinOptimist (https://mods.factorio.com/user/thinOptimist)
+---------------------------------------------------------------------------------------------------
 Version: 0.9.1
 Date: 2020-12-12
   Features:
