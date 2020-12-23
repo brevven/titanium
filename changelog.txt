@@ -4,6 +4,7 @@ Date: 2020-12-22
   Changes:
     - Titanium plates now used in heat exchangers
     - English localization updates for K2.
+    - Space Exploration - Titanium now used in more recipes
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.2
 Date: 2020-12-17

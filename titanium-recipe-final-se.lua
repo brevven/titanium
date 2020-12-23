@@ -32,6 +32,14 @@ if data.raw.recipe["se-space-pipe"] then
   util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"].normal)
   util.add_titanium_ingredient(20, data.raw.recipe["se-condenser-turbine"].expensive)
 
+  -- A couple more deeper tech thematic items to use titanium in.
+  util.add_titanium_ingredient(2, data.raw.recipe["se-lattice-pressure-vessel"])
+  util.add_titanium_ingredient(2, data.raw.recipe["se-lattice-pressure-vessel"].normal)
+  util.add_titanium_ingredient(2, data.raw.recipe["se-lattice-pressure-vessel"].expensive)
+  util.add_titanium_ingredient(2, data.raw.recipe["se-aeroframe-bulkhead"])
+  util.add_titanium_ingredient(2, data.raw.recipe["se-aeroframe-bulkhead"].normal)
+  util.add_titanium_ingredient(2, data.raw.recipe["se-aeroframe-bulkhead"].expensive)
+
   -- Organization
   data.raw.item["titanium-plate"].subgroup = "plates"
 
