@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.9.4
+Date: 2020-12-29
+  Changes:
+    - Base "naive" compatibility with Pyanodon's Raw Ores (pyrawores) - we just use their plates an remove our ore/plates.
+---------------------------------------------------------------------------------------------------
 Version: 0.9.3
 Date: 2020-12-22
   Changes:

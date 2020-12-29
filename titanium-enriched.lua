@@ -1,4 +1,6 @@
 -- Enriched Titanium for Krastorio2
+local util = require("__bztitanium__.data-util");
+
 if mods["Krastorio2"] then
 data:extend(
 {
@@ -103,7 +105,7 @@ data:extend(
           recipe = "dirty-water-filtration-titanium",
         }
       },
-      prerequisites = {"kr-enriched-ores", "titanium-processing"},
+      prerequisites = {"kr-enriched-ores", util.titanium_processing},
       unit =
       {
         count = 150,

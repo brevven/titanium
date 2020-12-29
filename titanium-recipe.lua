@@ -14,6 +14,7 @@ if mods["modmashsplinterresources"] then
   util.remove_raw("recipe", "titanium-extraction-process")
 end
 
+if not mods["pyrawores"] then
 data:extend(
 {
   {
@@ -88,3 +89,5 @@ data:extend(
   },
 }
 )
+end
+

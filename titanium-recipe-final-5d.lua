@@ -23,7 +23,7 @@ if mods["5dim_core"] then
       result_count = 100,
     }
   })
-  table.insert(data.raw.technology["titanium-processing"].effects, 
+  table.insert(data.raw.technology[util.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-plate-industrial-ore"})
 
 
@@ -83,11 +83,11 @@ if mods["5dim_core"] then
           result_count = 100,
         }
   })
-  table.insert(data.raw.technology["titanium-processing"].effects, 
+  table.insert(data.raw.technology[util.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-dust"})
-  table.insert(data.raw.technology["titanium-processing"].effects, 
+  table.insert(data.raw.technology[util.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-plate-dust"})
-  table.insert(data.raw.technology["titanium-processing"].effects, 
+  table.insert(data.raw.technology[util.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-plate-industrial-dust"})
 
   if mods["5dim_automation"] then
