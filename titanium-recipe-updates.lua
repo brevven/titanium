@@ -2,15 +2,18 @@
 --
 local util = require("__bztitanium__.data-util");
 
-util.steel_to_titanium(data.raw.recipe["power-armor"])
-util.add_titanium_prerequisite(data.raw.technology["power-armor"])
+if (not mods["bobplates"] and not mods["angelssmelting"]) then
+  util.steel_to_titanium(data.raw.recipe["power-armor"])
+  util.add_titanium_prerequisite(data.raw.technology["power-armor"])
 
--- All equipment that uses steel now uses titanium. Who wants to carry around steel!
-for name, recipe in pairs(data.raw.recipe) do
-	if recipe.result ~= nil and recipe.result:find("equipment") then
-		util.steel_to_titanium(recipe)
-	end
+  -- All equipment that uses steel now uses titanium. Who wants to carry around steel!
+  for name, recipe in pairs(data.raw.recipe) do
+    if recipe.result ~= nil and recipe.result:find("equipment") then
+      util.steel_to_titanium(recipe)
+    end
+  end
 end
+
 -- Generally, steel-based equipment techs require solar panel tech, so only require
 -- titanium processing for that.
 util.add_titanium_prerequisite(data.raw.technology["solar-panel-equipment"])

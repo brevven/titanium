@@ -8,11 +8,12 @@ util.steel_to_titanium(data.raw.recipe["low-density-structure"].normal)
 util.steel_to_titanium(data.raw.recipe["low-density-structure"].expensive)
 util.add_titanium_prerequisite(data.raw.technology["low-density-structure"])
 
-util.steel_to_titanium(data.raw.recipe["flying-robot-frame"])
-util.steel_to_titanium(data.raw.recipe["flying-robot-frame"].normal)
-util.steel_to_titanium(data.raw.recipe["flying-robot-frame"].expensive)
-
-util.add_titanium_prerequisite(data.raw.technology["robotics"])
+if (not mods["bobplates"] and not mods["angelssmelting"]) then
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame"])
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame"].normal)
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame"].expensive)
+  util.add_titanium_prerequisite(data.raw.technology["robotics"])
+end
 
 
 -- Memory storage changes

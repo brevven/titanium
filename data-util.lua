@@ -50,7 +50,7 @@ end
 
 --- Add titanium processing as a prerequisite to a given technology
 function data_util.add_titanium_prerequisite(technology)
-  if mods["pyrawores"] then
+  if (mods["pyrawores"] or mods["bobplates"] or mods["angelssmelting"]) then
     return
   end
 	table.insert(technology.prerequisites, data_util.titanium_processing)
