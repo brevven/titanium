@@ -6,7 +6,9 @@ local util = require("__bztitanium__.data-util");
 util.steel_to_titanium(data.raw.recipe["low-density-structure"])
 util.steel_to_titanium(data.raw.recipe["low-density-structure"].normal)
 util.steel_to_titanium(data.raw.recipe["low-density-structure"].expensive)
-util.add_titanium_prerequisite(data.raw.technology["low-density-structure"])
+if not mods["bobrevamp"] then
+  util.add_titanium_prerequisite(data.raw.technology["low-density-structure"])
+end
 
 if (not mods["bobplates"] and not mods["angelssmelting"]) then
   util.steel_to_titanium(data.raw.recipe["flying-robot-frame"])
@@ -14,6 +16,19 @@ if (not mods["bobplates"] and not mods["angelssmelting"]) then
   util.steel_to_titanium(data.raw.recipe["flying-robot-frame"].expensive)
   util.add_titanium_prerequisite(data.raw.technology["robotics"])
 end
+
+if (mods["bobrevamp"] and not mods["bobplates"] and not mods["angelssmelting"]) then
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-2"])
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-2"].normal)
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-2"].expensive)
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-3"])
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-3"].normal)
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-3"].expensive)
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-4"])
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-4"].normal)
+  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-4"].expensive)
+end
+
 
 
 -- Memory storage changes

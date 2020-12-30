@@ -14,6 +14,10 @@ if mods["modmashsplinterresources"] then
   util.remove_raw("recipe", "titanium-extraction-process")
 end
 
+if (mods["bobrevamp"] and not mods["bobores"]) then
+  util.remove_raw("technology", "titanium-processing")
+end
+
 if (not mods["pyrawores"] and not mods["bobplates"] and not mods["angelssmelting"]) then
 data:extend(
 {
