@@ -48,8 +48,10 @@ if data.raw.recipe["se-space-pipe"] then
     util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"])
     util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"].normal)
     util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"].expensive)
-    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"])
-    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"].normal)
-    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"].expensive)
+    if data.raw.recipe["se-space-transport-belt-beltbox"] then
+      util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"])
+      util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"].normal)
+      util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"].expensive)
+    end
   end
 end
