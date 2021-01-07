@@ -21,7 +21,7 @@ util.add_titanium_prerequisite(data.raw.technology["solar-panel-equipment"])
 
 -- Also add titanium to some nuclear steam-handling stuff
 util.add_titanium_ingredient(20, data.raw.recipe["steam-turbine"])
-if mods["pyrawores"] then
+if not mods["pyrawores"] then
   util.add_titanium_ingredient(20, data.raw.recipe["heat-exchanger"])
 end
 util.add_titanium_prerequisite(data.raw.technology["nuclear-power"])
