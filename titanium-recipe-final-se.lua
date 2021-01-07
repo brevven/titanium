@@ -45,9 +45,11 @@ if data.raw.recipe["se-space-pipe"] then
 
   -- deadlock loaders for SE -- mods["deadlock-beltboxes-loaders"]
   if mods["Deadlock-SE-bridge"] then
-    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"])
-    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"].normal)
-    util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"].expensive)
+    if data.raw.recipe["se-space-transport-belt-loader"] then
+      util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"])
+      util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"].normal)
+      util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-loader"].expensive)
+    end
     if data.raw.recipe["se-space-transport-belt-beltbox"] then
       util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"])
       util.steel_to_titanium(data.raw.recipe["se-space-transport-belt-beltbox"].normal)
