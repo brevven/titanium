@@ -40,7 +40,7 @@ local titanium_ore_matter =
     minimum_conversion_quantity = 10,
     matter_value = 8,
     energy_required = 1,
-    need_stabilizer = true,
+    need_stabilizer = false,
     unlocked_by_technology = "titanium-matter-processing"
 	}
 matter.createMatterRecipe(titanium_ore_matter)

@@ -56,6 +56,18 @@ function data_util.add_titanium_prerequisite(technology)
 	table.insert(technology.prerequisites, data_util.titanium_processing)
 end
 
+--- removes a prerequisite tech
+function data_util.remove_prerequisite(tech, prereq)
+  if data.raw.technology[tech] then
+    for i=1, #data.raw.technology[tech].prerequisites, 1 do
+      if data.raw.technology[tech].prerequisites[i] == prereq then
+        table.remove(data.raw.technology[tech].prerequisites, i)
+        break
+      end
+    end
+  end
+end
+
 --- Change all occurances of steel plates to titanium plates in a given recipe
 function data_util.steel_to_titanium(recipe)
 	data_util.replace_ingredient(recipe, "steel-plate", data_util.titanium_plate)
