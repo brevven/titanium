@@ -28,7 +28,6 @@ end
 
 function data_util.check_for_ingredient(recipe, name)
     if recipe ~= nil and recipe.ingredients ~= nil then
-    log(serpent.dump(recipe))
       for i, ingredient in pairs(recipe.ingredients) do
         if ingredient.name == name then
           return true
@@ -59,7 +58,7 @@ end
 --- removes a prerequisite tech
 function data_util.remove_prerequisite(tech, prereq)
   if data.raw.technology[tech] then
-    for i=1, #data.raw.technology[tech].prerequisites, 1 do
+    for i, prerequisite in pairs(data.raw.technology[tech].prerequisites) do
       if data.raw.technology[tech].prerequisites[i] == prereq then
         table.remove(data.raw.technology[tech].prerequisites, i)
         break

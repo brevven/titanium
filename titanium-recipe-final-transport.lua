@@ -67,3 +67,7 @@ if mods["Hover-Car"] then
   util.steel_to_titanium(data.raw.recipe["hover-car-mk2-recipe"].expensive)
 end
 
+-- Just a general compatiblity improvement with py alien life enabled alongside jetpack or other equipment mods
+if mods["pyalienlife"] then
+  util.remove_prerequisite("modular-armor", "advanced-electronics")
+end
