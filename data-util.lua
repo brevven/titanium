@@ -16,6 +16,11 @@ else
 end
 
 
+function data_util.get_k2_stack_size() 
+  return tonumber(krastorio.general.getSafeSettingValue("kr-stack-size"))
+end
+
+
 -- Remove an element of type t and name from data.raw
 function data_util.remove_raw(t, name)
   for i, elem in pairs(data.raw[t]) do

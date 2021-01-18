@@ -1,6 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.9.11
+Date: 2021-01-18
+  Changes:
+    - SE/K2 - vulcanite smelting icon
+    - K2 stack sizes
+---------------------------------------------------------------------------------------------------
 Version: 0.9.10
-Date: 2021-01-09
+Date: 2021-01-16
   Changes:
     - More very minor compatibility tweaks for py
     - Remove some logspam

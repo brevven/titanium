@@ -81,7 +81,7 @@ data:extend({
       },
       subgroup = "raw-resource",
       order = "t-c-a",
-      stack_size = (mods["Krastorio2"] and 200 or 50)
+      stack_size = (mods["Krastorio2"] and util.get_k2_stack_size() or 50)
   },
 })
 
