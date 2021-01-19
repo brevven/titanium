@@ -2,6 +2,8 @@
 local util = require("__bztitanium__.data-util");
 
 if mods["space-exploration"] then
+  se_delivery_cannon_recipes["titanium-ore"] = {name= "titanium-ore"}
+  se_delivery_cannon_recipes[util.titanium_plate] = {name= util.titanium_plate}
   if mods["Krastorio2"] then
     data:extend({
     {
@@ -32,6 +34,7 @@ if mods["space-exploration"] then
         {type = "unlock-recipe", recipe= "enriched-titanium-smelting-vulcanite"})
     table.insert(data.raw.technology["se-processing-vulcanite"].prerequisites, "enriched-titanium")
     data.raw.recipe["enriched-titanium-plate"].order= "d[titanium-plate]"
+    se_delivery_cannon_recipes["enriched-titanium"] = {name= "enriched-titanium"}
   else
     data:extend({
     {
