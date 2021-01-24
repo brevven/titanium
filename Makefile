@@ -1,3 +1,11 @@
+# General makefile for factorio mods.
+#
+# Presumes the development work is done in a <factoriodir>/dev/<modname>/
+# directory where this makefile resides.  This directory must be parallel to
+# the <factoriodir>/mods/ directory where mods are installed. Run `make
+# install` from dev/<modname> to install the mod as a zip file. That zip file
+# should also be ready to upload to the mod portal
+
 .PHONY: copy install
 
 pwd = $(shell pwd)
