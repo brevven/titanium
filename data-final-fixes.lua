@@ -6,6 +6,9 @@ require("titanium-recipe-final-se")
 -- Krastorio 2 final fixes
 require("titanium-recipe-final-k2")
 
+-- Rich Rocks Requiem for Krastorio 2 final fixes
+require("titanium-recipe-final-rrr")
+
 -- Module fixes, including for Krastorio 2
 require("titanium-recipe-modules")
 

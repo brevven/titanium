@@ -1,6 +1,6 @@
 {
     "name": "bztitanium",
-    "version": "0.9.13",
+    "version": "0.9.14",
     "factorio_version": "1.1",
     "title": "Titanium",
     "author": "Brevven",
@@ -11,6 +11,7 @@
       "? aai-industry",
       "? space-exploration",
       "? Krastorio2",
+      "? Rich-Rocks-Requiem",
       "? FactorioExtended-Plus-Core",
       "? Pre0-17-60Oil",
       "? Deadlock-SE-bridge",
