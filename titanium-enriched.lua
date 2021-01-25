@@ -80,14 +80,14 @@ data:extend(
       {
         {
           icon =   "__Krastorio2__/graphics/technologies/enriched-ores.png",
-          icon_size = 128,
+          icon_size = 256,
           tint = { a=1.0, b=0.75, r=0.75, g=0.75 }
         },
         {
           icon = "__bztitanium__/graphics/icons/enriched-titanium.png",
           icon_size = 64,
-          scale = 1,
-          shift = {32, 32}
+          scale = 2,
+          shift = {48, 48}
         }
       },
       effects =

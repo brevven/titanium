@@ -11,12 +11,12 @@ data:extend(
     {
       {
         icon =   "__Krastorio2__/graphics/technologies/matter-stone.png",
-        icon_size = 128,
+        icon_size = 256,
       },
       {
         icon = "__bztitanium__/graphics/icons/titanium-ore.png",
         icon_size = 64,
-        scale = 0.85,
+        scale = 1.5,
       }
     },
     prerequisites = {"kr-matter-processing"},
