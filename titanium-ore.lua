@@ -6,6 +6,7 @@ if mods["FactorioExtended-Plus-Core"] then
   util.remove_raw("item", "titanium-ore")
 end
 
+if (not mods["pyrawores"]) then
 data:extend({
 	{
     type = "autoplace-control",
