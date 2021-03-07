@@ -15,7 +15,7 @@ data:extend(
       },
       {
         icon = "__bztitanium__/graphics/icons/titanium-ore.png",
-        icon_size = 64,
+        icon_size = 64, icon_mipmaps = 3,
         scale = 1.5,
       }
     },

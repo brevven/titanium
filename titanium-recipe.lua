@@ -28,8 +28,8 @@ data:extend(
     order = "d[titanium-plate]",
     icons = (mods["Krastorio2"] and
         {
-          { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64 },
-          { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, scale=0.25, shift= {-8, -8}},
+          { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, icon_mipmaps = 3,},
+          { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, icon_mipmaps = 3, scale=0.25, shift= {-8, -8}},
         } or nil),
     normal = (mods["Krastorio2"] and
         {
@@ -56,7 +56,7 @@ data:extend(
     type = "item",
     name = util.titanium_plate,
     icon = "__bztitanium__/graphics/icons/titanium-plate.png",
-    icon_size = 64,
+    icon_size = 64, icon_mipmaps = 3,
     subgroup = "raw-material",
     order = "b[titanium-plate]",
     stack_size = (mods["Krastorio2"] and util.get_k2_stack_size() or 100)
@@ -64,8 +64,8 @@ data:extend(
   {
     type = "technology",
     name = "titanium-processing",
-    icon_size = 128,
-    icon = "__bztitanium__/graphics/icons/titanium-processing.png",
+    icon_size = 256, icon_mipmaps = 4,
+    icon = "__bztitanium__/graphics/technology/titanium-processing.png",
     effects =
     {
       {

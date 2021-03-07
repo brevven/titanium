@@ -7,7 +7,7 @@ data:extend(
   {
     type = "item",
     name = "enriched-titanium",
-    icon_size = 64,
+    icon_size = 64, icon_mipmaps = 3,
     icon = "__bztitanium__/graphics/icons/enriched-titanium.png",
       pictures = {
         {filename="__bztitanium__/graphics/icons/enriched-titanium.png", size=64, scale=0.25},
@@ -23,7 +23,7 @@ data:extend(
     type = "recipe",
     name = "enriched-titanium",
     icon = "__bztitanium__/graphics/icons/enriched-titanium.png",
-    icon_size = 64,
+    icon_size = 64, icon_mipmaps = 3,
     category = "chemistry",
     energy_required = 3,
     enabled = false,
@@ -56,8 +56,8 @@ data:extend(
       name = "enriched-titanium-plate",
       icons =
       {
-        { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64 },
-        { icon = "__bztitanium__/graphics/icons/enriched-titanium.png", icon_size = 64, scale=0.25, shift= {-8, -8}},
+        { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, icon_mipmaps = 3, },
+        { icon = "__bztitanium__/graphics/icons/enriched-titanium.png", icon_size = 64, icon_mipmaps = 3, scale=0.25, shift= {-8, -8}},
       },
       category = "smelting",
       energy_required = 16,
@@ -85,7 +85,7 @@ data:extend(
         },
         {
           icon = "__bztitanium__/graphics/icons/enriched-titanium.png",
-          icon_size = 64,
+          icon_size = 64, icon_mipmaps = 3,
           scale = 2,
           shift = {48, 48}
         }
