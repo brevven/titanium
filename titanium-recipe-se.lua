@@ -27,7 +27,6 @@ if mods["space-exploration"] then
         { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64 },
         { icon = "__space-exploration-graphics__/graphics/icons/vulcanite-block.png", icon_size = 64, scale=0.25, shift= {-10, -10}},
       },
-      
     },
     })
     table.insert(data.raw.technology["se-processing-vulcanite"].effects, 

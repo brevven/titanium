@@ -17,7 +17,7 @@ data:extend(
       },
     subgroup = "raw-material",
     order = "e05-a[enriched-ores]-a1[enriched-titanium]",
-    stack_size = util.get_k2_stack_size(),
+    stack_size = util.get_stack_size(100),
   },
   {
     type = "recipe",

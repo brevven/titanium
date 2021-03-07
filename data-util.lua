@@ -16,9 +16,14 @@ else
 end
 
 
-function data_util.get_k2_stack_size() 
-  return tonumber(krastorio.general.getSafeSettingValue("kr-stack-size"))
+function data_util.get_stack_size(default) 
+  if mods["Krastorio2"] then
+    size = tonumber(krastorio.general.getSafeSettingValue("kr-stack-size"))
+    return size or default
+  end
+  return default
 end
+
 
 
 -- Remove an element of type t and name from data.raw

@@ -59,7 +59,7 @@ data:extend(
     icon_size = 64,
     subgroup = "raw-material",
     order = "b[titanium-plate]",
-    stack_size = (mods["Krastorio2"] and util.get_k2_stack_size() or 100)
+    stack_size = util.get_stack_size(100)
   },
   {
     type = "technology",
