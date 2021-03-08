@@ -59,7 +59,7 @@ data:extend(
     icon_size = 64, icon_mipmaps = 3,
     subgroup = "raw-material",
     order = "b[titanium-plate]",
-    stack_size = (mods["Krastorio2"] and util.get_k2_stack_size() or 100)
+    stack_size = util.get_stack_size(100)
   },
   {
     type = "technology",
@@ -71,7 +71,11 @@ data:extend(
       {
         type = "unlock-recipe",
         recipe = util.titanium_plate
-      }
+      },
+      mods["TheBigFurnace"] and {
+        type = "unlock-recipe",
+        recipe = "big-titanium-plate",
+      } or nil,
     },
     unit =
     {
@@ -91,6 +95,28 @@ data:extend(
     prerequisites = {"lubricant"},
     order = "b-b"
   },
+  mods["TheBigFurnace"] and {
+    type = "recipe",
+    name = "big-titanium-plate",
+    category = "big-smelting",
+    order = "d[titanium-plate]",
+    normal =
+    {
+      enabled = false,
+      energy_required = 8.75,
+      ingredients = {{"titanium-ore", 50}},
+      result = util.titanium_plate,
+      result_count = 10,
+    },
+    expensive =
+    {
+      enabled = false,
+      energy_required = 16,
+      ingredients = {{"titanium-ore", 100}},
+      result = util.titanium_plate,
+      result_count = 10,
+    }
+  } or nil,
 }
 )
 end

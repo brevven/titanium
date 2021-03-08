@@ -6,6 +6,7 @@ if mods["FactorioExtended-Plus-Core"] then
   util.remove_raw("item", "titanium-ore")
 end
 
+if (not mods["pyrawores"]) then
 data:extend({
 	{
     type = "autoplace-control",
@@ -81,7 +82,8 @@ data:extend({
       },
       subgroup = "raw-resource",
       order = "t-c-a",
-      stack_size = (mods["Krastorio2"] and util.get_k2_stack_size() or 50)
+      stack_size = util.get_stack_size(50)
   },
 })
+end
 
