@@ -21,7 +21,7 @@ data:extend({
 	},
 	{
     type = "resource",
-    icon_size = 64,
+    icon_size = 64, icon_mipmaps = 3,
     name = "titanium-ore",
     icon = "__bztitanium__/graphics/icons/titanium-ore.png",
     flags = {"placeable-neutral"},
@@ -72,7 +72,7 @@ data:extend({
   {
       type = "item",
       name = "titanium-ore",
-      icon_size = 64,
+      icon_size = 64, icon_mipmaps = 3,
       icon = "__bztitanium__/graphics/icons/titanium-ore.png",
       pictures = {
         {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=64, scale=0.25},
