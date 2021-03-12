@@ -135,7 +135,7 @@ Date: 2020-11-27
     - Initial work for 5Dim's mod. (Not available until 5Dim's is updated to 1.1)
   Changes:
     - Minor capitalization fixes
-  Fixes
+  Fixes:
     - Fixed compatibility issue with new space exploration core fragment handling (in 0.5.x)
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.0
