@@ -10,7 +10,8 @@ See changelog.txt
 
 ## Created by
 
-- [brevven](https://mods.factorio.com/user/brevven)
+- [brevven](https://mods.factorio.com/user/brevven) (code, design, graphics)
+- [snouz](https://github.com/snouz) (graphics)
 
 ### Localization
 Thanks to 
