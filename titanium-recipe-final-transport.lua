@@ -2,69 +2,43 @@ local util = require("__bztitanium__.data-util");
 
 -- Various vehicle/transport mod changes
 if mods["Aircraft"] then
-  util.steel_to_titanium(data.raw.recipe["gunship"])
-  util.steel_to_titanium(data.raw.recipe["gunship"].normal)
-  util.steel_to_titanium(data.raw.recipe["gunship"].expensive)
-  util.steel_to_titanium(data.raw.recipe["cargo-plane"])
-  util.steel_to_titanium(data.raw.recipe["cargo-plane"].normal)
-  util.steel_to_titanium(data.raw.recipe["cargo-plane"].expensive)
-  util.steel_to_titanium(data.raw.recipe["flying-fortress"])
-  util.steel_to_titanium(data.raw.recipe["flying-fortress"].normal)
-  util.steel_to_titanium(data.raw.recipe["flying-fortress"].expensive)
-  util.add_titanium_ingredient(10, data.raw.recipe["aircraft-afterburner"])
-  util.add_titanium_ingredient(10, data.raw.recipe["aircraft-afterburner"].normal)
-  util.add_titanium_ingredient(20, data.raw.recipe["aircraft-afterburner"].expensive)
+  util.steel_to_titanium("gunship")
+  util.steel_to_titanium("cargo-plane")
+  util.steel_to_titanium("flying-fortress")
+  util.add_titanium_ingredient(10, "aircraft-afterburner")
 
   -- jet doesn't use steel in base aircraft mod, but leave this here just in case that changes
-  util.steel_to_titanium(data.raw.recipe["jet"])
-  util.steel_to_titanium(data.raw.recipe["jet"].normal)
-  util.steel_to_titanium(data.raw.recipe["jet"].expensive)
+  util.steel_to_titanium("jet")
 end
 
 if mods["betterCargoPlanes"] then
-  util.steel_to_titanium(data.raw.recipe["better-cargo-plane"])
-  util.steel_to_titanium(data.raw.recipe["better-cargo-plane"].normal)
-  util.steel_to_titanium(data.raw.recipe["better-cargo-plane"].expensive)
+  util.steel_to_titanium("better-cargo-plane")
 end
 
 if mods["HelicopterRevival"] or mods["Helicopters"] then
-  util.steel_to_titanium(data.raw.recipe["heli-recipe"])
-  util.steel_to_titanium(data.raw.recipe["heli-recipe"].normal)
-  util.steel_to_titanium(data.raw.recipe["heli-recipe"].expensive)
+  util.steel_to_titanium("heli-recipe")
 end
 
 if mods["adamo-chopper"] then
-  util.steel_to_titanium(data.raw.recipe["chopper-recipe"])
-  util.steel_to_titanium(data.raw.recipe["chopper-recipe"].normal)
-  util.steel_to_titanium(data.raw.recipe["chopper-recipe"].expensive)
+  util.steel_to_titanium("chopper-recipe")
 end
 
 if mods["jetpack"] then
-  util.steel_to_titanium(data.raw.recipe["jetpack-1"])
-  util.steel_to_titanium(data.raw.recipe["jetpack-1"].normal)
-  util.steel_to_titanium(data.raw.recipe["jetpack-1"].expensive)
+  util.steel_to_titanium("jetpack-1")
 end
 
 if mods["Hovercrafts"] or mods["Hovercrafts_Realism"] then
-  util.steel_to_titanium(data.raw.recipe["hcraft-recipe"])
-  util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].normal)
-  util.steel_to_titanium(data.raw.recipe["hcraft-recipe"].expensive)
-  util.add_titanium_prerequisite(data.raw.technology["hcraft-tech"])
+  util.steel_to_titanium("hcraft-recipe")
+  util.add_titanium_prerequisite("hcraft-tech")
 end
 
 if mods["Raven"] then
-  util.add_titanium_ingredient(100, data.raw.recipe["raven"])
-  util.add_titanium_ingredient(100, data.raw.recipe["raven"].normal)
-  util.add_titanium_ingredient(100, data.raw.recipe["raven"].expensive)
+  util.add_titanium_ingredient(100, "raven")
 end
 
 if mods["Hover-Car"] then
-  util.steel_to_titanium(data.raw.recipe["hover-car-recipe"])
-  util.steel_to_titanium(data.raw.recipe["hover-car-recipe"].normal)
-  util.steel_to_titanium(data.raw.recipe["hover-car-recipe"].expensive)
-  util.steel_to_titanium(data.raw.recipe["hover-car-mk2-recipe"])
-  util.steel_to_titanium(data.raw.recipe["hover-car-mk2-recipe"].normal)
-  util.steel_to_titanium(data.raw.recipe["hover-car-mk2-recipe"].expensive)
+  util.steel_to_titanium("hover-car-recipe")
+  util.steel_to_titanium("hover-car-mk2-recipe")
 end
 
 -- Just a general compatiblity improvement with py alien life enabled alongside jetpack or other equipment mods

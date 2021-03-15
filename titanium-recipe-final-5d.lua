@@ -89,56 +89,33 @@ if mods["5dim_core"] then
   table.insert(data.raw.technology[util.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-plate-industrial-dust"})
 
-  if mods["5dim_automation"] then
-    util.steel_to_titanium(data.raw.recipe["5d-assembling-machine-07"])
-    util.steel_to_titanium(data.raw.recipe["5d-assembling-machine-07"].normal)
-    util.steel_to_titanium(data.raw.recipe["5d-assembling-machine-07"].expensive)
-    util.steel_to_titanium(data.raw.recipe["5d-assembling-machine-08"])
-    util.steel_to_titanium(data.raw.recipe["5d-assembling-machine-08"].normal)
-    util.steel_to_titanium(data.raw.recipe["5d-assembling-machine-08"].expensive)
-    util.steel_to_titanium(data.raw.recipe["5d-lab-06"])
-    util.steel_to_titanium(data.raw.recipe["5d-lab-06"].normal)
-    util.steel_to_titanium(data.raw.recipe["5d-lab-06"].expensive)
-    util.steel_to_titanium(data.raw.recipe["5d-lab-07"])
-    util.steel_to_titanium(data.raw.recipe["5d-lab-07"].normal)
-    util.steel_to_titanium(data.raw.recipe["5d-lab-07"].expensive)
+  if mods["5dim_automation"] then 
+    for i, name in ipairs(
+        {"5d-assembling-machine-07","5d-assembling-machine-08","5d-lab-06","5d-lab-07"}) do
+      util.steel_to_titanium(name)
+    end
+
   end
 
   if mods["5dim_nuclear"] then
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-02"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-02"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-02"].expensive)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-03"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-03"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-03"].expensive)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-04"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-04"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-04"].expensive)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-05"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-05"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-05"].expensive)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-06"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-06"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-06"].expensive)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-07"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-07"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-07"].expensive)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-08"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-08"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-08"].expensive)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-09"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-09"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-09"].expensive)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-10"])
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-10"].normal)
-    util.add_titanium_ingredient(20, data.raw.recipe["5d-steam-turbine-10"].expensive)
+  for i, name in ipairs(
+      {
+      "5d-steam-turbine-02",
+      "5d-steam-turbine-03",
+      "5d-steam-turbine-04",
+      "5d-steam-turbine-05",
+      "5d-steam-turbine-06",
+      "5d-steam-turbine-07",
+      "5d-steam-turbine-08",
+      "5d-steam-turbine-09",
+      "5d-steam-turbine-10"
+      }) do
+      util.add_ingredient(name, "titanium-plate", 20)
+    end
   end
 
   if mods["5dim_battlefield"] then
-    util.steel_to_titanium(data.raw.recipe["5d-stone-wall-09"])
-    util.steel_to_titanium(data.raw.recipe["5d-stone-wall-09"].normal)
-    util.steel_to_titanium(data.raw.recipe["5d-stone-wall-09"].expensive)
+      util.steel_to_titanium(name)
   end
-
 
 end

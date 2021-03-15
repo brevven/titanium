@@ -18,18 +18,10 @@ if mods["modmashsplinter"] then
   end
 
   if mods["modmashsplinterlogistics"] then 
-    util.steel_to_titanium(data.raw.recipe["regenerative-transport-belt"])
-    util.steel_to_titanium(data.raw.recipe["regenerative-transport-belt"].normal)
-    util.steel_to_titanium(data.raw.recipe["regenerative-transport-belt"].expensive)
-    util.steel_to_titanium(data.raw.recipe["regenerative-splitter"])
-    util.steel_to_titanium(data.raw.recipe["regenerative-splitter"].normal)
-    util.steel_to_titanium(data.raw.recipe["regenerative-splitter"].expensive)
-    util.steel_to_titanium(data.raw.recipe["regenerative-underground-belt-structure"])
-    util.steel_to_titanium(data.raw.recipe["regenerative-underground-belt-structure"].normal)
-    util.steel_to_titanium(data.raw.recipe["regenerative-underground-belt-structure"].expensive)
-    util.steel_to_titanium(data.raw.recipe["regenerative-mini-loader"])
-    util.steel_to_titanium(data.raw.recipe["regenerative-mini-loader"].normal)
-    util.steel_to_titanium(data.raw.recipe["regenerative-mini-loader"].expensive)
+    util.steel_to_titanium("regenerative-transport-belt")
+    util.steel_to_titanium("regenerative-splitter")
+    util.steel_to_titanium("regenerative-underground-belt-structure")
+    util.steel_to_titanium("regenerative-mini-loader")
   end
 
 end

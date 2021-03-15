@@ -3,39 +3,27 @@
 
 local util = require("__bztitanium__.data-util");
 
-util.steel_to_titanium(data.raw.recipe["low-density-structure"])
-util.steel_to_titanium(data.raw.recipe["low-density-structure"].normal)
-util.steel_to_titanium(data.raw.recipe["low-density-structure"].expensive)
+util.steel_to_titanium("low-density-structure")
 if not mods["bobrevamp"] then
-  util.add_titanium_prerequisite(data.raw.technology["low-density-structure"])
+  util.add_titanium_prerequisite("low-density-structure")
 end
 
 if (not mods["bobplates"] and not mods["angelssmelting"]) then
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame"])
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame"].normal)
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame"].expensive)
-  util.add_titanium_prerequisite(data.raw.technology["robotics"])
+  util.steel_to_titanium("flying-robot-frame")
+  util.add_titanium_prerequisite("robotics")
 end
 
 if (mods["bobrevamp"] and not mods["bobplates"] and not mods["angelssmelting"]) then
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-2"])
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-2"].normal)
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-2"].expensive)
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-3"])
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-3"].normal)
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-3"].expensive)
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-4"])
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-4"].normal)
-  util.steel_to_titanium(data.raw.recipe["flying-robot-frame-4"].expensive)
+  util.steel_to_titanium("flying-robot-frame-2")
+  util.steel_to_titanium("flying-robot-frame-3")
+  util.steel_to_titanium("flying-robot-frame-4")
 end
 
 
 
 -- Memory storage changes
 if data.raw.item["memory-unit"] then
-  util.steel_to_titanium(data.raw.recipe["memory-unit"])
-  util.steel_to_titanium(data.raw.recipe["memory-unit"].normal)
-  util.steel_to_titanium(data.raw.recipe["memory-unit"].expensive)
+  util.steel_to_titanium("memory-unit")
 end
 
 -- Underwater pipes changes
@@ -51,10 +39,8 @@ if data.raw.item["underwater-pipe"] then
       table.remove(data.raw.technology["underwater-pipes"].prerequisites, index)
     end
   end
-  util.add_titanium_prerequisite(data.raw.technology["underwater-pipes"])
+  util.add_titanium_prerequisite("underwater-pipes")
 
-  util.steel_to_titanium(data.raw.recipe["underwater-pipe"])
-  util.steel_to_titanium(data.raw.recipe["underwater-pipe"].normal)
-  util.steel_to_titanium(data.raw.recipe["underwater-pipe"].expensive)
+  util.steel_to_titanium("underwater-pipe")
 end
 
