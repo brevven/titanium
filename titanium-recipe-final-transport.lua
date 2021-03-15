@@ -41,6 +41,18 @@ if mods["Hover-Car"] then
   util.steel_to_titanium("hover-car-mk2-recipe")
 end
 
+if mods["fast_trans"] then
+  for i, item in ipairs({
+      "cargo-wagon-immortal-mk3", 
+      "fluid-wagon-immortal-mk3", 
+      "fast-one-mk2 txt",
+      "fast-one-mk3 txt",
+    }) do
+    util.steel_to_titanium(item)
+  end
+  util.add_titanium_prerequisite("fast-one-tech-mk2")
+end
+
 -- Just a general compatiblity improvement with py alien life enabled alongside jetpack or other equipment mods
 if mods["pyalienlife"] then
   util.remove_prerequisite("modular-armor", "advanced-electronics")
