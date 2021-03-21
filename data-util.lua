@@ -25,15 +25,15 @@ function data_util.get_stack_size(default)
 end
 
 function data_util.steel_to_titanium(name) 
-  data_util.replace_ingredient(name, "steel-plate", "titanium-plate")
+  data_util.replace_ingredient(name, "steel-plate", data_util.titanium_plate)
 end
 
 function data_util.add_titanium_ingredient(amount, name) 
-  data_util.add_ingredient(name, "titanium-plate", amount)
+  data_util.add_ingredient(name, data_util.titanium_plate, amount)
 end
 
 function data_util.rare_to_titanium(name) 
-  data_util.replace_ingredient(name, "rare-metals", "titanium-plate")
+  data_util.replace_ingredient(name, "rare-metals", data_util.titanium_plate)
 end
 
 function data_util.add_titanium_prerequisite(name)
