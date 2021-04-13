@@ -4,6 +4,10 @@
 local util = require("__bztitanium__.data-util");
 
 util.steel_to_titanium("low-density-structure")
+if mods["modmashsplintergold"] then
+  util.steel_to_titanium("low-density-structure-with-gold")
+end
+
 if not mods["bobrevamp"] then
   util.add_titanium_prerequisite("low-density-structure")
 end
