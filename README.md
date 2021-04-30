@@ -16,5 +16,6 @@ See changelog.txt
 ### Localization
 Thanks to 
 
-- [thinOptimist](https://mods.factorio.com/user/thinOptimist) (RU)
+- [thinOptimist](https://mods.factorio.com/user/thinOptimist) (ru)
+- [yokmp](https://mods.factorio.com/user/yokmp) (de)
 
