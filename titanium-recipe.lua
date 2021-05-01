@@ -18,9 +18,8 @@ if (mods["bobrevamp"] and not mods["bobores"]) then
   util.remove_raw("technology", "titanium-processing")
 end
 
-if (not mods["pyrawores"] and not mods["bobplates"] and not mods["angelssmelting"]) then
-data:extend(
-{
+if (not mods["pyrawores"] and not mods["bobplates"]) then
+data:extend({
   {
     type = "recipe",
     name = util.titanium_plate,
@@ -117,7 +116,6 @@ data:extend(
       result_count = 10,
     }
   } or nil,
-}
-)
+})
 end
 

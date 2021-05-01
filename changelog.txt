@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.10.10
+Date: 2021-05-01
+  Fixes:
+    - Fixed startup error with angels smelting.
+    - Fixed equipment not using titanium
+  Features:
+    - Some basic compatibility with angels smelting (without bobs)
+---------------------------------------------------------------------------------------------------
 Version: 0.10.9
 Date: 2021-04-30
   Features:

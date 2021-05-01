@@ -2,9 +2,14 @@
 --
 local util = require("__bztitanium__.data-util");
 
-if (not mods["bobplates"] and not mods["angelssmelting"]) then
+if (not mods["bobplates"]) then
   util.replace_ingredient("power-armor", "steel", "titanium")
   util.add_prerequisite("power-armor", util.titanium_processing)
+
+  -- Generally, steel-based equipment techs require solar panel tech, so only require
+  -- titanium processing for that.
+  util.add_prerequisite("solar-panel-equipment", util.titanium_processing)
+
 
   -- All equipment that uses steel now uses titanium. Who wants to carry around steel!
   for name, recipe in pairs(data.raw.recipe) do
@@ -13,10 +18,6 @@ if (not mods["bobplates"] and not mods["angelssmelting"]) then
     end
   end
 end
-
--- Generally, steel-based equipment techs require solar panel tech, so only require
--- titanium processing for that.
-util.add_prerequisite("solar-panel-equipment", util.titanium_processing)
 
 
 -- Also add titanium to some nuclear steam-handling stuff

@@ -12,7 +12,7 @@ if not mods["bobrevamp"] then
   util.add_titanium_prerequisite("low-density-structure")
 end
 
-if (not mods["bobplates"] and not mods["angelssmelting"]) then
+if (not mods["bobplates"]) then
   util.steel_to_titanium("flying-robot-frame")
   util.add_titanium_prerequisite("robotics")
 end

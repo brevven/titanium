@@ -17,7 +17,9 @@ elseif mining_fluid == "sulfuric-acid" then
   data.raw.technology[util.titanium_processing].unit.ingredients = {
     {"automation-science-pack", 1}, {"logistic-science-pack", 1}}
 else
-  data.raw.technology[util.titanium_processing].prerequisites = {"lubricant"}
+  if data.raw.technology["titanium-processing"] then
+    data.raw.technology["titanium-processing"].prerequisites = {"lubricant"}
+  end
   if not mods["Pre0-17-60Oil"] then
     data.raw.technology["solar-panel-equipment"].unit.ingredients = {
       {"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}}
