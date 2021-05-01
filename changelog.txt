@@ -6,6 +6,7 @@ Date: 2021-05-01
     - Fixed equipment not using titanium
   Features:
     - Some basic compatibility with angels smelting (without bobs)
+    - Japanese localization, thanks to user Sakuro
 ---------------------------------------------------------------------------------------------------
 Version: 0.10.9
 Date: 2021-04-30

@@ -14,8 +14,6 @@ See changelog.txt
 - [snouz](https://github.com/snouz) (graphics)
 
 ### Localization
-Thanks to 
-
 - [thinOptimist](https://mods.factorio.com/user/thinOptimist) (ru)
 - [yokmp](https://mods.factorio.com/user/yokmp) (de)
-
+- [Sakuro](https://github.com/sakuro) (ja)
