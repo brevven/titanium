@@ -51,6 +51,13 @@ function data_util.remove_raw(t, name)
   end
 end
 
+-- Set technology recipe
+function data_util.set_tech_recipe(technology_name, ingredients)
+  if data.raw.technology[technology_name] then
+    data.raw.technology[technology_name].unit.ingredients = ingredients
+  end
+end
+
 -- Add a prerequisite to a given technology
 function data_util.add_prerequisite(technology_name, prerequisite)
   technology = data.raw.technology[technology_name]

@@ -21,11 +21,11 @@ else
     data.raw.technology["titanium-processing"].prerequisites = {"lubricant"}
   end
   if not mods["Pre0-17-60Oil"] then
-    data.raw.technology["solar-panel-equipment"].unit.ingredients = {
-      {"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}}
-    data.raw.technology["belt-immunity-equipment"].unit.ingredients = {
-      {"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}}
-    data.raw.technology["night-vision-equipment"].unit.ingredients = {
-      {"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}}
+    util.set_tech_recipe("solar-panel-equipment", {
+      {"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
+    util.set_tech_recipe("belt-immunity-equipment", {
+      {"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
+    util.set_tech_recipe("night-vision-equipment", {
+      {"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
   end
 end
