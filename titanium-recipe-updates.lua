@@ -40,3 +40,7 @@ end
 if mods["eve-weaponry"] then
   util.steel_to_titanium("small-titanium-sabot")
 end
+
+if mods["FastFurnaces"] then
+  util.add_titanium_ingredient(1, "fast-long-handed-inserter")
+end
