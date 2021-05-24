@@ -36,3 +36,7 @@ end
 if mods["Aircraft"] then
   util.add_prerequisite("advanced-aerodynamics", util.titanium_processing)
 end
+
+if mods["eve-weaponry"] then
+  util.steel_to_titanium("small-titanium-sabot")
+end
