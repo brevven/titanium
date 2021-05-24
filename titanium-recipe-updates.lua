@@ -44,3 +44,7 @@ end
 if mods["FastFurnaces"] then
   util.add_titanium_ingredient(1, "fast-long-handed-inserter")
 end
+
+if mods["NuclearFurnace"] then
+  util.add_titanium_ingredient(200, "nuclear-furnace-4")
+end
