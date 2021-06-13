@@ -27,3 +27,7 @@ require("titanium-recipe-final-modmash")
 
 
 require("titanium-data-final-settings")
+
+
+-- Second part of hack for endgame combat
+require("compatibility/titanium-endgame-combat-final")
