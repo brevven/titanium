@@ -48,3 +48,7 @@ end
 if mods["NuclearFurnace"] then
   util.add_titanium_ingredient(200, "nuclear-furnace-4")
 end
+
+-- Useful Equipment
+util.replace_ingredient("craft-assistent", "iron-plate", "titanium-plate")
+util.replace_ingredient("artificial-organ", "iron-plate", "titanium-plate")
