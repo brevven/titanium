@@ -18,6 +18,7 @@ data:extend({
     ingredients = {{type="fluid", name="strange-matter", amount = 3}},
     result = ore,
     category = "crafting-with-fluid",
+    subgroup = "synthesis",
   },
   {
     type = "technology",
