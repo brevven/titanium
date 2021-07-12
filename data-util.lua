@@ -39,6 +39,12 @@ function util.get_setting(name)
   return settings.startup[name].value
 end
 
+function util.fluid_amount()
+  local amt = util.get_setting("bztitanium-mining-fluid-amount")
+  return amt and amt or 3
+end
+  
+
 local bypass = {}
 if util.get_setting(util.name.."-recipe-bypass") then 
   for recipe in string.gmatch(util.get_setting(util.name.."-recipe-bypass"), '[^",%s]+') do

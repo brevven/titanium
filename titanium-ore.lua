@@ -32,7 +32,7 @@ data:extend({
       hardness = 1,
       mining_particle = "titanium-ore-particle",
       mining_time = 2,
-      fluid_amount=3,
+      fluid_amount = util.fluid_amount(),
       required_fluid=(settings.startup["bztitanium-mining-fluid"] and settings.startup["bztitanium-mining-fluid"].value or "lubricant"),
       result = "titanium-ore"
     },
