@@ -105,7 +105,7 @@ data:extend(
           recipe = "dirty-water-filtration-titanium",
         }
       },
-      prerequisites = {"kr-enriched-ores", util.titanium_processing},
+      prerequisites = {"kr-enriched-ores", util.me.titanium_processing},
       unit =
       {
         count = 150,

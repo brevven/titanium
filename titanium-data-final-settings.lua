@@ -9,12 +9,12 @@ if settings.startup["bztitanium-mining-fluid"] then
 end
 
 if mining_fluid == "chlorine" and data.raw.fluid["chlorine"] and mods["Krastorio2"] then
-  data.raw.technology[util.titanium_processing].prerequisites = {"kr-fluids-chemistry"}
-  data.raw.technology[util.titanium_processing].unit.ingredients = {
+  data.raw.technology[util.me.titanium_processing].prerequisites = {"kr-fluids-chemistry"}
+  data.raw.technology[util.me.titanium_processing].unit.ingredients = {
     {"basic-tech-card", 1}, {"automation-science-pack", 1}, {"logistic-science-pack", 1}}
 elseif mining_fluid == "sulfuric-acid" then
-  data.raw.technology[util.titanium_processing].prerequisites = {"sulfur-processing"}
-  data.raw.technology[util.titanium_processing].unit.ingredients = {
+  data.raw.technology[util.me.titanium_processing].prerequisites = {"sulfur-processing"}
+  data.raw.technology[util.me.titanium_processing].unit.ingredients = {
     {"automation-science-pack", 1}, {"logistic-science-pack", 1}}
 else
   if data.raw.technology["titanium-processing"] then

@@ -3,7 +3,7 @@ local util = require("__bztitanium__.data-util");
 
 if mods["space-exploration"] then
   se_delivery_cannon_recipes["titanium-ore"] = {name= "titanium-ore"}
-  se_delivery_cannon_recipes[util.titanium_plate] = {name= util.titanium_plate}
+  se_delivery_cannon_recipes[util.me.titanium_plate] = {name= util.me.titanium_plate}
   if mods["Krastorio2"] then
     data:extend({
     {
@@ -20,7 +20,7 @@ if mods["space-exploration"] then
         {name = "se-vulcanite-block", amount = 1},
       },
       results = {
-        {name = util.titanium_plate, amount = 6},
+        {name = util.me.titanium_plate, amount = 6},
       },
       icons =
       {
@@ -50,7 +50,7 @@ if mods["space-exploration"] then
         {name = "se-vulcanite-block", amount = 1},
       },
       results = {
-        {name = util.titanium_plate, amount = 6},
+        {name = util.me.titanium_plate, amount = 6},
       },
       icons =
       {
@@ -61,6 +61,6 @@ if mods["space-exploration"] then
     })
     table.insert(data.raw.technology["se-processing-vulcanite"].effects, 
         {type = "unlock-recipe", recipe= "titanium-smelting-vulcanite"})
-    util.add_titanium_prerequisite(data.raw.technology["se-processing-vulcanite"])
+    util.me.add_titanium_prerequisite(data.raw.technology["se-processing-vulcanite"])
   end
 end

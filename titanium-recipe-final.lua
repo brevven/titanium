@@ -3,31 +3,31 @@
 
 local util = require("__bztitanium__.data-util");
 
-util.steel_to_titanium("low-density-structure")
+util.me.steel_to_titanium("low-density-structure")
 if mods["modmashsplintergold"] then
-  util.steel_to_titanium("low-density-structure-with-gold")
+  util.me.steel_to_titanium("low-density-structure-with-gold")
 end
 
 if not mods["bobrevamp"] then
-  util.add_titanium_prerequisite("low-density-structure")
+  util.me.add_titanium_prerequisite("low-density-structure")
 end
 
 if (not mods["bobplates"]) then
-  util.steel_to_titanium("flying-robot-frame")
-  util.add_titanium_prerequisite("robotics")
+  util.me.steel_to_titanium("flying-robot-frame")
+  util.me.add_titanium_prerequisite("robotics")
 end
 
 if (mods["bobrevamp"] and not mods["bobplates"] and not mods["angelssmelting"]) then
-  util.steel_to_titanium("flying-robot-frame-2")
-  util.steel_to_titanium("flying-robot-frame-3")
-  util.steel_to_titanium("flying-robot-frame-4")
+  util.me.steel_to_titanium("flying-robot-frame-2")
+  util.me.steel_to_titanium("flying-robot-frame-3")
+  util.me.steel_to_titanium("flying-robot-frame-4")
 end
 
 
 
 -- Memory storage changes
 if data.raw.item["memory-unit"] then
-  util.steel_to_titanium("memory-unit")
+  util.me.steel_to_titanium("memory-unit")
 end
 
 -- Underwater pipes changes
@@ -43,8 +43,8 @@ if data.raw.item["underwater-pipe"] then
       table.remove(data.raw.technology["underwater-pipes"].prerequisites, index)
     end
   end
-  util.add_titanium_prerequisite("underwater-pipes")
+  util.me.add_titanium_prerequisite("underwater-pipes")
 
-  util.steel_to_titanium("underwater-pipe")
+  util.me.steel_to_titanium("underwater-pipe")
 end
 

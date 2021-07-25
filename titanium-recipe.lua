@@ -22,7 +22,7 @@ if (not mods["pyrawores"] and not mods["bobplates"]) then
 data:extend({
   {
     type = "recipe",
-    name = util.titanium_plate,
+    name = util.me.titanium_plate,
     category = "smelting",
     order = "d[titanium-plate]",
     icons = (mods["Krastorio2"] and
@@ -35,25 +35,25 @@ data:extend({
           enabled = false,
           energy_required = 16,
           ingredients = {{"titanium-ore", 10}},
-          results = {{type="item", name= util.titanium_plate, amount_min=2, amount_max=3}},
+          results = {{type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3}},
         } or
         {
           enabled = false,
           energy_required = 8,
           ingredients = {{"titanium-ore", 5}},
-          result = util.titanium_plate
+          result = util.me.titanium_plate
         }),
     expensive =
     {
       enabled = false,
       energy_required = 16,
       ingredients = {{"titanium-ore", 10}},
-      result = util.titanium_plate
+      result = util.me.titanium_plate
     }
   },
   {
     type = "item",
-    name = util.titanium_plate,
+    name = util.me.titanium_plate,
     icon = "__bztitanium__/graphics/icons/titanium-plate.png",
     icon_size = 64, icon_mipmaps = 3,
     subgroup = "raw-material",
@@ -69,7 +69,7 @@ data:extend({
     {
       {
         type = "unlock-recipe",
-        recipe = util.titanium_plate
+        recipe = util.me.titanium_plate
       },
       mods["TheBigFurnace"] and {
         type = "unlock-recipe",
@@ -104,7 +104,7 @@ data:extend({
       enabled = false,
       energy_required = 8.75,
       ingredients = {{"titanium-ore", 50}},
-      result = util.titanium_plate,
+      result = util.me.titanium_plate,
       result_count = 10,
     },
     expensive =
@@ -112,7 +112,7 @@ data:extend({
       enabled = false,
       energy_required = 16,
       ingredients = {{"titanium-ore", 100}},
-      result = util.titanium_plate,
+      result = util.me.titanium_plate,
       result_count = 10,
     }
   } or nil,

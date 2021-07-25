@@ -19,11 +19,11 @@ if mods["5dim_core"] then
       enabled = false,
       energy_required = 140,
       ingredients = {{"titanium-ore", 425}},
-      result = util.titanium_plate,
+      result = util.me.titanium_plate,
       result_count = 100,
     }
   })
-  table.insert(data.raw.technology[util.titanium_processing].effects, 
+  table.insert(data.raw.technology[util.me.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-plate-industrial-ore"})
 
 
@@ -52,7 +52,7 @@ if mods["5dim_core"] then
             ingredients = {
                 {"titanium-dust", 5}
             },
-            result = util.titanium_plate
+            result = util.me.titanium_plate
         },
         {
             type = "recipe",
@@ -78,21 +78,21 @@ if mods["5dim_core"] then
           enabled = false,
           energy_required = 140,
           ingredients = {{"titanium-dust", 425}},
-          result = util.titanium_plate,
+          result = util.me.titanium_plate,
           result_count = 100,
         }
   })
-  table.insert(data.raw.technology[util.titanium_processing].effects, 
+  table.insert(data.raw.technology[util.me.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-dust"})
-  table.insert(data.raw.technology[util.titanium_processing].effects, 
+  table.insert(data.raw.technology[util.me.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-plate-dust"})
-  table.insert(data.raw.technology[util.titanium_processing].effects, 
+  table.insert(data.raw.technology[util.me.titanium_processing].effects, 
       {type = "unlock-recipe", recipe="titanium-plate-industrial-dust"})
 
   if mods["5dim_automation"] then 
     for i, name in ipairs(
         {"5d-assembling-machine-07","5d-assembling-machine-08","5d-lab-06","5d-lab-07"}) do
-      util.steel_to_titanium(name)
+      util.me.steel_to_titanium(name)
     end
 
   end
@@ -115,7 +115,7 @@ if mods["5dim_core"] then
   end
 
   if mods["5dim_battlefield"] then
-      util.steel_to_titanium(name)
+      util.me.steel_to_titanium(name)
   end
 
 end

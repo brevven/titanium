@@ -2,7 +2,7 @@
 
 local util = require("__bztitanium__.data-util");
 
-local recipes = {util.titanium_plate}
+local recipes = {util.me.titanium_plate}
 
 if mods["Krastorio2"] then
   table.insert(recipes, "enriched-titanium-plate")
