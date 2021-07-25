@@ -1,3 +1,5 @@
+-- WARNING - this file will be overwritten, edit bzlib/data-util.lua
+
 local me = require("me")
 local util = {}
 
