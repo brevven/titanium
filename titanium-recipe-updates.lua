@@ -47,17 +47,17 @@ if data.raw.recipe["se-space-pipe"] then
   util.replace_ingredient("se-space-underground-belt", "steel-plate", "titanium-plate")
   util.replace_ingredient("se-space-splitter", "steel-plate", "titanium-plate")
   util.replace_ingredient("se-space-rail", "steel-plate", "titanium-plate")
-  util.me.add_titanium_ingredient(1, "se-space-platform-scaffold")
+  util.add_ingredient("se-space-platform-scaffold", util.me.titanium_plate, 1)
 
   -- Space Exploration alternative LDS
   util.replace_ingredient("se-low-density-structure-beryllium", "steel-plate", "titanium-plate")
 
   -- Space Exploration buildings
-  util.me.add_titanium_ingredient(20, "se-condenser-turbine")
+  util.add_ingredient("se-condenser-turbine", util.me.titanium_plate, 20)
 
   -- A couple more deeper tech thematic items to use titanium in.
-  util.me.add_titanium_ingredient(2, "se-lattice-pressure-vessel")
-  util.me.add_titanium_ingredient(2, "se-aeroframe-bulkhead")
+  util.add_ingredient("se-lattice-pressure-vessel", util.me.titanium_plate, 2)
+  util.add_ingredient("se-aeroframe-bulkhead", util.me.titanium_plate, 2)
 
   util.add_ingredient("se-experimental-alloys-data", "titanium-plate", 1)
   util.add_to_product("se-experimental-alloys-data", "se-experimental-alloys-data", 1)
@@ -68,9 +68,9 @@ end
 
 
 -- Also add titanium to some nuclear steam-handling stuff
-util.me.add_titanium_ingredient(20, "steam-turbine")
+util.add_ingredient("steam-turbine", util.me.titanium_plate, 20)
 if not mods["pyrawores"] then
-  util.me.add_titanium_ingredient(20, "heat-exchanger")
+  util.add_ingredient("heat-exchanger", util.me.titanium_plate, 20)
   util.add_prerequisite("nuclear-power", util.me.titanium_processing)
 end
 
@@ -89,11 +89,11 @@ if mods["eve-weaponry"] then
 end
 
 if mods["FastFurnaces"] then
-  util.me.add_titanium_ingredient(1, "fast-long-handed-inserter")
+  util.add_ingredient("fast-long-handed-inserter", util.me.titanium_plate, 1)
 end
 
 if mods["NuclearFurnace"] then
-  util.me.add_titanium_ingredient(200, "nuclear-furnace-4")
+  util.add_ingredient("nuclear-furnace-4", util.me.titanium_plate, 200)
 end
 
 -- Useful Equipment

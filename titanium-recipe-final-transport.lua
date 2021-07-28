@@ -5,7 +5,7 @@ if mods["Aircraft"] then
   util.replace_ingredient("gunship", "steel-plate", "titanium-plate")
   util.replace_ingredient("cargo-plane", "steel-plate", "titanium-plate")
   util.replace_ingredient("flying-fortress", "steel-plate", "titanium-plate")
-  util.me.add_titanium_ingredient(10, "aircraft-afterburner")
+  util.add_ingredient("aircraft-afterburner", util.me.titanium_plate, 10)
 
   -- jet doesn't use steel in base aircraft mod, but leave this here just in case that changes
   util.replace_ingredient("jet", "steel-plate", "titanium-plate")
@@ -33,7 +33,7 @@ if mods["Hovercrafts"] or mods["Hovercrafts_Realism"] then
 end
 
 if mods["Raven"] then
-  util.me.add_titanium_ingredient(100, "raven")
+  util.add_ingredient("raven", util.me.titanium_plate, 100)
 end
 
 if mods["Hover-Car"] then

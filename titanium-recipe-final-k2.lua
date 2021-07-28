@@ -21,5 +21,5 @@ if mods["Krastorio2"] then
   util.replace_ingredient("stack-inserter", "steel-plate", "titanium-plate")
   util.replace_ingredient("stack-filter-inserter", "steel-plate", "titanium-plate")
 
-  util.me.add_titanium_ingredient(40, "kr-advanced-steam-turbine")
+  util.add_ingredient("kr-advanced-steam-turbine", util.me.titanium_plate, 40)
 end
