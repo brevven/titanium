@@ -16,10 +16,6 @@ else
   me.titanium_processing = "titanium-processing"
 end
 
-function me.steel_to_titanium(name) 
-  replace_ingredient(name, "steel-plate", me.titanium_plate)
-end
-
 function me.add_titanium_ingredient(amount, name) 
   add_ingredient(name, me.titanium_plate, amount)
 end

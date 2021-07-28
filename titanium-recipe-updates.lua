@@ -3,7 +3,7 @@
 local util = require("__bztitanium__.data-util");
 
 if (not mods["bobplates"]) then
-  util.me.steel_to_titanium("power-armor")
+  util.replace_ingredient("power-armor", "steel-plate", "titanium-plate")
   util.add_prerequisite("power-armor", util.me.titanium_processing)
 
   -- Generally, steel-based equipment techs require solar panel tech, so only require
@@ -14,14 +14,14 @@ if (not mods["bobplates"]) then
   -- All equipment that uses steel now uses titanium. Who wants to carry around steel!
   for name, recipe in pairs(data.raw.recipe) do
     if recipe.result ~= nil and recipe.result:find("equipment") then
-      util.me.steel_to_titanium(recipe.name)
+      util.replace_ingredient(recipe.name, "steel-plate", "titanium-plate")
     end
   end
 end
 
-util.me.steel_to_titanium("low-density-structure")
+util.replace_ingredient("low-density-structure", "steel-plate", "titanium-plate")
 if mods["modmashsplintergold"] then
-  util.me.steel_to_titanium("low-density-structure-with-gold")
+  util.replace_ingredient("low-density-structure-with-gold", "steel-plate", "titanium-plate")
 end
 
 if not mods["bobrevamp"] then
@@ -30,14 +30,14 @@ end
 
 
 if (not mods["bobplates"]) then
-  util.me.steel_to_titanium("flying-robot-frame")
+  util.replace_ingredient("flying-robot-frame", "steel-plate", "titanium-plate")
   util.me.add_titanium_prerequisite("robotics")
 end
 
 if (mods["bobrevamp"] and not mods["bobplates"] and not mods["angelssmelting"]) then
-  util.me.steel_to_titanium("flying-robot-frame-2")
-  util.me.steel_to_titanium("flying-robot-frame-3")
-  util.me.steel_to_titanium("flying-robot-frame-4")
+  util.replace_ingredient("flying-robot-frame-2", "steel-plate", "titanium-plate")
+  util.replace_ingredient("flying-robot-frame-3", "steel-plate", "titanium-plate")
+  util.replace_ingredient("flying-robot-frame-4", "steel-plate", "titanium-plate")
 end
 
 
@@ -45,15 +45,15 @@ end
 
 if data.raw.recipe["se-space-pipe"] then
   -- Space Exploration space stuff
-  util.me.steel_to_titanium("se-space-pipe")
-  util.me.steel_to_titanium("se-space-transport-belt")
-  util.me.steel_to_titanium("se-space-underground-belt")
-  util.me.steel_to_titanium("se-space-splitter")
-  util.me.steel_to_titanium("se-space-rail")
+  util.replace_ingredient("se-space-pipe", "steel-plate", "titanium-plate")
+  util.replace_ingredient("se-space-transport-belt", "steel-plate", "titanium-plate")
+  util.replace_ingredient("se-space-underground-belt", "steel-plate", "titanium-plate")
+  util.replace_ingredient("se-space-splitter", "steel-plate", "titanium-plate")
+  util.replace_ingredient("se-space-rail", "steel-plate", "titanium-plate")
   util.me.add_titanium_ingredient(1, "se-space-platform-scaffold")
 
   -- Space Exploration alternative LDS
-  util.me.steel_to_titanium("se-low-density-structure-beryllium")
+  util.replace_ingredient("se-low-density-structure-beryllium", "steel-plate", "titanium-plate")
 
   -- Space Exploration buildings
   util.me.add_titanium_ingredient(20, "se-condenser-turbine")
@@ -88,7 +88,7 @@ if mods["Aircraft"] then
 end
 
 if mods["eve-weaponry"] then
-  util.me.steel_to_titanium("small-titanium-sabot")
+  util.replace_ingredient("small-titanium-sabot", "steel-plate", "titanium-plate")
 end
 
 if mods["FastFurnaces"] then
@@ -105,7 +105,7 @@ util.replace_ingredient("artificial-organ", "iron-plate", "titanium-plate")
 
 -- Memory storage changes
 if data.raw.item["memory-unit"] then
-  util.me.steel_to_titanium("memory-unit")
+  util.replace_ingredient("memory-unit", "steel-plate", "titanium-plate")
 end
 
 -- Underwater pipes changes
@@ -123,6 +123,6 @@ if data.raw.item["underwater-pipe"] then
   end
   util.me.add_titanium_prerequisite("underwater-pipes")
 
-  util.me.steel_to_titanium("underwater-pipe")
+  util.replace_ingredient("underwater-pipe", "steel-plate", "titanium-plate")
 end
 

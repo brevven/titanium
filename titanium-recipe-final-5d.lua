@@ -92,7 +92,7 @@ if mods["5dim_core"] then
   if mods["5dim_automation"] then 
     for i, name in ipairs(
         {"5d-assembling-machine-07","5d-assembling-machine-08","5d-lab-06","5d-lab-07"}) do
-      util.me.steel_to_titanium(name)
+      util.replace_ingredient(name, "steel-plate", "titanium-plate")
     end
 
   end
@@ -115,7 +115,7 @@ if mods["5dim_core"] then
   end
 
   if mods["5dim_battlefield"] then
-      util.me.steel_to_titanium(name)
+      util.replace_ingredient(name, "steel-plate", "titanium-plate")
   end
 
 end

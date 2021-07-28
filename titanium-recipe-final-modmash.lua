@@ -42,10 +42,10 @@ if mods["modmashsplinter"] then
   end
 
   if mods["modmashsplinterlogistics"] then 
-    util.me.steel_to_titanium("regenerative-transport-belt")
-    util.me.steel_to_titanium("regenerative-splitter")
-    util.me.steel_to_titanium("regenerative-underground-belt-structure")
-    util.me.steel_to_titanium("regenerative-mini-loader")
+    util.replace_ingredient("regenerative-transport-belt", "steel-plate", "titanium-plate")
+    util.replace_ingredient("regenerative-splitter", "steel-plate", "titanium-plate")
+    util.replace_ingredient("regenerative-underground-belt-structure", "steel-plate", "titanium-plate")
+    util.replace_ingredient("regenerative-mini-loader", "steel-plate", "titanium-plate")
   end
 
 end

@@ -9,10 +9,10 @@ if data.raw.recipe["se-space-pipe"] then
   -- deadlock loaders for SE -- mods["deadlock-beltboxes-loaders"]
   if mods["Deadlock-SE-bridge"] then
     if data.raw.recipe["se-space-transport-belt-loader"] then
-      util.me.steel_to_titanium("se-space-transport-belt-loader")
+      util.replace_ingredient("se-space-transport-belt-loader", "steel-plate", "titanium-plate")
     end
     if data.raw.recipe["se-space-transport-belt-beltbox"] then
-      util.me.steel_to_titanium("se-space-transport-belt-beltbox")
+      util.replace_ingredient("se-space-transport-belt-beltbox", "steel-plate", "titanium-plate")
     end
   end
 end

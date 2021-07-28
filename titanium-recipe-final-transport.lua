@@ -2,33 +2,33 @@ local util = require("__bztitanium__.data-util");
 
 -- Various vehicle/transport mod changes
 if mods["Aircraft"] then
-  util.me.steel_to_titanium("gunship")
-  util.me.steel_to_titanium("cargo-plane")
-  util.me.steel_to_titanium("flying-fortress")
+  util.replace_ingredient("gunship", "steel-plate", "titanium-plate")
+  util.replace_ingredient("cargo-plane", "steel-plate", "titanium-plate")
+  util.replace_ingredient("flying-fortress", "steel-plate", "titanium-plate")
   util.me.add_titanium_ingredient(10, "aircraft-afterburner")
 
   -- jet doesn't use steel in base aircraft mod, but leave this here just in case that changes
-  util.me.steel_to_titanium("jet")
+  util.replace_ingredient("jet", "steel-plate", "titanium-plate")
 end
 
 if mods["betterCargoPlanes"] then
-  util.me.steel_to_titanium("better-cargo-plane")
+  util.replace_ingredient("better-cargo-plane", "steel-plate", "titanium-plate")
 end
 
 if mods["HelicopterRevival"] or mods["Helicopters"] then
-  util.me.steel_to_titanium("heli-recipe")
+  util.replace_ingredient("heli-recipe", "steel-plate", "titanium-plate")
 end
 
 if mods["adamo-chopper"] then
-  util.me.steel_to_titanium("chopper-recipe")
+  util.replace_ingredient("chopper-recipe", "steel-plate", "titanium-plate")
 end
 
 if mods["jetpack"] then
-  util.me.steel_to_titanium("jetpack-1")
+  util.replace_ingredient("jetpack-1", "steel-plate", "titanium-plate")
 end
 
 if mods["Hovercrafts"] or mods["Hovercrafts_Realism"] then
-  util.me.steel_to_titanium("hcraft-recipe")
+  util.replace_ingredient("hcraft-recipe", "steel-plate", "titanium-plate")
   util.me.add_titanium_prerequisite("hcraft-tech")
 end
 
@@ -37,8 +37,8 @@ if mods["Raven"] then
 end
 
 if mods["Hover-Car"] then
-  util.me.steel_to_titanium("hover-car-recipe")
-  util.me.steel_to_titanium("hover-car-mk2-recipe")
+  util.replace_ingredient("hover-car-recipe", "steel-plate", "titanium-plate")
+  util.replace_ingredient("hover-car-mk2-recipe", "steel-plate", "titanium-plate")
 end
 
 if mods["fast_trans"] then
@@ -48,7 +48,7 @@ if mods["fast_trans"] then
       "fast-one-mk2 txt",
       "fast-one-mk3 txt",
     }) do
-    util.me.steel_to_titanium(item)
+    util.replace_ingredient(item, "steel-plate", "titanium-plate")
   end
   util.me.add_titanium_prerequisite("fast-one-tech-mk2")
 end

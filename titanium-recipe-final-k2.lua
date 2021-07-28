@@ -15,11 +15,11 @@ if mods["Krastorio2"] then
     util.me.rare_to_titanium("kr-advanced-transport-belt-loader")
   end
 
-  util.me.steel_to_titanium("kr-quarry-drill")
-  util.me.steel_to_titanium("kr-singularity-lab")
+  util.replace_ingredient("kr-quarry-drill", "steel-plate", "titanium-plate")
+  util.replace_ingredient("kr-singularity-lab", "steel-plate", "titanium-plate")
 
-  util.me.steel_to_titanium("stack-inserter")
-  util.me.steel_to_titanium("stack-filter-inserter")
+  util.replace_ingredient("stack-inserter", "steel-plate", "titanium-plate")
+  util.replace_ingredient("stack-filter-inserter", "steel-plate", "titanium-plate")
 
   util.me.add_titanium_ingredient(40, "kr-advanced-steam-turbine")
 end
