@@ -24,7 +24,7 @@ copy: link
 	mkdir -p ../$(v)
 	cp -rf * ../$(v)
 	rm -f ../$(v).zip
-	cd ..; zip -9 -r -y $(v).zip $(v) -x "*.xcf" -x "*.git*" -x "*.bak" 
+	cd ..; zip -9 -r -y $(v).zip $(v) -x "*.xcf" -x "*.git*" -x "*.bak" -x "*.blend*"
 
 install: lint-changelog copy
 	cp -f ../$(v).zip ../../mods/

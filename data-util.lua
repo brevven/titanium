@@ -1,4 +1,6 @@
--- WARNING - this file will be overwritten, edit bzlib/data-util.lua
+-- WARNING WARNING WARNING
+-- This file will be overwritten in mod zipfiles, edit bzlib/data-util.lua
+-- WARNING WARNING WARNING
 
 local me = require("me")
 local util = {}
@@ -349,6 +351,56 @@ function util.add_crafting_category(entity_type, entity, category)
       end
       table.insert(data.raw[entity_type][entity].crafting_categories, category)
    end
+end
+
+function util.add_to_ingredient(recipe, ingredient, amount)
+  if data.raw.recipe[recipe] then
+    add_to_ingredient(data.raw.recipe[recipe], ingredient, amount)
+    add_to_ingredient(data.raw.recipe[recipe].normal, ingredient, amount)
+    add_to_ingredient(data.raw.recipe[recipe].expensive, ingredient, amount)
+  end
+end
+
+function add_to_ingredient(recipe, it, amount)
+	if recipe ~= nil and recipe.ingredients ~= nil then
+		for i, ingredient in pairs(recipe.ingredients) do 
+			if ingredient.name == it then
+        ingredient.amount = ingredient.amount + amount
+        return
+      end
+			if ingredient[1] == it then
+        ingredient[2] = ingredients[2] + amount
+        return
+      end
+		end
+	end
+end
+
+function util.add_to_product(recipe, product, amount)
+  if data.raw.recipe[recipe] then
+    add_to_product(data.raw.recipe[recipe], product, amount)
+    add_to_product(data.raw.recipe[recipe].normal, product, amount)
+    add_to_product(data.raw.recipe[recipe].expensive, product, amount)
+  end
+end
+
+function add_to_product(recipe, product, amount)
+  if recipe ~= nil and recipe.results ~= nil then
+    if recipe.result == product then
+      recipe.result_count = recipe.result_count + amount
+      return
+    end
+    for i, result in pairs(recipe.results) do
+			if result.name == product then
+        result.amount = result.amount + amount
+        return
+      end
+			if result[1] == product then
+        result[2] = result[2] + amount
+        return
+      end
+    end
+  end
 end
 
 return util

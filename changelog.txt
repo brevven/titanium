@@ -2,6 +2,7 @@
 Version: 0.12.4
 Date: 2021-07-26
   Changes:
+    - SE: Experimental alloys data recipe
     - Minor refactor
 ---------------------------------------------------------------------------------------------------
 Version: 0.12.3
