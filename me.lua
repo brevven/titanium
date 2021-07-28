@@ -20,10 +20,6 @@ function me.add_titanium_ingredient(amount, name)
   add_ingredient(name, me.titanium_plate, amount)
 end
 
-function me.add_titanium_prerequisite(name)
-  add_prerequisite(name, me.titanium_processing)
-end
-
 function me.get_setting(name)
   if settings.startup[name] == nil then
     return nil
@@ -47,17 +43,6 @@ end
 --
 -- TODO These helpers are all duplicates, remove them
 --
-
-function add_prerequisite(technology_name, prerequisite)
-  technology = data.raw.technology[technology_name]
-  if technology and data.raw.technology[prerequisite] then
-    if technology.prerequisites then
-      table.insert(technology.prerequisites, prerequisite)
-    else
-      technology.prerequisites = {prerequisite}
-    end
-  end
-end
 
 function add_ingredient(recipe_name, ingredient, quantity)
   if me.bypass[recipe_name] then return end

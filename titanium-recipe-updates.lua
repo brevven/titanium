@@ -25,13 +25,13 @@ if mods["modmashsplintergold"] then
 end
 
 if not mods["bobrevamp"] then
-  util.me.add_titanium_prerequisite("low-density-structure")
+  util.add_prerequisite("low-density-structure", util.me.titanium_processing)
 end
 
 
 if (not mods["bobplates"]) then
   util.replace_ingredient("flying-robot-frame", "steel-plate", "titanium-plate")
-  util.me.add_titanium_prerequisite("robotics")
+  util.add_prerequisite("robotics", util.me.titanium_processing)
 end
 
 if (mods["bobrevamp"] and not mods["bobplates"] and not mods["angelssmelting"]) then
@@ -39,9 +39,6 @@ if (mods["bobrevamp"] and not mods["bobplates"] and not mods["angelssmelting"]) 
   util.replace_ingredient("flying-robot-frame-3", "steel-plate", "titanium-plate")
   util.replace_ingredient("flying-robot-frame-4", "steel-plate", "titanium-plate")
 end
-
-
-
 
 if data.raw.recipe["se-space-pipe"] then
   -- Space Exploration space stuff
@@ -121,7 +118,7 @@ if data.raw.item["underwater-pipe"] then
       table.remove(data.raw.technology["underwater-pipes"].prerequisites, index)
     end
   end
-  util.me.add_titanium_prerequisite("underwater-pipes")
+  util.add_prerequisite("underwater-pipes", util.me.titanium_processing)
 
   util.replace_ingredient("underwater-pipe", "steel-plate", "titanium-plate")
 end

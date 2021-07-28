@@ -29,7 +29,7 @@ end
 
 if mods["Hovercrafts"] or mods["Hovercrafts_Realism"] then
   util.replace_ingredient("hcraft-recipe", "steel-plate", "titanium-plate")
-  util.me.add_titanium_prerequisite("hcraft-tech")
+  util.add_prerequisite("hcraft-tech", util.me.titanium_processing)
 end
 
 if mods["Raven"] then
@@ -50,7 +50,7 @@ if mods["fast_trans"] then
     }) do
     util.replace_ingredient(item, "steel-plate", "titanium-plate")
   end
-  util.me.add_titanium_prerequisite("fast-one-tech-mk2")
+  util.add_prerequisite("fast-one-tech-mk2", util.me.titanium_processing)
 end
 
 -- Just a general compatiblity improvement with py alien life enabled alongside jetpack or other equipment mods

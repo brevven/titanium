@@ -61,6 +61,6 @@ if mods["space-exploration"] then
     })
     table.insert(data.raw.technology["se-processing-vulcanite"].effects, 
         {type = "unlock-recipe", recipe= "titanium-smelting-vulcanite"})
-    util.me.add_titanium_prerequisite(data.raw.technology["se-processing-vulcanite"])
+    util.add_prerequisite(data.raw.technology["se-processing-vulcanite"], util.me.titanium_processing)
   end
 end
