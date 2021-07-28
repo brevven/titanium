@@ -20,10 +20,6 @@ function me.add_titanium_ingredient(amount, name)
   add_ingredient(name, me.titanium_plate, amount)
 end
 
-function me.rare_to_titanium(name) 
-  replace_ingredient(name, "rare-metals", me.titanium_plate)
-end
-
 function me.add_titanium_prerequisite(name)
   add_prerequisite(name, me.titanium_processing)
 end
@@ -51,29 +47,6 @@ end
 --
 -- TODO These helpers are all duplicates, remove them
 --
-function replace_ingredient(recipe_name, old, new)
-  if me.bypass[recipe_name] then return end
-  if data.raw.recipe[recipe_name] and data.raw.item[new] then
-    xreplace_ingredient(data.raw.recipe[recipe_name], old, new)
-    xreplace_ingredient(data.raw.recipe[recipe_name].normal, old, new)
-    xreplace_ingredient(data.raw.recipe[recipe_name].expensive, old, new)
-  end
-end
-
-function xreplace_ingredient(recipe, old, new)
-	if recipe ~= nil and recipe.ingredients ~= nil then
-    for i, existing in pairs(recipe.ingredients) do
-      if existing[1] == new or existing.name == new then
-        log("Not adding "..new.." -- duplicate")
-        return
-      end
-    end
-		for i, ingredient in pairs(recipe.ingredients) do 
-			if ingredient.name == old then ingredient.name = new end
-			if ingredient[1] == old then ingredient[1] = new end
-		end
-	end
-end
 
 function add_prerequisite(technology_name, prerequisite)
   technology = data.raw.technology[technology_name]

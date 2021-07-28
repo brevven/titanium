@@ -7,12 +7,12 @@ if mods["Krastorio2"] then
   util.replace_ingredient("advanced-tech-card", "electric-engine-unit", "flying-robot-frame")
 
   -- Flavor changes
-  util.me.rare_to_titanium("kr-electric-mining-drill-mk2")
-  util.me.rare_to_titanium("kr-advanced-transport-belt")
-  util.me.rare_to_titanium("kr-advanced-loader")
+  util.replace_ingredient("kr-electric-mining-drill-mk2", "rare-metals", "titanium-plate")
+  util.replace_ingredient("kr-advanced-transport-belt", "rare-metals", "titanium-plate")
+  util.replace_ingredient("kr-advanced-loader", "rare-metals", "titanium-plate")
   if mods["deadlock-beltboxes-loaders"] then
-    util.me.rare_to_titanium("kr-advanced-transport-belt-beltbox")
-    util.me.rare_to_titanium("kr-advanced-transport-belt-loader")
+    util.replace_ingredient("kr-advanced-transport-belt-beltbox", "rare-metals", "titanium-plate")
+    util.replace_ingredient("kr-advanced-transport-belt-loader", "rare-metals", "titanium-plate")
   end
 
   util.replace_ingredient("kr-quarry-drill", "steel-plate", "titanium-plate")
