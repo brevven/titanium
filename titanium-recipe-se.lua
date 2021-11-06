@@ -4,7 +4,25 @@ local util = require("__bztitanium__.data-util");
 if mods["space-exploration"] then
   se_delivery_cannon_recipes["titanium-ore"] = {name= "titanium-ore"}
   se_delivery_cannon_recipes[util.me.titanium_plate] = {name= util.me.titanium_plate}
+
+  data:extend({
+  {
+    type = "recipe",
+    icons = {
+      { icon = "__base__/graphics/icons/landfill.png", icon_size = 64, icon_mipmaps = 3 },
+      { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, scale = 0.25},
+    },
+    name = "landfill-titanium-ore",
+    category = "hard-recycling",
+    order = "z-b-titanium",
+    subgroup = "terrain",
+    result = "landfill",
+    ingredients = {{"titanium-ore", 50}},
+  }
+  })
+
   if mods["Krastorio2"] then
+
     data:extend({
     {
       type = "recipe",
