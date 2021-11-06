@@ -11,7 +11,7 @@ data:extend(
     icons =
     {
       {
-        icon =   "__Krastorio2__/graphics/technologies/matter-stone.png",
+        icon =   util.k2assets().."/technologies/matter-stone.png",
         icon_size = 256,
       },
       {

@@ -22,6 +22,13 @@ function util.get_stack_size(default)
   return default
 end
 
+function util.k2assets() 
+  if mods["Krastorio2Assets"] then
+    return "__Krastorio2Assets__"
+  end
+  return "__Krastorio2__/graphics"
+end
+
 -- check if a table contains a sought value
 function util.contains(table, sought)
   for i, value in pairs(table) do

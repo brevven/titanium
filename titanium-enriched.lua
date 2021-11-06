@@ -79,7 +79,7 @@ data:extend(
       icons =
       {
         {
-          icon =   "__Krastorio2__/graphics/technologies/enriched-ores.png",
+          icon =   util.k2assets().."/technologies/enriched-ores.png",
           icon_size = 256,
           tint = { a=1.0, b=0.75, r=0.75, g=0.75 }
         },
