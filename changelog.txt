@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 2022-01-04
+  Changes:
+    - SE+K2: Space loader recipe
+  Features:
+    - Space extension endgame recipes
+    - Other minor compatibility updates
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 2021-11-06
   Changes:

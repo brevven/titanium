@@ -123,3 +123,14 @@ if data.raw.item["underwater-pipe"] then
   util.replace_ingredient("underwater-pipe", "steel-plate", util.me.titanium_plate)
 end
 
+-- Space extension
+if mods.SpaceMod then
+  util.replace_ingredient("hull-component", "steel-plate", util.me.titanium_plate)
+  util.replace_some_ingredient("fuel-cell", "steel-plate", 80, util.me.titanium_plate, 80)
+  util.replace_some_ingredient("habitation", "steel-plate", 80, util.me.titanium_plate, 80)
+end
+
+
+-- For flying roboports, replace steel, and then add titanium if steel didn't exist.
+util.replace_ingredient("flying-roboport", "steel-plate", util.me.titanium_plate)
+util.add_ingredient("flying-roboport", util.me.titanium_plate, 10)

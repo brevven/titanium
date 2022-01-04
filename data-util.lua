@@ -8,6 +8,15 @@ local util = {}
 util.me = me
 util.get_setting = util.me.get_setting
 
+util.titanium_plate = ""
+util.titanium_processing = ""
+
+if mods["FactorioExtended-Plus-Core"] then
+  util.titanium_plate = "titanium-alloy"
+else
+  util.titanium_plate = "titanium-plate"
+end
+
 function util.fe_plus(sub)
   if mods["FactorioExtended-Plus-"..sub] then
     return true
@@ -109,7 +118,7 @@ end
 -- Add a given quantity of product to a given recipe. 
 -- Only works for recipes with multiple products
 function util.add_product(recipe_name, product)
-  if data.raw.recipe[recipe_name] and data.raw.item[product] then
+  if data.raw.recipe[recipe_name] and (data.raw.item[product[1]] or data.raw.item[product.name]) then
     add_product(data.raw.recipe[recipe_name], product)
     add_product(data.raw.recipe[recipe_name].normal, product)
     add_product(data.raw.recipe[recipe_name].expensive, product)
@@ -274,6 +283,31 @@ function has_ingredient(recipe, ingredient)
   return false
 end
 
+-- Remove a product from a recipe, WILL NOT remove the only product
+function util.remove_product(recipe_name, old)
+  if me.bypass[recipe_name] then return end
+  if data.raw.recipe[recipe_name] then
+    remove_product(data.raw.recipe[recipe_name], old)
+    remove_product(data.raw.recipe[recipe_name].normal, old)
+    remove_product(data.raw.recipe[recipe_name].expensive, old)
+  end
+end
+
+function remove_product(recipe, old)
+  index = -1
+	if recipe ~= nil and recipe.results ~= nil then
+		for i, result in pairs(recipe.results) do 
+      if result.name == old or result[1] == old then
+        index = i
+        break
+      end
+    end
+    if index > -1 then
+      table.remove(recipe.results, index)
+    end
+  end
+end
+
 -- Replace one product with another in a recipe
 function util.replace_product(recipe_name, old, new)
   if data.raw.recipe[recipe_name] then
@@ -309,7 +343,7 @@ function util.remove_raw(t, name)
 end
 
 -- Multiply energy required
-function util.multiply_time(recipe, factor)
+function util.multiply_time(recipe_name, factor)
   if me.bypass[recipe_name] then return end
   if data.raw.recipe[recipe_name] then
     multiply_time(data.raw.recipe[recipe_name], factor)
@@ -326,19 +360,40 @@ function multiply_time(recipe, factor)
   end
 end
 
+-- Add to energy required
+function util.add_time(recipe_name, amount)
+  log("Doing ".. recipe_name)
+  log(amount)
+  if me.bypass[recipe_name] then return end
+  log(1)
+  if data.raw.recipe[recipe_name] then
+    add_time(data.raw.recipe[recipe_name], amount)
+    add_time(data.raw.recipe[recipe_name].normal, amount)
+    add_time(data.raw.recipe[recipe_name].expensive, amount)
+	end
+end
+
+function add_time(recipe, amount)
+  if recipe then
+    if recipe.energy_required then
+      recipe.energy_required = recipe.energy_required + amount
+    end
+  end
+end
+
 -- Set recipe category
-function util.set_category(recipe, category)
+function util.set_category(recipe_name, category)
    if me.bypass[recipe_name] then return end
-   if data.raw.recipe[recipe] then
-      data.raw.recipe[recipe].category = category
+   if data.raw.recipe[recipe_name] then
+      data.raw.recipe[recipe_name].category = category
    end
 end
 
 -- Set recipe subgroup
-function util.set_subgroup(recipe, subgroup)
+function util.set_subgroup(recipe_name, subgroup)
    if me.bypass[recipe_name] then return end
-   if data.raw.recipe[recipe] then
-      data.raw.recipe[recipe].subgroup = subgroup
+   if data.raw.recipe[recipe_name] then
+      data.raw.recipe[recipe_name].subgroup = subgroup
    end
 end
 
@@ -407,6 +462,12 @@ function add_to_product(recipe, product, amount)
         return
       end
     end
+  end
+end
+
+function util.add_minable_result(t, name, result)
+  if data.raw[t] and data.raw[t][name] and data.raw[t][name].minable and data.raw[t][name].minable.results then
+    table.insert(data.raw[t][name].minable.results, result)
   end
 end
 

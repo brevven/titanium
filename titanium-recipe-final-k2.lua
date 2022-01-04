@@ -22,4 +22,7 @@ if mods["Krastorio2"] then
   util.replace_ingredient("stack-filter-inserter", "steel-plate", util.me.titanium_plate)
 
   util.add_ingredient("kr-advanced-steam-turbine", util.me.titanium_plate, 40)
+
+  -- Must be in final fixes
+  util.replace_ingredient("kr-se-loader", "steel-plate", util.me.titanium_plate) -- K2 + SE
 end
