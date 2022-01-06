@@ -17,3 +17,4 @@ See changelog.txt
 - [thinOptimist](https://mods.factorio.com/user/thinOptimist) (ru)
 - [yokmp](https://mods.factorio.com/user/yokmp) (de)
 - [Sakuro](https://github.com/sakuro) (ja)
+- [S3BA](https://github.com/S3BA-pl) (pl)

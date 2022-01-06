@@ -35,4 +35,10 @@ if me.get_setting(me.name.."-recipe-bypass") then
   end
 end
 
+function me.add_modified(name) 
+  if me.get_setting(me.name.."-list") then 
+    table.insert(me.list, name)
+  end
+end
+
 return me

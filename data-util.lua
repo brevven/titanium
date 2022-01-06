@@ -97,6 +97,7 @@ end
 function util.add_ingredient(recipe_name, ingredient, quantity)
   if me.bypass[recipe_name] then return end
   if data.raw.recipe[recipe_name] and data.raw.item[ingredient] then
+    me.add_modified(recipe_name)
     add_ingredient(data.raw.recipe[recipe_name], ingredient, quantity)
     add_ingredient(data.raw.recipe[recipe_name].normal, ingredient, quantity)
     add_ingredient(data.raw.recipe[recipe_name].expensive, ingredient, quantity)
@@ -135,6 +136,7 @@ end
 function util.replace_ingredient(recipe_name, old, new)
   if me.bypass[recipe_name] then return end
   if data.raw.recipe[recipe_name] and data.raw.item[new] then
+    me.add_modified(recipe_name)
     replace_ingredient(data.raw.recipe[recipe_name], old, new)
     replace_ingredient(data.raw.recipe[recipe_name].normal, old, new)
     replace_ingredient(data.raw.recipe[recipe_name].expensive, old, new)
@@ -160,6 +162,7 @@ end
 function util.remove_ingredient(recipe_name, old)
   if me.bypass[recipe_name] then return end
   if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
     remove_ingredient(data.raw.recipe[recipe_name], old)
     remove_ingredient(data.raw.recipe[recipe_name].normal, old)
     remove_ingredient(data.raw.recipe[recipe_name].expensive, old)
@@ -185,6 +188,7 @@ end
 function util.replace_some_ingredient(recipe_name, old, old_amount, new, new_amount)
   if me.bypass[recipe_name] then return end
   if data.raw.recipe[recipe_name] and data.raw.item[new] then
+    me.add_modified(recipe_name)
     replace_some_ingredient(data.raw.recipe[recipe_name], old, old_amount, new, new_amount)
     replace_some_ingredient(data.raw.recipe[recipe_name].normal, old, old_amount, new, new_amount)
     replace_some_ingredient(data.raw.recipe[recipe_name].expensive, old, old_amount, new, new_amount)
@@ -213,8 +217,9 @@ end
 
 -- multiply the cost, energy, and results of a recipe by a multiple
 function util.multiply_recipe(recipe_name, multiple)
-  if me.bypass[recipe_name] then return end
+  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    if me.bypass[recipe_name] then return end
     multiply_recipe(data.raw.recipe[recipe_name], multiple)
     multiply_recipe(data.raw.recipe[recipe_name].normal, multiple)
     multiply_recipe(data.raw.recipe[recipe_name].expensive, multiple)
@@ -285,8 +290,9 @@ end
 
 -- Remove a product from a recipe, WILL NOT remove the only product
 function util.remove_product(recipe_name, old)
-  if me.bypass[recipe_name] then return end
+  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    if me.bypass[recipe_name] then return end
     remove_product(data.raw.recipe[recipe_name], old)
     remove_product(data.raw.recipe[recipe_name].normal, old)
     remove_product(data.raw.recipe[recipe_name].expensive, old)
@@ -344,8 +350,9 @@ end
 
 -- Multiply energy required
 function util.multiply_time(recipe_name, factor)
-  if me.bypass[recipe_name] then return end
+  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    if me.bypass[recipe_name] then return end
     multiply_time(data.raw.recipe[recipe_name], factor)
     multiply_time(data.raw.recipe[recipe_name].normal, factor)
     multiply_time(data.raw.recipe[recipe_name].expensive, factor)
@@ -362,11 +369,9 @@ end
 
 -- Add to energy required
 function util.add_time(recipe_name, amount)
-  log("Doing ".. recipe_name)
-  log(amount)
-  if me.bypass[recipe_name] then return end
-  log(1)
+  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    if me.bypass[recipe_name] then return end
     add_time(data.raw.recipe[recipe_name], amount)
     add_time(data.raw.recipe[recipe_name].normal, amount)
     add_time(data.raw.recipe[recipe_name].expensive, amount)
@@ -383,18 +388,20 @@ end
 
 -- Set recipe category
 function util.set_category(recipe_name, category)
-   if me.bypass[recipe_name] then return end
-   if data.raw.recipe[recipe_name] then
-      data.raw.recipe[recipe_name].category = category
-   end
+  if me.bypass[recipe_name] then return end
+  if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
+    data.raw.recipe[recipe_name].category = category
+  end
 end
 
 -- Set recipe subgroup
 function util.set_subgroup(recipe_name, subgroup)
-   if me.bypass[recipe_name] then return end
-   if data.raw.recipe[recipe_name] then
-      data.raw.recipe[recipe_name].subgroup = subgroup
-   end
+  if me.bypass[recipe_name] then return end
+  if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
+    data.raw.recipe[recipe_name].subgroup = subgroup
+  end
 end
 
 function util.set_to_founding(recipe)
@@ -465,9 +472,89 @@ function add_to_product(recipe, product, amount)
   end
 end
 
+-- Adds a result to a mineable type
 function util.add_minable_result(t, name, result)
-  if data.raw[t] and data.raw[t][name] and data.raw[t][name].minable and data.raw[t][name].minable.results then
-    table.insert(data.raw[t][name].minable.results, result)
+  if data.raw[t] and data.raw[t][name] and data.raw[t][name].minable then
+    if data.raw[t][name].minable.result and not data.raw[t][name].minable.results then
+      data.raw[t][name].minable.results = {
+        {data.raw[t][name].minable.result ,data.raw[t][name].minable.count}}
+      data.raw[t][name].minable.result = nil
+      data.raw[t][name].minable.result_count = nil
+    end
+    if data.raw[t][name].minable.results then
+      table.insert(data.raw[t][name].minable.results, result)
+    end
+  end
+end
+
+
+local function insert(nodes, node, value)
+    table.insert(node, value) -- store as parameter
+    if 21 == #node then
+        node = {""}
+        table.insert(nodes, node)
+    end
+    return node
+end
+
+local function encode(data)
+    local node = {""}
+    local root = {node}
+    local n = string.len(data)
+    for i = 1,n,200 do
+        local value = string.sub(data, i, i+199)
+        node = insert(root, node, value)
+    end
+    while #root > 20 do
+        local nodes,node = {},{""}
+        for _, value in ipairs(root) do
+            node = insert(nodes, node, value)
+        end
+        root = nodes
+    end
+    if #root == 1 then root = root[1] else
+        table.insert(root, 1, "") -- no locale template
+    end
+    return #root < 3 and (root[2] or "") or root
+end
+
+function decode(data)
+    if type(data) == "string" then return data end
+    local str = {}
+    for i = 2, #data do
+        str[i-1] = decode(data[i])
+    end
+    return table.concat(str, "")
+end
+
+function util.create_list()
+  if #me.list>0 then
+    if not data.raw.item[me.name.."-list"] then
+      data:extend({{
+        type="item",
+        name=me.name.."-list",
+        localised_description = "",
+        enabled=false,
+        icon = "__core__/graphics/empty.png",
+        icon_size = 1,
+        stack_size = 1,
+        flags = {"hidden", "hide-from-bonus-gui"}
+      }})
+    end
+
+    local have = {}
+    local list = {}
+    for i, recipe in pairs(me.list) do
+      if not have[recipe] then
+        have[recipe] = true
+        table.insert(list, recipe)
+      end
+    end
+
+    if #list>0 then
+      data.raw.item[me.name.."-list"].localised_description = 
+        encode(decode(data.raw.item[me.name.."-list"].localised_description).."\n"..table.concat(list, "\n"))
+    end
   end
 end
 
