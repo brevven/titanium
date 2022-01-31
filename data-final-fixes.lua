@@ -16,9 +16,6 @@ require("titanium-recipe-modules")
 -- Deadlock's stacking and crating
 require("titanium-recipe-final-stacking")
 
--- Various playter transport mods like Aircraft
-require("titanium-recipe-final-transport")
-
 -- 5Dim's final fixes
 require("titanium-recipe-final-5d")
 

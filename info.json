@@ -1,6 +1,6 @@
 {
     "name": "bztitanium",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "factorio_version": "1.1",
     "title": "Titanium",
     "author": "Brevven",
@@ -21,6 +21,6 @@
       "? EndgameCombat",
       "! nullius"
     ],
-    "description": "Adds titanium to the base game.\n\nTitanium is used in Low Density Structures, Flying Robot Frames and a few other places.\n\nCompatible with Krastorio 2, Space Exploration, Aircraft, 5Dim's, FE+ and other mods."
+    "description": "Adds titanium to the base game.\n\nTitanium is used in Low Density Structures, Flying Robot Frames and a few other places.\n\nCompatible with Krastorio 2, Space Exploration, Aircraft, 5Dim's, FE+ and other mods. A standalone piece of BZ Mods."
 }
 
