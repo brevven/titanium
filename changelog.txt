@@ -3,6 +3,7 @@ Version: 1.0.3
 Date: 2022-01-24
   Changes:
     - Small compatibility tweaks
+    - K2: Dirty water filtration water amount
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.2
 Date: 2022-01-06
