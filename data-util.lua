@@ -70,7 +70,7 @@ end
 function util.remove_prerequisite(technology_name, prerequisite)
   local technology = data.raw.technology[technology_name]
   local index = -1
-  if technology and data.raw.technology[prerequisite] then
+  if technology then
     for i, prereq in pairs(technology.prerequisites) do
       if prereq == prerequisite then
         index = i

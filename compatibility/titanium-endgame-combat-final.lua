@@ -30,6 +30,7 @@ util.remove_prerequisite("acid-turrets", "aluminium-processing")
 
 util.remove_ingredient("power-armor-mk3", "copper-tungsten-alloy")
 util.remove_prerequisite("power-armor-mk3", "nitinol-processing")
+
 if not mods.bztungsten then
   util.remove_prerequisite("power-armor-mk3", "tungsten-processing")
 
