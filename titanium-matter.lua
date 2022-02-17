@@ -49,7 +49,7 @@ matter.createMatterRecipe(titanium_ore_matter)
 
 local titanium_plate_matter = 
 	{
-    item_name = "titanium-plate",
+    item_name = util.me.titanium_plate,
     minimum_conversion_quantity = 10,
     matter_value = 14,
     energy_required = 2,

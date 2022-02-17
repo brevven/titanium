@@ -69,7 +69,7 @@ data:extend(
       {
         {"enriched-titanium", 10}
       },
-      result = "titanium-plate",
+      result = util.me.titanium_plate,
       result_count = 5,
       order = "b[titanium-plate]-b[enriched-titanium-plate]"
   },	

@@ -2,8 +2,8 @@ local util = require("__bztitanium__.data-util");
 
 if mods["5dim_core"] then
 
-  data.raw.item["titanium-plate"].subgroup = "plates-plates"
-  data.raw.recipe["titanium-plate"].subgroup = "plates-plates"
+  data.raw.item[util.me.titanium_plate].subgroup = "plates-plates"
+  data.raw.recipe[util.me.titanium_plate].subgroup = "plates-plates"
   data.raw.item["titanium-ore"].subgroup = "plates-ore"
 
   if mods["5dim_resources"] then
@@ -95,7 +95,7 @@ if mods["5dim_core"] then
   if mods["5dim_automation"] then 
     for i, name in ipairs(
         {"5d-assembling-machine-07","5d-assembling-machine-08","5d-lab-06","5d-lab-07"}) do
-      util.replace_ingredient(name, "steel-plate", "titanium-plate")
+      util.replace_ingredient(name, "steel-plate", util.me.titanium_plate)
     end
 
   end
@@ -113,12 +113,12 @@ if mods["5dim_core"] then
       "5d-steam-turbine-09",
       "5d-steam-turbine-10"
       }) do
-      util.add_ingredient(name, "titanium-plate", 20)
+      util.add_ingredient(name, util.me.titanium_plate, 20)
     end
   end
 
   if mods["5dim_battlefield"] then
-      util.replace_ingredient(name, "steel-plate", "titanium-plate")
+      util.replace_ingredient(name, "steel-plate", util.me.titanium_plate)
   end
 
 end

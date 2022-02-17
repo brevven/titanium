@@ -558,7 +558,7 @@ function util.add_crafting_category(entity_type, entity, category)
    if data.raw[entity_type][entity] then
       for i, existing in pairs(data.raw[entity_type][entity].crafting_categories) do
         if existing == category then
-          log(entity.." not adding "..new.." -- duplicate")
+          log(entity.." not adding "..category.." -- duplicate")
           return
         end
       end
