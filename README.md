@@ -18,3 +18,4 @@ See changelog.txt
 - [yokmp](https://mods.factorio.com/user/yokmp) (de)
 - [Sakuro](https://github.com/sakuro) (ja)
 - [S3BA](https://github.com/S3BA-pl) (pl)
+- [x2605](https://github.com/x2605) (ko)
