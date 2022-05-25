@@ -1,3 +1,5 @@
+local util = require("data-util");
+
 if simpleCompress then
   if simpleCompress.ores then
     simpleCompress.currentSubgroup = "intermediate-product"

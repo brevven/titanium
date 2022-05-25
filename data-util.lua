@@ -541,10 +541,10 @@ end
 
 -- Set recipe icons
 function util.set_item_icons(item_name, icons)
-  if data.raw.recipe[item_name] then
-    data.raw.recipe[item_name].icons = icons
-    data.raw.recipe[item_name].icon = nil
-    data.raw.recipe[item_name].icon_size = nil
+  if data.raw.item[item_name] then
+    data.raw.item[item_name].icons = icons
+    data.raw.item[item_name].icon = nil
+    data.raw.item[item_name].icon_size = nil
   end
 end
 
