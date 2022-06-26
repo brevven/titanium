@@ -22,6 +22,8 @@ require("titanium-recipe-final-5d")
 -- Modmash final fixes
 require("titanium-recipe-final-modmash")
 
+require("compatibility/248k-final")
+
 
 require("titanium-data-final-settings")
 
