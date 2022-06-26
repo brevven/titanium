@@ -118,4 +118,3 @@ data:extend({
   } or nil,
 })
 end
-

@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.0
+Date: 2022-06-26
+  Features:
+    - Beta support for 248k. This is an initial release and may change in the future
+      Titanium plate items merged into one. Multiple production chains
+---------------------------------------------------------------------------------------------------
 Version: 1.0.9
 Date: 2022-05-25
   Features:
