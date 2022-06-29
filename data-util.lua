@@ -170,15 +170,16 @@ end
 -- Add a given quantity of ingredient to a given recipe
 function util.add_ingredient(recipe_name, ingredient, quantity)
   if me.bypass[recipe_name] then return end
-  if data.raw.recipe[recipe_name] and data.raw.item[ingredient] then
+  local is_fluid = not not data.raw.fluid[ingredient]
+  if data.raw.recipe[recipe_name] and (data.raw.item[ingredient] or is_fluid) then
     me.add_modified(recipe_name)
-    add_ingredient(data.raw.recipe[recipe_name], ingredient, quantity)
-    add_ingredient(data.raw.recipe[recipe_name].normal, ingredient, quantity)
-    add_ingredient(data.raw.recipe[recipe_name].expensive, ingredient, quantity)
+    add_ingredient(data.raw.recipe[recipe_name], ingredient, quantity, is_fluid)
+    add_ingredient(data.raw.recipe[recipe_name].normal, ingredient, quantity, is_fluid)
+    add_ingredient(data.raw.recipe[recipe_name].expensive, ingredient, quantity, is_fluid)
   end
 end
 
-function add_ingredient(recipe, ingredient, quantity)
+function add_ingredient(recipe, ingredient, quantity, is_fluid)
   if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
       if existing[1] == ingredient or existing.name == ingredient then
@@ -186,7 +187,11 @@ function add_ingredient(recipe, ingredient, quantity)
         return
       end
     end
-    table.insert(recipe.ingredients, {ingredient, quantity})
+    if is_fluid then
+      table.insert(recipe.ingredients, {type="fluid", name=ingredient, amount=quantity})
+    else
+      table.insert(recipe.ingredients, {ingredient, quantity})
+    end
   end
 end
 
@@ -268,7 +273,7 @@ end
 -- Replace one ingredient with another in a recipe
 function util.replace_ingredient(recipe_name, old, new)
   if me.bypass[recipe_name] then return end
-  if data.raw.recipe[recipe_name] and data.raw.item[new] then
+  if data.raw.recipe[recipe_name] and (data.raw.item[new] or data.raw.fluid[new]) then
     me.add_modified(recipe_name)
     replace_ingredient(data.raw.recipe[recipe_name], old, new)
     replace_ingredient(data.raw.recipe[recipe_name].normal, old, new)
@@ -320,15 +325,16 @@ end
 -- Replace an amount of an ingredient in a recipe. Keep at least 1 of old.
 function util.replace_some_ingredient(recipe_name, old, old_amount, new, new_amount)
   if me.bypass[recipe_name] then return end
-  if data.raw.recipe[recipe_name] and data.raw.item[new] then
+  local is_fluid = not not data.raw.fluid[new]
+  if data.raw.recipe[recipe_name] and (data.raw.item[new] or is_fluid) then
     me.add_modified(recipe_name)
-    replace_some_ingredient(data.raw.recipe[recipe_name], old, old_amount, new, new_amount)
-    replace_some_ingredient(data.raw.recipe[recipe_name].normal, old, old_amount, new, new_amount)
-    replace_some_ingredient(data.raw.recipe[recipe_name].expensive, old, old_amount, new, new_amount)
+    replace_some_ingredient(data.raw.recipe[recipe_name], old, old_amount, new, new_amount, is_fluid)
+    replace_some_ingredient(data.raw.recipe[recipe_name].normal, old, old_amount, new, new_amount, is_fluid)
+    replace_some_ingredient(data.raw.recipe[recipe_name].expensive, old, old_amount, new, new_amount, is_fluid)
   end
 end
 
-function replace_some_ingredient(recipe, old, old_amount, new, new_amount)
+function replace_some_ingredient(recipe, old, old_amount, new, new_amount, is_fluid)
 	if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
       if existing[1] == new or existing.name == new then
@@ -344,7 +350,7 @@ function replace_some_ingredient(recipe, old, old_amount, new, new_amount)
         ingredient[2] = math.max(1, ingredient[2] - old_amount)
       end
 		end
-    add_ingredient(recipe, new, new_amount)
+    add_ingredient(recipe, new, new_amount, is_fluid)
 	end
 end
 
@@ -444,6 +450,20 @@ function remove_product(recipe, old)
     if index > -1 then
       table.remove(recipe.results, index)
     end
+  end
+end
+
+function util.set_main_product(recipe_name, product)
+  if data.raw.recipe[recipe_name] then
+    set_main_product(data.raw.recipe[recipe_name], product)
+    set_main_product(data.raw.recipe[recipe_name].normal, product)
+    set_main_product(data.raw.recipe[recipe_name].expensive, product)
+  end
+end
+
+function set_main_product(recipe, product)
+  if recipe then
+    recipe.main_product = product
   end
 end
 
