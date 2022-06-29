@@ -115,7 +115,7 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
     se_delivery_cannon_recipes["enriched-titanium"] = {name= "enriched-titanium"}
   end
 else
-  data.raw.item[util.me.titanium_plate].subgroup = "plate<F5><F5>s"
+  data.raw.item[util.me.titanium_plate].subgroup = "plates"
   if mods["Krastorio2"] then
 
     data:extend({
