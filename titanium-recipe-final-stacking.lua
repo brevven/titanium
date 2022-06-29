@@ -8,6 +8,9 @@ if deadlock then
   if mods["Krastorio2"] then
     deadlock.add_stack("enriched-titanium", "__bztitanium__/graphics/icons/stacked/enriched-titanium-stacked.png" , "deadlock-stacking-2", 64)
   end
+  if data.raw.item["titanium-ingot"] then
+    deadlock.add_stack("titanium-ingot", nil, "deadlock-stacking-2", nil)
+  end
 end
 
 -- Deadlock crating recipes
@@ -16,6 +19,9 @@ if deadlock_crating then
   deadlock_crating.add_crate(util.me.titanium_plate, "deadlock-crating-2")
   if mods["Krastorio2"] then
     deadlock_crating.add_crate("enriched-titanium", "deadlock-crating-2")
+  end
+  if data.raw.item["titanium-ingot"] then
+    deadlock_crating.add_crate("titanium-ingot", "deadlock-crating-2")
   end
 end
 

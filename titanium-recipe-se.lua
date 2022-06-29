@@ -30,93 +30,92 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
   }
   })
   data.raw.item[util.titanium_plate].subgroup = "titanium"
+  data:extend({
+  {
+    type = "item",
+    name = "titanium-ingot",
+    icons = {{icon = "__bztitanium__/graphics/icons/titanium-ingot.png", icon_size = 128}},
+    order = "b-b",
+    stack_size = 50,
+    subgroup = "titanium",
+  },
+  {
+    type = "fluid",
+    name = "molten-titanium",
+    default_temperature = 1668,
+    max_temperature = 1668,
+    base_color = {r=171, g=219, b=233},
+    flow_color = {r=171, g=219, b=233},
+    icons = {{icon = "__bztitanium__/graphics/icons/molten-titanium.png", icon_size = 128}},
+    order = "a[molten]-a",
+    pressure_to_speed_ratio = 0.4,
+    flow_to_energy_ratio = 0.59,
+    auto_barrel = false,
+    subgroup = "fluid",
+  },
+  {
+    type = "recipe",
+    category = "smelting",
+    name = "molten-titanium",
+    subgroup = "titanium",
+    results = {
+      {type = "fluid", name = "molten-titanium", amount = mods.Krastorio2 and 750 or 900},
+    },
+    energy_required = 60,
+    ingredients = {
+      {name = mods.Krastorio2 and "enriched-titanium" or "titanium-ore", amount = 24},
+      {type = "fluid", name = "se-pyroflux", amount = 10},
+    },
+    enabled = false,
+    always_show_made_in = true,
+    allow_as_intermediate = false,
+    order = "a-a"
+  },
+  {
+    type = "recipe",
+    name = "titanium-ingot",
+    category = "casting",
+    results = {{"titanium-ingot", 1}},
+    energy_required = 100,
+    ingredients = {
+      {type = "fluid", name = "molten-titanium", amount = 500},
+    },
+    enabled = false,
+    always_show_made_in = true,
+    allow_as_intermediate = false,
+  },
+  {
+    type = "recipe",
+    category = "crafting",
+    name = "titanium-ingot-to-plate",
+
+    icons = {
+      {icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, icon_mipmaps = 3},
+      {icon = "__bztitanium__/graphics/icons/titanium-ingot.png", icon_size = 128, scale = 0.25, shift = {-8, -8}},
+    },
+    results = {
+      {name = "titanium-plate", amount = 10},
+    },
+    energy_required = 5,
+    ingredients = {
+      {name = "titanium-ingot", amount = 1}
+    },
+    enabled = false,
+    always_show_made_in = true,
+    allow_decomposition = false,
+    order = "a-c-b"
+  },
+  })
+  util.add_effect("se-vulcanite-smelting", {type = "unlock-recipe", recipe= "molten-titanium"})
+  util.add_effect("se-vulcanite-smelting", {type = "unlock-recipe", recipe= "titanium-ingot"})
+  util.add_effect("se-vulcanite-smelting", {type = "unlock-recipe", recipe= "titanium-ingot-to-plate"})
+  util.add_prerequisite(data.raw.technology["se-processing-vulcanite"], util.me.titanium_processing)
   if mods["Krastorio2"] then
     data.raw.recipe["enriched-titanium-plate"].order= "d[titanium-plate]"
     se_delivery_cannon_recipes["enriched-titanium"] = {name= "enriched-titanium"}
-  else
-    data:extend({
-    {
-      type = "item",
-      name = "titanium-ingot",
-      icons = {{icon = "__bztitanium__/graphics/icons/titanium-ingot.png", icon_size = 128}},
-      order = "b-b",
-      stack_size = 50,
-      subgroup = "titanium",
-    },
-    {
-      type = "fluid",
-      name = "molten-titanium",
-      default_temperature = 1668,
-      max_temperature = 1668,
-      base_color = {r=171, g=219, b=233},
-      flow_color = {r=171, g=219, b=233},
-      icons = {{icon = "__bztitanium__/graphics/icons/molten-titanium.png", icon_size = 128}},
-      order = "a[molten]-a",
-      pressure_to_speed_ratio = 0.4,
-      flow_to_energy_ratio = 0.59,
-      auto_barrel = false,
-      subgroup = "fluid",
-    },
-    {
-      type = "recipe",
-      category = "smelting",
-      name = "molten-titanium",
-      subgroup = "titanium",
-      results = {
-        {type = "fluid", name = "molten-titanium", amount = 900},
-      },
-      energy_required = 60,
-      ingredients = {
-        {name = "titanium-ore", amount = 24},
-        {type = "fluid", name = "se-pyroflux", amount = 10},
-      },
-      enabled = false,
-      always_show_made_in = true,
-      allow_as_intermediate = false,
-      order = "a-a"
-    },
-    {
-      type = "recipe",
-      name = "titanium-ingot",
-      category = "casting",
-      results = {{"titanium-ingot", 1}},
-      energy_required = 100,
-      ingredients = {
-        {type = "fluid", name = "molten-titanium", amount = 500},
-      },
-      enabled = false,
-      always_show_made_in = true,
-      allow_as_intermediate = false,
-    },
-    {
-      type = "recipe",
-      category = "crafting",
-      name = "titanium-ingot-to-plate",
-
-      icons = {
-        {icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, icon_mipmaps = 3},
-        {icon = "__bztitanium__/graphics/icons/titanium-ingot.png", icon_size = 128, scale = 0.25, shift = {-8, -8}},
-      },
-      results = {
-        {name = "titanium-plate", amount = 10},
-      },
-      energy_required = 5,
-      ingredients = {
-        {name = "titanium-ingot", amount = 1}
-      },
-      enabled = false,
-      always_show_made_in = true,
-      allow_decomposition = false,
-      order = "a-c-b"
-    },
-    })
-    util.add_effect("se-processing-vulcanite", {type = "unlock-recipe", recipe= "molten-titanium"})
-    util.add_effect("se-processing-vulcanite", {type = "unlock-recipe", recipe= "titanium-ingot"})
-    util.add_effect("se-processing-vulcanite", {type = "unlock-recipe", recipe= "titanium-ingot-to-plate"})
-    util.add_prerequisite(data.raw.technology["se-processing-vulcanite"], util.me.titanium_processing)
   end
 else
-  data.raw.item[util.me.titanium_plate].subgroup = "plates"
+  data.raw.item[util.me.titanium_plate].subgroup = "plate<F5><F5>s"
   if mods["Krastorio2"] then
 
     data:extend({
