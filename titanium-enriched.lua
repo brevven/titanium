@@ -22,6 +22,7 @@ data:extend(
   {
     type = "recipe",
     name = "enriched-titanium",
+    main_product = "enriched-titanium",
     icon = "__bztitanium__/graphics/icons/enriched-titanium.png",
     icon_size = 64, icon_mipmaps = 3,
     category = "chemistry",
@@ -48,7 +49,6 @@ data:extend(
       tertiary = {r = 0.690, g = 0.768, b = 0.870, a = 0.000}, 
       quaternary = {r = 0.0, g = 0.980, b = 0.603, a = 0.900}
     },
-    subgroup = "raw-material",
     order = "e03[enriched-titanium]"
   },
   {

@@ -29,7 +29,7 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
     order = "a-h-z-a",
   }
   })
-  data.raw.item[util.titanium_plate].subgroup = "titanium"
+  util.set_item_subgroup(util.titanium_plate, "titanium")
   data:extend({
   {
     type = "item",
@@ -114,6 +114,7 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
   util.add_effect("se-vulcanite-smelting", {type = "unlock-recipe", recipe= "titanium-ingot-to-plate"})
   util.add_prerequisite(data.raw.technology["se-processing-vulcanite"], util.me.titanium_processing)
   if mods["Krastorio2"] then
+    util.set_item_subgroup("enriched-titanium", "titanium")
     data.raw.recipe["enriched-titanium-plate"].order= "d[titanium-plate]"
     se_delivery_cannon_recipes["enriched-titanium"] = {name= "enriched-titanium"}
   end
