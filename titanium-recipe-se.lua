@@ -91,7 +91,7 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
 
     icons = {
       {icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, icon_mipmaps = 3},
-      {icon = "__bztitanium__/graphics/icons/titanium-ingot.png", icon_size = 128, scale = 0.25, shift = {-8, -8}},
+      {icon = "__bztitanium__/graphics/icons/titanium-ingot.png", icon_size = 128, scale = 0.125, shift = {-8, -8}},
     },
     results = {
       {name = "titanium-plate", amount = 10},

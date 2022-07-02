@@ -3,6 +3,8 @@ Version: 1.2.2
 Date: 2022-07-02
   Changes:
     - SE/K2 subgroup cleanup
+  Fixes:
+    - SE ingot -> plate icon
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.1
 Date: 2022-07-02
