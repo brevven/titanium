@@ -106,6 +106,9 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
     order = "a-c-b"
   },
   })
+  util.add_effect("se-pyroflux-smelting", {type = "unlock-recipe", recipe= "molten-titanium"})
+  util.add_effect("se-pyroflux-smelting", {type = "unlock-recipe", recipe= "titanium-ingot"})
+  util.add_effect("se-pyroflux-smelting", {type = "unlock-recipe", recipe= "titanium-ingot-to-plate"})
   util.add_effect("se-vulcanite-smelting", {type = "unlock-recipe", recipe= "molten-titanium"})
   util.add_effect("se-vulcanite-smelting", {type = "unlock-recipe", recipe= "titanium-ingot"})
   util.add_effect("se-vulcanite-smelting", {type = "unlock-recipe", recipe= "titanium-ingot-to-plate"})

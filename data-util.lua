@@ -566,6 +566,14 @@ function util.set_subgroup(recipe_name, subgroup)
   end
 end
 
+-- Set item subgroup
+function util.set_item_subgroup(item, subgroup)
+  if me.bypass[item] then return end
+  if data.raw.item[item] and data.raw["item-subgroup"][subgroup] then
+    data.raw.item[item].subgroup = subgroup
+  end
+end
+
 -- Set recipe icons
 function util.set_icons(recipe_name, icons)
   if me.bypass[recipe_name] then return end
