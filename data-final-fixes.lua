@@ -30,3 +30,5 @@ require("titanium-data-final-settings")
 
 -- Second part of hack for endgame combat
 require("compatibility/titanium-endgame-combat-final")
+-- Hack for AutoTrainDepot
+require("compatibility/titanium-auto-train-depot-final")

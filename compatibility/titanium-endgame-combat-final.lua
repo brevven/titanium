@@ -1,7 +1,8 @@
 -- Second part of hack for endgame combat
-if mods["EndgameCombat"] and not mods["pyrawores"] and not mods["bobplates"] and not mods["angelssmelting"] then
 
-local util = require("__bztitanium__.data-util");
+if mods.EndgameCombat and not mods["pyrawores"] and not mods["bobplates"] and not mods["angelssmelting"] then
+
+local util = require("data-util");
 
 local dummy_items = {"cobalt-steel", "nickel", "aluminium"}
 if not mods.bztungsten then
@@ -37,4 +38,13 @@ if not mods.bztungsten then
   util.remove_ingredient("lightning-turret", "tungsten")
   util.remove_prerequisite("lightning-turrets", "tungsten-processing")
 end
+
+if mods.Krastorio2 then
+  -- remove K2 recipes that are created when our dummy items are detected
+  util.remove_raw("recipe", "kr-vc-cobalt-steel")
+  util.remove_raw("recipe", "kr-vc-nickel")
+  util.remove_raw("recipe", "kr-vc-aluminium")
 end
+end
+
+

@@ -183,7 +183,6 @@ function add_ingredient(recipe, ingredient, quantity, is_fluid)
   if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
       if existing[1] == ingredient or existing.name == ingredient then
-        log("Not adding "..ingredient.." -- duplicate")
         return
       end
     end
@@ -271,27 +270,32 @@ function add_product(recipe, product)
 end
 
 -- Replace one ingredient with another in a recipe
-function util.replace_ingredient(recipe_name, old, new)
+function util.replace_ingredient(recipe_name, old, new, amount)
   if me.bypass[recipe_name] then return end
   if data.raw.recipe[recipe_name] and (data.raw.item[new] or data.raw.fluid[new]) then
     me.add_modified(recipe_name)
-    replace_ingredient(data.raw.recipe[recipe_name], old, new)
-    replace_ingredient(data.raw.recipe[recipe_name].normal, old, new)
-    replace_ingredient(data.raw.recipe[recipe_name].expensive, old, new)
+    replace_ingredient(data.raw.recipe[recipe_name], old, new, amount)
+    replace_ingredient(data.raw.recipe[recipe_name].normal, old, new, amount)
+    replace_ingredient(data.raw.recipe[recipe_name].expensive, old, new, amount)
   end
 end
 
-function replace_ingredient(recipe, old, new)
+function replace_ingredient(recipe, old, new, amount)
 	if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
       if existing[1] == new or existing.name == new then
-        log("Not adding "..new.." -- duplicate")
         return
       end
     end
 		for i, ingredient in pairs(recipe.ingredients) do 
-			if ingredient.name == old then ingredient.name = new end
-			if ingredient[1] == old then ingredient[1] = new end
+			if ingredient.name == old then 
+        ingredient.name = new 
+        if amount then ingredient.amount = amount end
+      end
+			if ingredient[1] == old then 
+        ingredient[1] = new
+        if amount then ingredient[2] = amount end
+      end
 		end
 	end
 end
@@ -338,7 +342,6 @@ function replace_some_ingredient(recipe, old, old_amount, new, new_amount, is_fl
 	if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
       if existing[1] == new or existing.name == new then
-        log("Not adding "..new.." -- duplicate")
         return
       end
     end
@@ -551,7 +554,7 @@ end
 -- Set recipe category
 function util.set_category(recipe_name, category)
   if me.bypass[recipe_name] then return end
-  if data.raw.recipe[recipe_name] then
+  if data.raw.recipe[recipe_name] and data.raw["recipe-category"][category] then
     me.add_modified(recipe_name)
     data.raw.recipe[recipe_name].category = category
   end
@@ -601,10 +604,9 @@ end
 
 -- Add crafting category to an entity
 function util.add_crafting_category(entity_type, entity, category)
-   if data.raw[entity_type][entity] then
+   if data.raw[entity_type][entity] and data.raw["recipe-category"][category] then
       for i, existing in pairs(data.raw[entity_type][entity].crafting_categories) do
         if existing == category then
-          log(entity.." not adding "..category.." -- duplicate")
           return
         end
       end
