@@ -111,11 +111,16 @@ function util.add_effect(technology_name, effect)
   end
 end
 
+-- Add an effect to a given technology to unlock recipe
+function util.add_unlock(technology_name, recipe)
+  util.add_effect(technology_name, {type="unlock-recipe", recipe=recipe})
+end
+
 -- remove recipe unlock effect from a given technology
 function util.remove_recipe_effect(technology_name, recipe_name)
   local technology = data.raw.technology[technology_name]
   local index = -1
-  if technology then
+  if technology and technology.effects then
     for i, effect in pairs(technology.effects) do
       if effect.type == "unlock-recipe" and effect.recipe == recipe_name then
         index = i
@@ -141,6 +146,14 @@ function util.set_enabled(recipe_name, enabled)
     if data.raw.recipe[recipe_name].normal then data.raw.recipe[recipe_name].normal.enabled = enabled end
     if data.raw.recipe[recipe_name].expensive then data.raw.recipe[recipe_name].expensive.enabled = enabled end
     if not data.raw.recipe[recipe_name].normal then data.raw.recipe[recipe_name].enabled = enabled end
+  end
+end
+
+function util.set_hidden(recipe_name)
+  if data.raw.recipe[recipe_name] then
+    if data.raw.recipe[recipe_name].normal then data.raw.recipe[recipe_name].normal.hidden = true end
+    if data.raw.recipe[recipe_name].expensive then data.raw.recipe[recipe_name].expensive.hidden = true end
+    if not data.raw.recipe[recipe_name].normal then data.raw.recipe[recipe_name].hidden = true end
   end
 end
 
@@ -269,6 +282,51 @@ function add_product(recipe, product)
   end
 end
 
+-- Get the amount of the ingredient, will check base/normal not expensive
+function util.get_ingredient_amount(recipe_name, ingredient_name)
+  local recipe = data.raw.recipe[recipe_name]
+  if recipe then
+    if recipe.normal and recipe.normal.ingredients then
+      for i, ingredient in pairs(recipe.normal.ingredients) do
+        if ingredient[1] == ingredient_name then return ingredient[2] end
+        if ingredient.name == ingredient_name then return ingredient.amount end
+      end
+    elseif recipe.ingredients then
+      for i, ingredient in pairs(recipe.ingredients) do
+        if ingredient[1] == ingredient_name then return ingredient[2] end
+        if ingredient.name == ingredient_name then return ingredient.amount end
+      end
+    end
+    return 1
+  end
+  return 0
+end
+
+-- Get the amount of the result, will check base/normal not expensive
+function util.get_amount(recipe_name, product)
+  if not product then product = recipe_name end
+  local recipe = data.raw.recipe[recipe_name]
+  if recipe then
+    if recipe.normal and recipe.normal.results then
+      for i, result in pairs(recipe.normal.results) do
+        if result[1] == product then return result[2] end
+        if result.name == product then return result.amount end
+      end
+    elseif recipe.normal and recipe.normal.result_count then
+      return recipe.normal.result_count
+    elseif recipe.results then
+      for i, result in pairs(recipe.results) do
+        if result[1] == product then return result[2] end
+        if result.name == product then return result.amount end
+      end
+    elseif recipe.result_count then
+      return recipe.result_count
+    end
+    return 1
+  end
+  return 0
+end
+
 -- Replace one ingredient with another in a recipe
 function util.replace_ingredient(recipe_name, old, new, amount)
   if me.bypass[recipe_name] then return end
@@ -355,6 +413,46 @@ function replace_some_ingredient(recipe, old, old_amount, new, new_amount, is_fl
 		end
     add_ingredient(recipe, new, new_amount, is_fluid)
 	end
+end
+
+-- set the amount of a product. 
+function util.set_product_amount(recipe_name, product, amount)
+  me.add_modified(recipe_name)
+  if data.raw.recipe[recipe_name] then
+    if me.bypass[recipe_name] then return end
+    set_product_amount(data.raw.recipe[recipe_name], product, amount)
+    set_product_amount(data.raw.recipe[recipe_name].normal, product, amount)
+    set_product_amount(data.raw.recipe[recipe_name].expensive, product, amount)
+	end
+end
+
+function set_product_amount(recipe, product, amount)
+  if recipe then
+    if recipe.result_count then
+      recipe.result_count = amount
+    end
+    if recipe.results then
+      for i, result in pairs(recipe.results) do
+        if result.name == product then
+          if result.amount then
+            result.amount = amount
+          end
+          if result.amount_min ~= nil then
+            result.amount_min =  nil
+            result.amount_max =  nil
+            result.amount = amount
+          end
+        end
+        if result[1] == product then
+          result[2] = amount
+        end
+      end
+    end
+    if not recipe.results and not recipe.result_count then
+      -- implicit one item result
+      recipe.result_count = amount
+    end
+  end
 end
 
 -- multiply the cost, energy, and results of a recipe by a multiple
@@ -509,6 +607,25 @@ function util.remove_raw(t, name)
         data.raw[t][i] = nil
         break
       end
+    end
+  end
+end
+
+-- Set energy required
+function util.set_recipe_time(recipe_name, time)
+  me.add_modified(recipe_name)
+  if data.raw.recipe[recipe_name] then
+    if me.bypass[recipe_name] then return end
+    set_recipe_time(data.raw.recipe[recipe_name], time)
+    set_recipe_time(data.raw.recipe[recipe_name].normal, time)
+    set_recipe_time(data.raw.recipe[recipe_name].expensive, time)
+	end
+end
+
+function set_recipe_time(recipe, time)
+  if recipe then
+    if recipe.energy_required then
+      recipe.energy_required = time
     end
   end
 end
