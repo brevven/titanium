@@ -127,7 +127,7 @@ function util.se_matter(params)
           {"se-contaminated-scrap", 1},
           {type=item, name=sedata, amount=1, probability=.99},
           {type=item, name=sejunk, amount=1, probability=.01},
-          {type="fluid", name="se-space-coolant-hot", amount=25},
+          {type="fluid", name="se-space-coolant-hot", amount=25, catalyst_amount=25},
         }
       }
     })
@@ -162,7 +162,7 @@ function util.se_matter(params)
           results = {
             {type=item, name="se-kr-matter-liberation-data", amount=1, probability=.99},
             {type=item, name=sejunk, amount=1, probability=.01},
-            {type="fluid", name="se-particle-stream", amount=params.stream_out},
+            {type="fluid", name="se-particle-stream", amount=params.stream_out, catalyst_amount=50},
           }
         }
       })
