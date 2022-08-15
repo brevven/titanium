@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.6
+Date: 2022-08-16
+  Changes:
+    - More small mod compatibility - various high-tier belts and inserters including
+      Bob's logistics, better belts, ultimate belts. (Use recipe bypass setting if necessary)
+  Features:
+    - Support for SE matter fusion and SE+K2 matter liberation
+---------------------------------------------------------------------------------------------------
 Version: 1.2.5
 Date: 2022-07-03
   Fixes:
