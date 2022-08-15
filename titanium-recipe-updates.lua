@@ -134,3 +134,33 @@ end
 -- For flying roboports, replace steel, and then add titanium if steel didn't exist.
 util.replace_ingredient("flying-roboport", "steel-plate", util.me.titanium_plate)
 util.add_ingredient("flying-roboport", util.me.titanium_plate, 10)
+
+
+-- Better belts
+util.add_ingredient("BetterBelts_ultra-transport-belt", util.me.titanium_plate, 10)
+util.add_ingredient("BetterBelts_ultra-underground-belt-v1", util.me.titanium_plate, 40)
+
+-- Ultimate belts
+util.add_ingredient("ultra-fast-belt", util.me.titanium_plate, 10)
+util.add_ingredient("ultra-fast-underground-belt", util.me.titanium_plate, 40)
+util.add_ingredient("ultra-fast-belt-loader", util.me.titanium_plate, 20)
+if not mods.bzaluminum then
+  util.replace_ingredient("extreme-fast-belt", "express-transport-belt", util.me.titanium_plate, 20)
+  util.replace_ingredient("extreme-fast-underground-belt", "express-underground-belt", util.me.titanium_plate, 80)
+  util.replace_ingredient("extreme-fast-belt-loader", "express-transport-belt-loader", util.me.titanium_plate, 40)
+end
+
+util.replace_ingredient("turbo-transport-belt", "steel-plate", util.me.titanium_plate, 20)
+util.replace_ingredient("ultimate-transport-belt", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("turbo-underground-belt", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("ultimate-underground-belt", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("turbo-splitter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("ultimate-splitter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("turbo-inserter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("turbo-filter-inserter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("turbo-stack-inserter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("turbo-stack-filter-inserter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("turbo-inserter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("express-filter-inserter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("express-stack-inserter", "steel-plate", util.me.titanium_plate)
+util.replace_ingredient("express-stack-filter-inserter", "steel-plate", util.me.titanium_plate)
