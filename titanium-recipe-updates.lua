@@ -150,6 +150,16 @@ if not mods.bzaluminum then
   util.replace_ingredient("extreme-fast-belt-loader", "express-transport-belt-loader", util.me.titanium_plate, 20)
 end
 
+-- Advanced belts
+util.add_ingredient("extreme-belt", util.me.titanium_plate, 5)  -- Advanced
+util.add_ingredient("extreme-underground", util.me.titanium_plate, 20)
+if not mods.bzaluminum then
+  util.add_ingredient("ultimate-belt", util.me.titanium_plate, 10)  -- Elite
+  util.add_ingredient("ultimate-underground", util.me.titanium_plate, 40)
+end
+
+
+-- bob belts, logistics
 util.replace_ingredient("turbo-transport-belt", "steel-plate", util.me.titanium_plate, 20)
 util.replace_ingredient("ultimate-transport-belt", "steel-plate", util.me.titanium_plate)
 util.replace_ingredient("turbo-underground-belt", "steel-plate", util.me.titanium_plate)
