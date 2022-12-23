@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.9
+Date: 2022-12-24
+  Localization:
+    - zh-CN by sunnytan53
+---------------------------------------------------------------------------------------------------
 Version: 1.2.8
 Date: 2022-08-23
   Changes:
@@ -71,7 +76,7 @@ Date: 2022-02-22
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.7
 Date: 2022-02-22
-  Features:
+  Localization:
     - ko locale, thanks to x2605
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.6
@@ -151,7 +156,7 @@ Date: 2021-07-01
 ---------------------------------------------------------------------------------------------------
 Version: 0.12.1
 Date: 2021-06-16
-  Features:
+  Localization:
     - pl locale, thanks to TheoMarque
     - ja locale typo fix thanks to Sakuro
 ---------------------------------------------------------------------------------------------------
@@ -192,11 +197,12 @@ Date: 2021-05-01
     - Fixed equipment not using titanium
   Features:
     - Some basic compatibility with angels smelting (without bobs)
+  Localization:
     - Japanese localization, thanks to user Sakuro
 ---------------------------------------------------------------------------------------------------
 Version: 0.10.9
 Date: 2021-04-30
-  Features:
+  Localization:
     - German localization, thanks to user yokmp
 ---------------------------------------------------------------------------------------------------
 Version: 0.10.8
@@ -325,12 +331,13 @@ Version: 0.9.3
 Date: 2020-12-22
   Changes:
     - Titanium plates now used in heat exchangers
+  Localization:
     - English localization updates for K2.
     - Space Exploration - Titanium now used in more recipes
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.2
 Date: 2020-12-17
-  Features:
+  Localization:
     - Russian localization, thanks to thinOptimist (https://mods.factorio.com/user/thinOptimist)
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.1
