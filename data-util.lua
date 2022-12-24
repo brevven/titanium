@@ -235,6 +235,18 @@ function util.se_matter(params)
   end
 end
 
+-- Get the normal prototype for a recipe -- either .normal or the recipe itself
+function util.get_normal(recipe_name)
+  if data.raw.recipe[recipe_name] then
+    recipe = data.raw.recipe[recipe_name]
+    if recipe.normal and recipe.normal.ingredients then
+      return recipe.normal
+    elseif recipe.ingredients then
+      return recipe
+    end
+  end
+end
+
 -- Set/override a technology's prerequisites
 function util.set_prerequisite(technology_name, prerequisites)
   local technology = data.raw.technology[technology_name]
