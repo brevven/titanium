@@ -3,6 +3,8 @@ Version: 1.2.9
 Date: 2022-12-24
   Localization:
     - zh-CN by sunnytan53
+  Fixes:
+    - Modules with GDIW
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.8
 Date: 2022-08-23
