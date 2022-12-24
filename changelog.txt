@@ -5,6 +5,8 @@ Date: 2022-12-24
     - zh-CN by sunnytan53
   Fixes:
     - Modules with GDIW
+  Changes:
+    - SE ingots in delivery cannon
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.8
 Date: 2022-08-23

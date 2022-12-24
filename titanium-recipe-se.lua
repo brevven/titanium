@@ -105,6 +105,7 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
     data.raw.recipe["enriched-titanium-plate"].order= "d[titanium-plate]"
     se_delivery_cannon_recipes["enriched-titanium"] = {name= "enriched-titanium"}
   end
+  se_delivery_cannon_recipes["titanium-ingot"] = {name= "titanium-ingot"}
 else
   data.raw.item[util.me.titanium_plate].subgroup = "plates"
   if mods["Krastorio2"] then
