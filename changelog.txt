@@ -3,6 +3,7 @@ Version: 1.2.10
 Date: 2022-12-27
   Fixes:
     - 248k + LootingRemnants startup fix, thanks to SrConrabo
+    - Attempt a fix for K2+SE, and some other mods, when used without Tungsten
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.9
 Date: 2022-12-24

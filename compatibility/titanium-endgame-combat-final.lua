@@ -37,6 +37,9 @@ if not mods.bztungsten then
 
   util.remove_ingredient("lightning-turret", "tungsten")
   util.remove_prerequisite("lightning-turrets", "tungsten-processing")
+  if mods.Krastorio2 then
+    util.remove_raw("recipe", "kr-vc-tungsten")
+  end
 end
 
 if mods.Krastorio2 then
