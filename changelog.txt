@@ -187,7 +187,7 @@ Date: 2021-05-21
 Version: 0.10.12
 Date: 2021-05-18
   Features:
-    - EVE Weaponry compat
+    - EVE Weaponry compatibility
 ---------------------------------------------------------------------------------------------------
 Version: 0.10.11
 Date: 2021-05-05
@@ -232,7 +232,7 @@ Date: 2021-03-18
 Version: 0.10.4
 Date: 2021-03-14
   Fixes:
-    - Fix py/angel/bob compat
+    - Fix py/angel/bob compatibility
 ---------------------------------------------------------------------------------------------------
 Version: 0.10.3
 Date: 2021-03-14
