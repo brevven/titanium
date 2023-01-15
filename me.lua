@@ -10,6 +10,13 @@ else
   me.titanium_plate = "titanium-plate"
 end
 
+me.recipes = {me.titanium_plate, 
+              "enriched-titanium-plate",
+              "enriched-titanium",
+              "titanium-smelting-vulcanite",
+              "molten-titanium",
+              "enriched-titanium-smelting-vulcanite"}
+
 if mods["pyrawores"] then 
   me.titanium_processing = "titanium-mk01"
 else

@@ -1,22 +1,8 @@
 -- Enable prod modules for all titanium plate and ore recipes
 
-local util = require("__bztitanium__.data-util");
+local util = require("data-util");
 
-local recipes = {util.me.titanium_plate}
-
-if mods["Krastorio2"] then
-  table.insert(recipes, "enriched-titanium-plate")
-  table.insert(recipes, "enriched-titanium")
-end
-if mods["space-exploration"] then
-  table.insert(recipes, "titanium-smelting-vulcanite")
-  table.insert(recipes, "molten-titanium")
-  if mods["Krastorio2"] then
-    table.insert(recipes, "enriched-titanium-smelting-vulcanite")
-  end
-end
-
-for i, recipe in pairs(recipes) do
+for i, recipe in pairs(util.me.recipes) do
   if data.raw.recipe[recipe] then
     for j, module in pairs(data.raw.module) do
       if module.effect then
