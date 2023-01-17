@@ -23,6 +23,7 @@ data:extend({
   {
     type = "recipe",
     name = util.me.titanium_plate,
+    main_product = util.me.titanium_plate,
     category = "smelting",
     order = "d[titanium-plate]",
     icons = (mods["Krastorio2"] and
@@ -35,7 +36,9 @@ data:extend({
           enabled = false,
           energy_required = 16,
           ingredients = {{"titanium-ore", 10}},
-          results = {{type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3}},
+          results = 
+          mods["crafting-efficiency-2"] and {{type="item", name= util.me.titanium_plate, amount=3, probability=5/6}} or
+          {{type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3}} ,
         } or
         {
           enabled = false,
