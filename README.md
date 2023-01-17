@@ -19,3 +19,4 @@ See changelog.txt
 - [Sakuro](https://github.com/sakuro) (ja)
 - [S3BA](https://github.com/S3BA-pl) (pl)
 - [x2605](https://github.com/x2605) (ko)
+- [CV514](https://github.com/CV514) (ru)
