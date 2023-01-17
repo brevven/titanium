@@ -3,6 +3,8 @@ Version: 1.2.11
 Date: 2022-01-17
   Features:
     - (Beta) Crafting efficiency compatibility
+  Localization:
+    - ru updates thanks to CV514
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.10
 Date: 2022-12-27
