@@ -31,6 +31,7 @@ data:extend(
     always_show_made_in = true,
     always_show_products = true,
     allow_productivity = true,
+	subgroup = "raw-material",
     ingredients =
     {
       {type = "fluid", name = "hydrogen-chloride", amount = 10},
