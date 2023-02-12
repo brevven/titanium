@@ -13,6 +13,9 @@ See changelog.txt
 - [brevven](https://mods.factorio.com/user/brevven) (code, design, graphics)
 - [snouz](https://github.com/snouz) (graphics)
 
+### Compatibility
+- [nihilistzsche](https://github.com/nihilistzsche)
+
 ### Localization
 - [thinOptimist](https://mods.factorio.com/user/thinOptimist) (ru)
 - [yokmp](https://mods.factorio.com/user/yokmp) (de)
