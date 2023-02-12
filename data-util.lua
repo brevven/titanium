@@ -963,6 +963,19 @@ function util.set_item_icons(item_name, icons)
   end
 end
 
+-- Gets an item or fluid icon
+function util.get_item_or_fluid_icon(name)
+  icon = ""
+  if data.raw.item[name] then 
+    icon = data.raw.item[name].icon 
+    if not icon then icon = data.raw.item[name].icons[1].icon end
+  elseif data.raw.fluid[name] then
+    icon = data.raw.fluid[name].icon 
+    if not icon then icon = data.raw.fluid[name].icons[1].icon end
+  end
+  return icon
+end
+
 function util.set_to_founding(recipe, options)
   util.set_category(recipe, "founding", options)
   util.set_subgroup(recipe, "foundry-intermediate", options)
