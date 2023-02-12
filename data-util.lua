@@ -1,7 +1,6 @@
 -- WARNING WARNING WARNING
 -- This file will be overwritten in mod zipfiles, edit bzlib/data-util.lua
 -- WARNING WARNING WARNING
---
 
 local me = require("me")
 local util = {}
@@ -943,6 +942,23 @@ function util.set_item_subgroup(item, subgroup, options)
   end
 end
 
+function util.add_icon(recipe_name, icon, options)
+  if not should_force(options) and bypass(recipe_name) then return end
+  if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
+    if not (data.raw.recipe[recipe_name].icons and #(data.raw.recipe[recipe_name].icons) > 0) then
+      data.raw.recipe[recipe_name].icons = {{
+        icon=data.raw.recipe[recipe_name].icon,
+        icon_size=data.raw.recipe[recipe_name].icon_size,
+        icon_mipmaps=data.raw.recipe[recipe_name].icon_mipmaps,
+      }}
+      data.raw.recipe[recipe_name].icon = nil
+      data.raw.recipe[recipe_name].icon_size = nil
+    end
+    table.insert(data.raw.recipe[recipe_name].icons, icon)
+  end
+end
+
 -- Set recipe icons
 function util.set_icons(recipe_name, icons, options)
   if not should_force(options) and bypass(recipe_name) then return end
@@ -993,7 +1009,8 @@ function util.add_crafting_category(entity_type, entity, category)
    end
 end
 
-function util.add_to_ingredient(recipe, ingredient, amount)
+function util.add_to_ingredient(recipe, ingredient, amount, options)
+  if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe] then
     add_to_ingredient(data.raw.recipe[recipe], ingredient, amount)
     add_to_ingredient(data.raw.recipe[recipe].normal, ingredient, amount)
