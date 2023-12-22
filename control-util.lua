@@ -20,4 +20,10 @@ function util.get_list()
     end
 end
 
+function util.force_enable_recipe(event, recipe_name)
+  if game.players[event.player_index].force.recipes[recipe_name] then
+    game.players[event.player_index].force.recipes[recipe_name].enabled=true      
+  end
+end
+
 return util

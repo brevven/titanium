@@ -65,9 +65,11 @@ function util.fe_plus(sub)
 end
 
 function util.get_stack_size(default) 
-  if mods["Krastorio2"] then
-    size = tonumber(krastorio.general.getSafeSettingValue("kr-stack-size"))
-    return size or default
+  if mods.Krastorio2 then
+    local size = get_setting("kr-stack-size")
+    if size and tonumber(size) then
+      return tonumber(size)
+    end
   end
   return default
 end
@@ -116,6 +118,68 @@ function util.se_landfill(params)
     util.add_unlock("se-recycling-facility", lname)
   end
 end
+
+
+-- k2 matter 
+-- params: {k2matter}, k2baseicon , {icon}
+function util.k2matter(params)
+  local matter = require("__Krastorio2__/lib/public/data-stages/matter-util")
+  if mods["space-exploration"] then 
+    params.k2matter.need_stabilizer = true
+  end
+  if not params.k2matter.minimum_conversion_quantity then
+    params.k2matter.minimum_conversion_quantity = 10
+  end
+  if not data.raw.technology[params.k2matter.unlocked_by_technology] then
+    local icon = ""
+    if params.k2baseicon then
+      icon = util.k2assets().."/technologies/matter-"..params.k2baseicon..".png"
+    else
+      icon = util.k2assets().."/technologies/backgrounds/matter.png"
+    end
+    
+    data:extend(
+        {
+          {
+            type = "technology",
+            name = params.k2matter.unlocked_by_technology,
+            icons =
+            {
+              {
+                icon = icon,
+                icon_size = 256,
+              },
+              params.icon,
+            },
+            prerequisites = {"kr-matter-processing"},
+            unit =
+            {
+              count = 350,
+              ingredients = mods["space-exploration"] and 
+              {
+                {"automation-science-pack", 1},
+                {"logistic-science-pack", 1},
+                {"chemical-science-pack", 1},
+                {"se-astronomic-science-pack-4", 1},
+                {"se-energy-science-pack-4", 1},
+                {"se-material-science-pack-4", 1},
+                {"se-deep-space-science-pack-2", 1},
+                {"se-kr-matter-science-pack-2", 1},
+              } or
+              {
+                {"production-science-pack", 1},
+                {"utility-science-pack", 1},
+                {"matter-tech-card", 1}
+              },
+              time = 45,
+            },
+            localised_name = {"technology-name.k2-conversion", {"item-name."..params.k2matter.item_name}},
+          },
+        })
+  end
+  matter.createMatterRecipe(params.k2matter)
+end
+
 
 -- se matter
 -- params: ore, energy_required, quant_out, quant_in, icon_size, stream_out
@@ -312,7 +376,7 @@ function util.add_unlock(technology_name, recipe)
 end
 
 -- Check if a tech unlocks a recipe
-function util.check_unlock(technology_name, recipe)
+function util.check_unlock(technology_name, recipe_name)
   local technology = data.raw.technology[technology_name]
   if technology and technology.effects then
     for i, effect in pairs(technology.effects) do
@@ -489,13 +553,16 @@ end
 
 function add_product(recipe, product)
   if recipe ~= nil then
-    if not recipe.normal then
-      if recipe.results == nil then
-        recipe.results = {{recipe.result, recipe.result_count and recipe.result_count or 1}}
+    if (product[1] and data.raw.item[product[1]]) or 
+    (product.name and data.raw[product.type][product.name]) then
+      if not recipe.normal then
+        if recipe.results == nil then
+          recipe.results = {{recipe.result, recipe.result_count and recipe.result_count or 1}}
+        end
+        recipe.result = nil
+        recipe.result_count = nil
+        table.insert(recipe.results, product)
       end
-      recipe.result = nil
-      recipe.result_count = nil
-      table.insert(recipe.results, product)
     end
   end
 end
@@ -515,7 +582,7 @@ function util.get_ingredient_amount(recipe_name, ingredient_name)
         if ingredient.name == ingredient_name then return ingredient.amount end
       end
     end
-    return 1
+    return 0
   end
   return 0
 end
@@ -630,6 +697,40 @@ function remove_ingredient(recipe, old)
   end
 end
 
+-- Replace an amount of a product, leaving at least 1 of old
+function util.replace_some_product(recipe_name, old, old_amount, new, new_amount, options)
+  if not should_force(options) and bypass(recipe_name) then return end
+  local is_fluid = not not data.raw.fluid[new]  -- NOTE CURRENTLY UNUSUED
+  if data.raw.recipe[recipe_name] and (data.raw.item[new] or is_fluid) then
+    me.add_modified(recipe_name)
+    replace_some_product(data.raw.recipe[recipe_name], old, old_amount, new, new_amount, is_fluid)
+    replace_some_product(data.raw.recipe[recipe_name].normal, old, old_amount, new, new_amount, is_fluid)
+    replace_some_product(data.raw.recipe[recipe_name].expensive, old, old_amount, new, new_amount, is_fluid)
+  end
+end
+
+function replace_some_product(recipe, old, old_amount, new, new_amount)
+	if recipe ~= nil then
+    if recipe.result == new then return end
+    if recipe.results then
+      for i, existing in pairs(recipe.results) do
+        if existing[1] == new or existing.name == new then
+          return
+        end
+      end
+    end
+    add_product(recipe, {new, new_amount})
+		for i, product in pairs(recipe.results) do 
+			if product.name == old then
+        product.amount = math.max(1, product.amount - old_amount)
+      end
+			if product[1] == old then
+        product[2] = math.max(1, product[2] - old_amount)
+      end
+		end
+	end
+end
+
 -- Replace an amount of an ingredient in a recipe. Keep at least 1 of old.
 function util.replace_some_ingredient(recipe_name, old, old_amount, new, new_amount, options)
   if not should_force(options) and bypass(recipe_name) then return end
@@ -716,6 +817,8 @@ function multiply_recipe(recipe, multiple)
   if recipe then
     if recipe.energy_required then
       recipe.energy_required = recipe.energy_required * multiple
+    else
+      recipe.energy_required = 0.5 * multiple  -- 0.5 is factorio default
     end
     if recipe.result_count then
       recipe.result_count = recipe.result_count * multiple
@@ -819,13 +922,13 @@ end
 function util.replace_product(recipe_name, old, new, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
-    replace_product(data.raw.recipe[recipe_name], old, new)
-    replace_product(data.raw.recipe[recipe_name].normal, old, new)
-    replace_product(data.raw.recipe[recipe_name].expensive, old, new)
+    replace_product(data.raw.recipe[recipe_name], old, new, options)
+    replace_product(data.raw.recipe[recipe_name].normal, old, new, options)
+    replace_product(data.raw.recipe[recipe_name].expensive, old, new, options)
   end
 end
 
-function replace_product(recipe, old, new)
+function replace_product(recipe, old, new, options)
   if recipe then
     if recipe.main_product == old then
       recipe.main_product = new
@@ -928,7 +1031,7 @@ end
 -- Set recipe subgroup
 function util.set_subgroup(recipe_name, subgroup, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  if data.raw.recipe[recipe_name] then
+  if data.raw.recipe[recipe_name] and data.raw["item-subgroup"][subgroup] then
     me.add_modified(recipe_name)
     data.raw.recipe[recipe_name].subgroup = subgroup
   end
@@ -947,11 +1050,32 @@ function util.add_icon(recipe_name, icon, options)
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
     if not (data.raw.recipe[recipe_name].icons and #(data.raw.recipe[recipe_name].icons) > 0) then
-      data.raw.recipe[recipe_name].icons = {{
-        icon=data.raw.recipe[recipe_name].icon,
-        icon_size=data.raw.recipe[recipe_name].icon_size,
-        icon_mipmaps=data.raw.recipe[recipe_name].icon_mipmaps,
-      }}
+      if data.raw.recipe[recipe_name].icon then
+        data.raw.recipe[recipe_name].icons = {{
+          icon=data.raw.recipe[recipe_name].icon,
+          icon_size=data.raw.recipe[recipe_name].icon_size,
+          icon_mipmaps=data.raw.recipe[recipe_name].icon_mipmaps,
+        }}
+      elseif data.raw.item[data.raw.recipe[recipe_name].main_product] then
+        data.raw.recipe[recipe_name].icons = {{
+          icon=data.raw.item[data.raw.recipe[recipe_name].main_product].icon,
+          icon_size=data.raw.item[data.raw.recipe[recipe_name].main_product].icon_size,
+          icon_mipmaps=data.raw.item[data.raw.recipe[recipe_name].main_product].icon_mipmaps,
+        }}
+      elseif data.raw.item[data.raw.recipe[recipe_name].result] then
+        data.raw.recipe[recipe_name].icons = {{
+          icon=data.raw.item[data.raw.recipe[recipe_name].result].icon,
+          icon_size=data.raw.item[data.raw.recipe[recipe_name].result].icon_size,
+          icon_mipmaps=data.raw.item[data.raw.recipe[recipe_name].result].icon_mipmaps,
+        }}
+      elseif data.raw.recipe[recipe_name].normal and
+      data.raw.item[data.raw.recipe[recipe_name].normal.result] then
+        data.raw.recipe[recipe_name].icons = {{
+          icon=data.raw.item[data.raw.recipe[recipe_name].normal.result].icon,
+          icon_size=data.raw.item[data.raw.recipe[recipe_name].normal.result].icon_size,
+          icon_mipmaps=data.raw.item[data.raw.recipe[recipe_name].normal.result].icon_mipmaps,
+        }}
+      end
       data.raw.recipe[recipe_name].icon = nil
       data.raw.recipe[recipe_name].icon_size = nil
     end
@@ -1161,8 +1285,10 @@ function remove_prior_unlocks(tech, recipe)
     util.remove_recipe_effect(tech, recipe)
     if technology.prerequisites then
       for i, prerequisite in pairs(technology.prerequisites) do
-        -- log("BZZZ removing prior unlocks for " .. tech ..", checking " .. prerequisite) -- Handy Debug :|
-        remove_prior_unlocks(prerequisite, recipe)
+        if string.sub(prerequisite, 1, 3) ~= 'ei_' then
+          -- log("BZZZ removing prior unlocks for " .. recipe .. " from " .. tech ..", checking " .. prerequisite) -- Handy Debug :|
+          remove_prior_unlocks(prerequisite, recipe)
+        end
       end
     end
   end
@@ -1204,7 +1330,9 @@ function replace_ingredients_prior_to(tech, old, new, multiplier)
     if technology.prerequisites then
       for i, prerequisite in pairs(technology.prerequisites) do
         -- log("BZZZ checking " .. prerequisite) -- Handy Debug :|
-        replace_ingredients_prior_to(prerequisite, old, new, multiplier)
+        if string.sub(prerequisite, 1, 3) ~= 'ei_' then
+          replace_ingredients_prior_to(prerequisite, old, new, multiplier)
+        end
       end
     end
   end
