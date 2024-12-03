@@ -67,21 +67,7 @@ data:extend({
         recipe = "big-titanium-plate",
       } or nil,
     },
-    unit =
-    {
-      count = 75,
-      ingredients = (mods["Pre0-17-60Oil"] and
-          {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
-          } or
-          {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
-          }),
-      time = 30
-    },
+    research_trigger = {type="mine-entity", entity="titanium-ore"},
     prerequisites = {"lubricant"},
     order = "b-b"
   },
