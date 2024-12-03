@@ -23,6 +23,13 @@ else
   util.titanium_processing = "titanium-processing"
 end
 
+function util.item(item, quantity)
+  if not quantity then
+    quantity = 1
+  end
+  return {type="item", name=item, amount=quantity}
+end
+
 function util.se6()
   return mods["space-exploration"] and mods["space-exploration"] >= "0.6" 
 end
@@ -173,7 +180,7 @@ function util.k2matter(params)
               },
               time = 45,
             },
-            localised_name = {"technology-name.k2-conversion", {"item-name."..params.k2matter.item_name}},
+            -- (ignore for now) localised_name = {"technology-name.k2-conversion", {"item-name."..params.k2matter.item_name}},
           },
         })
   end
@@ -449,7 +456,7 @@ end
 function add_or_add_to_ingredient(recipe, ingredient, quantity)
   if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
-      if existing[1] == ingredient or existing.name == ingredient then
+      if existing.name == ingredient then
         add_to_ingredient(recipe, ingredient, quantity)
         return
       end
@@ -473,14 +480,14 @@ end
 function add_ingredient(recipe, ingredient, quantity, is_fluid)
   if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
-      if existing[1] == ingredient or existing.name == ingredient then
+      if existing.name == ingredient then
         return
       end
     end
     if is_fluid then
       table.insert(recipe.ingredients, {type="fluid", name=ingredient, amount=quantity})
     else
-      table.insert(recipe.ingredients, {ingredient, quantity})
+      table.insert(recipe.ingredients, {type="item", name=ingredient, amount=quantity})
     end
   end
 end
@@ -488,7 +495,7 @@ end
 -- Add a given ingredient prototype to a given recipe
 function util.add_ingredient_raw(recipe_name, ingredient, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  if data.raw.recipe[recipe_name] and (data.raw.item[ingredient.name] or data.raw.item[ingredient[1]]) then
+  if data.raw.recipe[recipe_name] and data.raw.item[ingredient.name] then
     me.add_modified(recipe_name)
     add_ingredient_raw(data.raw.recipe[recipe_name], ingredient)
     add_ingredient_raw(data.raw.recipe[recipe_name].normal, ingredient)
@@ -499,10 +506,7 @@ end
 function add_ingredient_raw(recipe, ingredient)
   if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
-      if (
-          (existing[1] and (existing[1] == ingredient[1] or existing[1] == ingredient.name)) or 
-          (existing.name and (existing.name == ingredient[1] or existing.name == ingredient.name))
-      ) then
+      if existing.name == ingredient.name then
         return
       end
     end
@@ -524,10 +528,7 @@ end
 function set_ingredient(recipe, ingredient, quantity)
   if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
-      if existing[1] == ingredient  then
-        existing[2] = quantity
-        return
-      elseif existing.name == ingredient then
+      if existing.name == ingredient then
         existing.amount = quantity
         existing.amount_min = nil
         existing.amount_max = nil
@@ -542,8 +543,7 @@ end
 function util.add_product(recipe_name, product, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] and 
-  (data.raw.item[product[1]] or data.raw.item[product.name] or
-   data.raw.fluid[product[1]] or data.raw.fluid[product.name]
+  (data.raw.item[product.name] or data.raw.fluid[product.name]
   ) then
     add_product(data.raw.recipe[recipe_name], product)
     add_product(data.raw.recipe[recipe_name].normal, product)
@@ -553,8 +553,7 @@ end
 
 function add_product(recipe, product)
   if recipe ~= nil then
-    if (product[1] and data.raw.item[product[1]]) or 
-    (product.name and data.raw[product.type][product.name]) then
+    if product.name and data.raw[product.type][product.name] then
       if not recipe.normal then
         if recipe.results == nil then
           recipe.results = {{recipe.result, recipe.result_count and recipe.result_count or 1}}
@@ -573,12 +572,10 @@ function util.get_ingredient_amount(recipe_name, ingredient_name)
   if recipe then
     if recipe.normal and recipe.normal.ingredients then
       for i, ingredient in pairs(recipe.normal.ingredients) do
-        if ingredient[1] == ingredient_name then return ingredient[2] end
         if ingredient.name == ingredient_name then return ingredient.amount end
       end
     elseif recipe.ingredients then
       for i, ingredient in pairs(recipe.ingredients) do
-        if ingredient[1] == ingredient_name then return ingredient[2] end
         if ingredient.name == ingredient_name then return ingredient.amount end
       end
     end
@@ -594,14 +591,12 @@ function util.get_amount(recipe_name, product)
   if recipe then
     if recipe.normal and recipe.normal.results then
       for i, result in pairs(recipe.normal.results) do
-        if result[1] == product then return result[2] end
         if result.name == product then return result.amount end
       end
     elseif recipe.normal and recipe.normal.result_count then
       return recipe.normal.result_count
     elseif recipe.results then
       for i, result in pairs(recipe.results) do
-        if result[1] == product then return result[2] end
         if result.name == product then return result.amount end
       end
     elseif recipe.result_count then
@@ -642,7 +637,7 @@ end
 function replace_ingredient(recipe, old, new, amount, multiply)
 	if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
-      if existing[1] == new or existing.name == new then
+      if existing.name == new then
         return
       end
     end
@@ -654,16 +649,6 @@ function replace_ingredient(recipe, old, new, amount, multiply)
             ingredient.amount = amount * ingredient.amount
           else
             ingredient.amount = amount
-          end
-        end
-      end
-			if ingredient[1] == old then 
-        ingredient[1] = new
-        if amount then
-          if multiply then
-            ingredient[2] = amount * ingredient[2]
-          else
-            ingredient[2] = amount
           end
         end
       end
@@ -686,7 +671,7 @@ function remove_ingredient(recipe, old)
   index = -1
 	if recipe ~= nil and recipe.ingredients ~= nil then
 		for i, ingredient in pairs(recipe.ingredients) do 
-      if ingredient.name == old or ingredient[1] == old then
+      if ingredient.name == old then
         index = i
         break
       end
@@ -714,7 +699,7 @@ function replace_some_product(recipe, old, old_amount, new, new_amount)
     if recipe.result == new then return end
     if recipe.results then
       for i, existing in pairs(recipe.results) do
-        if existing[1] == new or existing.name == new then
+        if existing.name == new then
           return
         end
       end
@@ -723,9 +708,6 @@ function replace_some_product(recipe, old, old_amount, new, new_amount)
 		for i, product in pairs(recipe.results) do 
 			if product.name == old then
         product.amount = math.max(1, product.amount - old_amount)
-      end
-			if product[1] == old then
-        product[2] = math.max(1, product[2] - old_amount)
       end
 		end
 	end
@@ -746,16 +728,13 @@ end
 function replace_some_ingredient(recipe, old, old_amount, new, new_amount, is_fluid)
 	if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
-      if existing[1] == new or existing.name == new then
+      if existing.name == new then
         return
       end
     end
 		for i, ingredient in pairs(recipe.ingredients) do 
 			if ingredient.name == old then
         ingredient.amount = math.max(1, ingredient.amount - old_amount)
-      end
-			if ingredient[1] == old then
-        ingredient[2] = math.max(1, ingredient[2] - old_amount)
       end
 		end
     add_ingredient(recipe, new, new_amount, is_fluid)
@@ -789,9 +768,6 @@ function set_product_amount(recipe, product, amount)
             result.amount_max =  nil
             result.amount = amount
           end
-        end
-        if result[1] == product then
-          result[2] = amount
         end
       end
     end
@@ -837,9 +813,6 @@ function multiply_recipe(recipe, multiple)
             result.catalyst_amount = result.catalyst_amount * multiple
           end
         end
-        if result[1] then
-          result[2] = result[2] * multiple
-        end
       end
     end
     if not recipe.results and not recipe.result_count then
@@ -850,9 +823,6 @@ function multiply_recipe(recipe, multiple)
       for i, ingredient in pairs(recipe.ingredients) do
         if ingredient.name then
           ingredient.amount = ingredient.amount * multiple
-        end
-        if ingredient[1] then
-          ingredient[2] = ingredient[2] * multiple
         end
       end
     end
@@ -869,7 +839,7 @@ end
 function has_ingredient(recipe, ingredient)
   if recipe ~= nil and recipe.ingredients ~= nil then
     for i, existing in pairs(recipe.ingredients) do
-      if existing[1] == ingredient or existing.name == ingredient then
+      if existing.name == ingredient then
         return true
       end
     end
@@ -892,7 +862,7 @@ function remove_product(recipe, old)
   index = -1
 	if recipe ~= nil and recipe.results ~= nil then
 		for i, result in pairs(recipe.results) do 
-      if result.name == old or result[1] == old then
+      if result.name == old then
         index = i
         break
       end
@@ -940,7 +910,6 @@ function replace_product(recipe, old, new, options)
     if recipe.results then
       for i, result in pairs(recipe.results) do
         if result.name == old then result.name = new end
-        if result[1] == old then result[1] = new end
       end
     end
   end
@@ -1175,10 +1144,6 @@ function add_to_product(recipe, product, amount)
     for i, result in pairs(recipe.results) do
 			if result.name == product then
         result.amount = result.amount + amount
-        return
-      end
-			if result[1] == product then
-        result[2] = result[2] + amount
         return
       end
     end
