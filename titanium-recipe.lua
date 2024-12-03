@@ -31,28 +31,16 @@ data:extend({
           { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, icon_mipmaps = 3,},
           { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, icon_mipmaps = 3, scale=0.25, shift= {-8, -8}},
         } or nil),
-    normal = (mods["Krastorio2"] and
-        {
-          enabled = false,
-          energy_required = 16,
-          ingredients = {{"titanium-ore", 10}},
-          results = 
-          mods["crafting-efficiency-2"] and {{type="item", name= util.me.titanium_plate, amount=3, probability=5/6}} or
-          {{type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3}} ,
-        } or
-        {
-          enabled = false,
-          energy_required = 8,
-          ingredients = {{"titanium-ore", 5}},
-          result = util.me.titanium_plate
-        }),
-    expensive =
-    {
-      enabled = false,
-      energy_required = 16,
-      ingredients = {{"titanium-ore", 10}},
-      result = util.me.titanium_plate
-    }
+    enabled = false,
+    energy_required = mods.Krastorio2 and 16 or 8,
+    ingredients = {util.item("titanium-ore", mods.Krastorio2 and 10 or 5)},
+    results = {mods.Krastorio2 and {type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3} or util.item(util.me.titanium_plate)},
+    -- expensive =
+    -- {
+    --   energy_required = 16,
+    --   ingredients = {{"titanium-ore", 10}},
+    --   result = util.me.titanium_plate
+    -- }
   },
   {
     type = "item",
@@ -97,27 +85,27 @@ data:extend({
     prerequisites = {"lubricant"},
     order = "b-b"
   },
-  mods["TheBigFurnace"] and {
-    type = "recipe",
-    name = "big-titanium-plate",
-    category = "big-smelting",
-    order = "d[titanium-plate]",
-    normal =
-    {
-      enabled = false,
-      energy_required = 8.75,
-      ingredients = {{"titanium-ore", 50}},
-      result = util.me.titanium_plate,
-      result_count = 10,
-    },
-    expensive =
-    {
-      enabled = false,
-      energy_required = 16,
-      ingredients = {{"titanium-ore", 100}},
-      result = util.me.titanium_plate,
-      result_count = 10,
-    }
-  } or nil,
+--   mods["TheBigFurnace"] and {
+--     type = "recipe",
+--     name = "big-titanium-plate",
+--     category = "big-smelting",
+--     order = "d[titanium-plate]",
+--     normal =
+--     {
+--       enabled = false,
+--       energy_required = 8.75,
+--       ingredients = {{"titanium-ore", 50}},
+--       result = util.me.titanium_plate,
+--       result_count = 10,
+--     },
+--     expensive =
+--     {
+--       enabled = false,
+--       energy_required = 16,
+--       ingredients = {{"titanium-ore", 100}},
+--       result = util.me.titanium_plate,
+--       result_count = 10,
+--     }
+--   } or nil,
 })
 end

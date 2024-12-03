@@ -5,6 +5,8 @@ local util = require("__bztitanium__.data-util");
 if mods["FactorioExtended-Plus-Core"] then
   util.remove_raw("item", "titanium-ore")
 end
+data.raw.planet.nauvis.map_gen_settings.autoplace_controls["titanium-ore"] = {}
+data.raw.planet.nauvis.map_gen_settings.autoplace_settings.entity.settings["titanium-ore"] = {}
 
 if (not mods["pyrawores"]) then
 data:extend({
@@ -15,10 +17,10 @@ data:extend({
     richness = true,
     order = "b-e"
 	},
-	{
-    type = "noise-layer",
-    name = "titanium-ore"
-	},
+	--{
+  --  type = "noise-layer",
+  --  name = "titanium-ore"
+	--},
 	{
     type = "resource",
     icon_size = 64, icon_mipmaps = 3,
