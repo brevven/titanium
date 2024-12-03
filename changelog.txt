@@ -2,7 +2,8 @@
 Version: 2.0.0
 Date: 2024-12-06
   Features:
-    - Works with Factorio 2.0 vanilla
+    - Works with Factorio 2.0 vanilla and SA
+    - Some new uses for titanium with Space Age, including belt and inserter progression
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.13
 Date: 2023-12-23

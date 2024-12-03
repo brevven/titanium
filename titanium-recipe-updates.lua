@@ -3,8 +3,16 @@
 local util = require("__bztitanium__.data-util");
 
 -- Space Age
+if mods["space-age"] then
+  util.replace_some_ingredient("space-platform-foundation", "steel-plate", 15, util.me.titanium_plate, 15)
+  util.replace_ingredient("electromagnetic-plant", "steel-plate", util.me.titanium_plate)
+  util.add_ingredient("superconductor", util.me.titanium_plate, 1)
+  util.add_product("scrap-recycling", {type="item", name=util.me.titanium_plate, amount=1, probability=0.01})
 
-util.replace_some_ingredient("space-platform-foundation", "steel-plate", 15, util.me.titanium_plate, 15)
+  -- In Space Age progression, it makes sense to insert titanium at this point in belts and inserters
+  util.replace_ingredient("express-transport-belt", "iron-gear-wheel", "titanium-plate", 2)
+  util.replace_ingredient("bulk-inserter", "iron-gear-wheel", "titanium-plate", 3)
+end
 
 if (not mods["bobplates"]) then
   util.replace_ingredient("power-armor", "steel-plate", util.me.titanium_plate)
