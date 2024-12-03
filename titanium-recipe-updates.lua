@@ -2,6 +2,10 @@
 --
 local util = require("__bztitanium__.data-util");
 
+-- Space Age
+
+util.replace_some_ingredient("space-platform-foundation", "steel-plate", 15, util.me.titanium_plate, 15)
+
 if (not mods["bobplates"]) then
   util.replace_ingredient("power-armor", "steel-plate", util.me.titanium_plate)
   util.add_prerequisite("power-armor", util.me.titanium_processing)
@@ -13,7 +17,7 @@ if (not mods["bobplates"]) then
 
   -- All equipment that uses steel now uses titanium. Who wants to carry around steel!
   for name, recipe in pairs(data.raw.recipe) do
-    if recipe.result ~= nil and recipe.result:find("equipment") then
+    if recipe.results and recipe.results[1] and recipe.results[1].name:find("equipment") then
       util.replace_ingredient(recipe.name, "steel-plate", util.me.titanium_plate)
     end
   end
