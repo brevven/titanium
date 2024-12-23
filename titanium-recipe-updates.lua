@@ -17,6 +17,12 @@ if mods["space-age"] then
   -- In Space Age progression, it makes sense to insert titanium at this point in belts and inserters
   util.replace_ingredient("express-transport-belt", "iron-gear-wheel", "titanium-plate", 2)
   util.replace_ingredient("bulk-inserter", "iron-gear-wheel", "titanium-plate", 3)
+  util.add_prerequisite("logistics-3", "titanium-processing")
+  util.set_tech_recipe("logistics-3", {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
+  util.add_prerequisite("bulk-inserter", "titanium-processing")
+  util.set_tech_recipe("bulk-inserter", {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
+  util.set_tech_recipe("inserter-capacity-bonus-1", {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
+  util.set_tech_recipe("inserter-capacity-bonus-2", {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
 end
 
 if (not mods["bobplates"]) then
