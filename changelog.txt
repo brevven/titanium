@@ -2,7 +2,12 @@
 Version: 2.0.0
 Date: 2024-12-06
   Features:
-    - Works with Factorio 2.0 vanilla and SA
+    - Works with Factorio 2.0 vanilla and Space Age
+      Currently does not work when adding to a ongoing game:
+      https://forums.factorio.com/viewtopic.php?f=7&t=124996
+    - Compatibility with other mods is not confirmed, but many will still work
+    - Titanium production on Vulcanus and Gleba, recycling on Fulgora. 
+      These production chains may need further balancing or updates.
     - Some new uses for titanium with Space Age, including belt and inserter progression
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.13
