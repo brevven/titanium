@@ -33,7 +33,7 @@ data:extend({
         } or nil),
     enabled = false,
     energy_required = mods.Krastorio2 and 16 or 8,
-    ingredients = {util.item("titanium-ore", mods.Krastorio2 and 10 or 5)},
+    ingredients = {util.item("titanium-ore", mods.Krastorio2 and 10 or (mods["space-age"] and 10 or 5))},
     results = {mods.Krastorio2 and {type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3} or util.item(util.me.titanium_plate)},
     -- expensive =
     -- {
@@ -94,4 +94,79 @@ data:extend({
 --     }
 --   } or nil,
 })
+end
+if mods["space-age"] then
+data:extend({
+  {
+    type = "recipe",
+    name = "titanium-ore-from-stone",
+    main_product = "titanium-ore",
+    category = "chemistry",
+    subgroup = "vulcanus-processes",
+    order = "d[titanium-ore]",
+    icons = {
+          { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, icon_mipmaps = 3},
+          { icon = "__base__/graphics/icons/stone.png", icon_size = 64, scale = 0.25, shift = {-8, -8}},
+        },
+    enabled = false,
+    energy_required = 1,
+    ingredients = {util.item("stone", 3), util.fluid("sulfuric-acid", 10)},
+    results = {util.item("titanium-ore")},
+  },
+  {
+    type = "recipe",
+    name = "titanium-sublimation",
+    main_product = "vacuum",
+    category = "chemistry",
+    subgroup = "vulcanus-processes",
+    order = "d[titanium-sublimation]",
+    icons = {
+          util.vacuum_icon,
+          { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, scale=0.25, icon_mipmaps = 3, shift = {-8, -8}},
+        },
+    enabled = false,
+    energy_required = 2, 
+    ingredients = {util.item("titanium-plate")},
+    results = {
+      util.fluid("vacuum", 40),
+      util.item("stone", 1),
+    },
+    show_amount_in_title = false,
+  },
+  {
+    type = "recipe",
+    name = "titanium-in-foundry",
+    main_product = util.me.titanium_plate,
+    category = "metallurgy",
+    subgroup = "vulcanus-processes",
+    order = "d[titanium-ore]",
+    icons = {
+          { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, icon_mipmaps = 3},
+          util.vacuum_icon_small,
+        },
+    enabled = false,
+    energy_required = 2, 
+    ingredients = {
+      util.item("titanium-ore", 2),
+      util.fluid("vacuum"),
+    },
+    results = {util.item("titanium-plate")},
+  },
+  {
+    type = "fluid",
+    name = "vacuum",
+    icons = { util.vacuum_icon, },
+    visualization_color = util.vacuum_vis,
+    subgroup = "fluid",
+    order = "d[vacuum]",
+    default_temperature = 1500,
+    max_temperature = 2000,
+    gas_temperature = 0,
+    heat_capacity = "0.01kJ",
+    base_color = {0.9, 0.9, 0.9},
+    flow_color = {0.8, 0.8, 0.9},
+    auto_barrel = false,
+  },
+  
+  })
 end

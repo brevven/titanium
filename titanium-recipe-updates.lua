@@ -9,6 +9,10 @@ if mods["space-age"] then
   util.add_ingredient("superconductor", util.me.titanium_plate, 1)
   util.add_product("scrap-recycling", {type="item", name=util.me.titanium_plate, amount=1, probability=0.01})
 
+  util.add_unlock("foundry", "titanium-sublimation")
+  util.add_unlock("foundry", "titanium-in-foundry")
+  util.add_unlock("foundry", "titanium-ore-from-stone")
+
   -- In Space Age progression, it makes sense to insert titanium at this point in belts and inserters
   util.replace_ingredient("express-transport-belt", "iron-gear-wheel", "titanium-plate", 2)
   util.replace_ingredient("bulk-inserter", "iron-gear-wheel", "titanium-plate", 3)
