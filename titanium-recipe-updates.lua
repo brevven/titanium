@@ -12,6 +12,7 @@ if mods["space-age"] then
   util.add_unlock("foundry", "titanium-sublimation")
   util.add_unlock("foundry", "titanium-in-foundry")
   util.add_unlock("foundry", "titanium-ore-from-stone")
+  util.add_unlock("jellynut", "titanium-extraction")
 
   -- In Space Age progression, it makes sense to insert titanium at this point in belts and inserters
   util.replace_ingredient("express-transport-belt", "iron-gear-wheel", "titanium-plate", 2)

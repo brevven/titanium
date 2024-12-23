@@ -168,5 +168,42 @@ data:extend({
     auto_barrel = false,
   },
   
+  {
+    type = "recipe",
+    name = "titanium-extraction",
+    category = "organic-or-hand-crafting",
+    icons = {
+          { icon = "__space-age__/graphics/icons/jellynut.png", icon_size = 64, scale = 0.5, shift = {-4, -6}},
+          { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, scale = 0.5, icon_mipmaps = 3, shift = {4,6}},
+        },
+    surface_conditions =
+    {
+      {
+        property = "pressure",
+        min = 2000,
+        max = 2000
+      }
+    },
+    subgroup = "agriculture-processes",
+    order = "e[bacteria]-a[bacteria]-b[titanium]",
+    enabled = false,
+    allow_productivity = true,
+    energy_required = 6,
+    ingredients =
+    {
+      {type = "item", name = "jellynut", amount = 1},
+      {type = "item", name = "spoilage", amount = 9},
+    },
+    results =
+    {
+      {type = "item", name = "titanium-ore", amount = 5},
+      {type = "item", name = "spoilage", amount = 10}
+    },
+    crafting_machine_tint =
+    {
+      primary = {r = 0.1, g = 0.5, b = 0.5, a = 1},
+      secondary = {r = 0.1, g = 0.2, b = 0.3, a = 1},
+    }
+  },
   })
 end
