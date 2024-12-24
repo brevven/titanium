@@ -1,6 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.1
+Date: 2024-12-24
+  Fixes:
+    - Fix number of slots in recycling machines to accomdodate extra titanium plate output
+---------------------------------------------------------------------------------------------------
 Version: 2.0.0
-Date: 2024-12-06
+Date: 2024-12-24
   Features:
     - Works with Factorio 2.0 vanilla and Space Age.
       Can be added to existing games, but currently uses a workaround to generate ore patches on new chunks when added to an existing game due to an issue (https://forums.factorio.com/124996)
