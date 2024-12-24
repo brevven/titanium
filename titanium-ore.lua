@@ -15,7 +15,7 @@ data:extend({
     category = "resource",
     name = "titanium-ore",
     richness = true,
-    order = "b-e"
+    order = "a-t"
 	},
 	--{
   --  type = "noise-layer",
@@ -43,8 +43,8 @@ data:extend({
 
     autoplace = resource_autoplace.resource_autoplace_settings{
       name = "titanium-ore",
-      order = "b-z",
-      base_density = 3,
+      order = "a-t",
+      base_density = mods["space-age"] and 5 or 3,
       has_starting_area_placement = false,
       regular_rq_factor_multiplier = 0.8
     },
