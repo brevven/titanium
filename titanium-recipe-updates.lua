@@ -41,7 +41,7 @@ if (not mods["bobplates"]) then
 
   -- All equipment that uses steel now uses titanium. Who wants to carry around steel!
   for name, recipe in pairs(data.raw.recipe) do
-    if recipe.results and recipe.results[1] and recipe.results[1].name:find("equipment") then
+    if recipe.results and recipe.results[1] and recipe.results[1].name and recipe.results[1].name:find("equipment") then
       util.replace_ingredient(recipe.name, "steel-plate", util.me.titanium_plate)
     end
   end
