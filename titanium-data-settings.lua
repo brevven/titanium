@@ -13,13 +13,8 @@ if mining_fluid == "chlorine" and data.raw.fluid["chlorine"] and mods["Krastorio
   data.raw.technology[util.me.titanium_processing].unit.ingredients = {
     {"basic-tech-card", 1}, {"automation-science-pack", 1}, {"logistic-science-pack", 1}}
 elseif mining_fluid == "sulfuric-acid" then
-  data.raw.technology[util.me.titanium_processing].prerequisites = {"sulfur-processing"}
-  data.raw.technology[util.me.titanium_processing].unit.ingredients = {
-    {"automation-science-pack", 1}, {"logistic-science-pack", 1}}
+  data.raw.technology[util.me.titanium_processing].prerequisites = {"uranium-mining"}
 else
-  if data.raw.technology["titanium-processing"] then
-    data.raw.technology["titanium-processing"].prerequisites = {"lubricant"}
-  end
   if not mods["Pre0-17-60Oil"] then
     util.set_tech_recipe("solar-panel-equipment", {
       {"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
