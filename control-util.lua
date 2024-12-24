@@ -99,7 +99,14 @@ end
 -- https://forums.factorio.com/viewtopic.php?f=7&t=124996&p=655013#p655013
 function util.ore_workaround(event)
   for i, ore in pairs(util.me.ores_for_workaround) do
-    if event.surface.map_gen_settings.autoplace_controls["titanium-ore"] then return end
+    if (
+        event.surface and
+        event.surface.map_gen_settings and
+        event.surface.map_gen_settings.autoplace_controls and
+        event.surface.map_gen_settings.autoplace_controls["titanium-ore"]
+    ) then
+      return
+    end
     if event.surface.name ~= "nauvis" then return end
     if math.random() < settings.global[util.me.name.."-ore-workaround-probability"].value then
       util.generate_ore(event, ore.name, ore.amount, ore.tiles)
