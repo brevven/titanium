@@ -3,6 +3,7 @@ local me = {}
 me.name = "bztitanium"
 me.titanium_plate = ""
 me.titanium_processing = ""
+me.ores_for_workaround = {{name="titanium-ore", amount=100000, tiles=300}}
 
 if mods and mods["FactorioExtended-Plus-Core"] then
   me.titanium_plate = "titanium-alloy"

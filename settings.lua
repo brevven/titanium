@@ -21,4 +21,12 @@ data:extend({
     minimum_value = 1,
     maximum_value = 1000,
 	},
+  {
+    type = "double-setting",
+    name = "bztitanium-ore-workaround-probability",
+    setting_type = "runtime-global",
+    default_value = .01,
+    minimum_value = .00001,
+    maximum_value = .1,
+	},
 })
