@@ -1061,6 +1061,17 @@ function util.set_icons(recipe_name, icons, options)
   end
 end
 
+-- Set tech icons
+function util.set_tech_icons(technology, icons, options)
+  if not should_force(options) and bypass(technology) then return end
+  if data.raw.technology[technology] then
+    me.add_modified(technology)
+    data.raw.technology[technology].icons = icons
+    data.raw.technology[technology].icon = nil
+    data.raw.technology[technology].icon_size = nil
+  end
+end
+
 -- Set recipe icons
 function util.set_item_icons(item_name, icons)
   if data.raw.item[item_name] then
