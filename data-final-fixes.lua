@@ -49,12 +49,12 @@ require("titanium-recipe-final-modmash")
 require("compatibility/248k-final")
 
 
-
 -- Second part of hack for endgame combat
-
 require("compatibility/titanium-endgame-combat-final")
 
 -- Hack for AutoTrainDepot
-
 require("compatibility/titanium-auto-train-depot-final")
 
+
+local util = require("__bztitanium__.data-util");
+util.use_fluid_mining_final()

@@ -4,7 +4,7 @@ me.name = "bztitanium"
 me.titanium_plate = ""
 me.titanium_processing = ""
 
-if mods["FactorioExtended-Plus-Core"] then
+if mods and mods["FactorioExtended-Plus-Core"] then
   me.titanium_plate = "titanium-alloy"
 else
   me.titanium_plate = "titanium-plate"
@@ -17,7 +17,7 @@ me.recipes = {me.titanium_plate,
               "molten-titanium",
               "enriched-titanium-smelting-vulcanite"}
 
-if mods["pyrawores"] then 
+if mods and mods["pyrawores"] then 
   me.titanium_processing = "titanium-mk01"
 else
   me.titanium_processing = "titanium-processing"

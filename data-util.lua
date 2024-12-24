@@ -11,6 +11,10 @@ util.get_setting = util.me.get_setting
 util.titanium_plate = ""
 util.titanium_processing = ""
 
+util.A = {{"automation-science-pack", 1}}
+util.AL = {{"automation-science-pack", 1}, {"logistic-science-pack", 1}}
+util.ALC = {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}}
+
 if mods["FactorioExtended-Plus-Core"] then
   util.titanium_plate = "titanium-alloy"
 else
@@ -107,6 +111,54 @@ function util.contains(table, sought)
     end
   end
   return false
+end
+
+-- Replace 'uranium-mining' tech with 'fluid-mining', defaulting to same costs
+function util.add_fluid_mining()
+  if data.raw.technology["fluid-mining"] then return end
+  util.remove_raw("technology", "uranium-mining")
+  data:extend({
+  {
+    type = "technology",
+    name = "fluid-mining",
+    icon = "__"..util.me.name.."__/graphics/technology/fluid-mining.png",
+    icon_size = 256,
+    effects =
+    {
+      {
+        type = "mining-with-fluid",
+        modifier = true
+      }
+    },
+    prerequisites = {"chemical-science-pack", "concrete"},
+    unit =
+    {
+      count = 100,
+      ingredients =
+      {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1}
+      },
+      time = 30,
+    }
+  }
+  })
+end
+
+-- Final fix to make sure nothing uses "uranium-mining"
+function util.use_fluid_mining_final()
+  for i, tech in pairs(data.raw.technology) do 
+    if tech.prerequisites then
+      for j, pre in pairs(tech.prerequisites) do
+        if pre == "uranium-mining" then
+          util.add_prerequisite(tech.name, "fluid-mining")
+          util.remove_prerequisite(tech.name, "uranium-mining")
+          break
+        end
+      end
+    end
+  end
 end
 
 

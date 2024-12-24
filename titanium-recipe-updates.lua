@@ -2,6 +2,7 @@
 --
 local util = require("__bztitanium__.data-util");
 
+util.add_fluid_mining()
 -- Space Age
 if mods["space-age"] then
   util.replace_some_ingredient("space-platform-foundation", "steel-plate", 15, util.me.titanium_plate, 15)
@@ -18,11 +19,11 @@ if mods["space-age"] then
   util.replace_ingredient("express-transport-belt", "iron-gear-wheel", "titanium-plate", 2)
   util.replace_ingredient("bulk-inserter", "iron-gear-wheel", "titanium-plate", 3)
   util.add_prerequisite("logistics-3", "titanium-processing")
-  util.set_tech_recipe("logistics-3", {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
+  util.set_tech_recipe("logistics-3", util.ALC)
   util.add_prerequisite("bulk-inserter", "titanium-processing")
-  util.set_tech_recipe("bulk-inserter", {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
-  util.set_tech_recipe("inserter-capacity-bonus-1", {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
-  util.set_tech_recipe("inserter-capacity-bonus-2", {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}})
+  util.set_tech_recipe("bulk-inserter", util.ALC)
+  util.set_tech_recipe("inserter-capacity-bonus-1", util.ALC)
+  util.set_tech_recipe("inserter-capacity-bonus-2", util.ALC)
 end
 
 if (not mods["bobplates"]) then
@@ -32,6 +33,10 @@ if (not mods["bobplates"]) then
   -- Generally, steel-based equipment techs require solar panel tech, so only require
   -- titanium processing for that.
   util.add_prerequisite("solar-panel-equipment", util.me.titanium_processing)
+  util.set_tech_recipe("solar-panel-equipment", util.ALC)
+  util.set_tech_recipe("belt-immunity-equipment", util.ALC)
+  util.set_tech_recipe("night-vision-equipment", util.ALC)
+
 
 
   -- All equipment that uses steel now uses titanium. Who wants to carry around steel!

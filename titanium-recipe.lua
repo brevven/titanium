@@ -68,7 +68,7 @@ data:extend({
       } or nil,
     },
     research_trigger = {type="mine-entity", entity="titanium-ore"},
-    prerequisites = {"lubricant"},
+    prerequisites = {"lubricant", "uranium-mining"},
     order = "b-b"
   },
 --   mods["TheBigFurnace"] and {
