@@ -12,10 +12,6 @@ require("titanium-recipe-final-k2")
 require("titanium-recipe-final-rrr")
 
 
--- Module fixes, including for Krastorio 2
-require("titanium-recipe-modules")
-
-
 -- Deadlock's stacking and crating
 require("titanium-recipe-final-stacking")
 

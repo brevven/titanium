@@ -32,6 +32,7 @@ data:extend({
           { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, icon_mipmaps = 3, scale=0.25, shift= {-8, -8}},
         } or nil),
     enabled = false,
+    allow_productivity = true,
     energy_required = mods.Krastorio2 and 16 or 8,
     ingredients = {util.item("titanium-ore", mods.Krastorio2 and 10 or (mods["space-age"] and 10 or 5))},
     results = {mods.Krastorio2 and {type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3} or util.item(util.me.titanium_plate)},
@@ -109,6 +110,7 @@ data:extend({
           { icon = "__base__/graphics/icons/stone.png", icon_size = 64, scale = 0.25, shift = {-8, -8}},
         },
     enabled = false,
+    allow_productivity = true,
     energy_required = 1,
     ingredients = {util.item("stone", 3), util.fluid("sulfuric-acid", 10)},
     results = {util.item("titanium-ore")},
@@ -125,6 +127,7 @@ data:extend({
           { icon = "__bztitanium__/graphics/icons/titanium-plate.png", icon_size = 64, scale=0.25, icon_mipmaps = 3, shift = {-8, -8}},
         },
     enabled = false,
+    allow_productivity = true,
     energy_required = 2, 
     ingredients = {util.item("titanium-plate")},
     results = {
@@ -145,6 +148,7 @@ data:extend({
           util.vacuum_icon_small,
         },
     enabled = false,
+    allow_productivity = true,
     energy_required = 2, 
     ingredients = {
       util.item("titanium-ore", 2),
