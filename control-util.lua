@@ -17,7 +17,6 @@ function util.check_fluid_mining()
     if (
         (force.technologies["uranium-processing"] and force.technologies["uranium-processing"].researched) or
         (force.technologies["titanium-processing"] and force.technologies["titanium-processing"].researched) or
-        (force.technologies["dummy-processing"] and force.technologies["dummy-processing"].researched) or
         false
     ) then
       force.technologies["fluid-mining"].researched = true
