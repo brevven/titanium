@@ -20,9 +20,10 @@ if mods["5dim_core"] then
         icon_size = 64, icon_mipmaps = 3,
         enabled = false,
         energy_required = 140,
-        ingredients = {{"titanium-ore", 425}},
-        result = util.me.titanium_plate,
-        result_count = 100,
+        ingredients = {util.item("titanium-ore", 425)},
+        results = {util.item(util.me.titanium_plate, 100)},
+        main_product = util.me.titanium_plate,
+        localised_name = {"item-name.titanium-plate"},
       }
     })
     table.insert(data.raw.technology[util.me.titanium_processing].effects, 
@@ -52,9 +53,11 @@ if mods["5dim_core"] then
               energy_required = 8,
               enabled = false,
               ingredients = {
-                  {"titanium-dust", 5}
+                  util.item("titanium-dust", 5)
               },
-              result = util.me.titanium_plate
+              results = {util.item(util.me.titanium_plate, 1)},
+              main_product = util.me.titanium_plate,
+              localised_name = {"item-name.titanium-plate"},
           },
           {
               type = "recipe",
@@ -64,10 +67,10 @@ if mods["5dim_core"] then
               energy_required = 3.2,
               enabled = false,
               ingredients = {
-                  {"titanium-ore", 1}
+                  util.item("titanium-ore", 1)
               },
-              result = "titanium-dust",
-              result_count = 2
+              results = {util.item( "titanium-dust", 2)},
+              main_product = "titanium-dust",
           },
           {
             type = "recipe",
@@ -79,9 +82,10 @@ if mods["5dim_core"] then
             icon_size = 64, icon_mipmaps = 3,
             enabled = false,
             energy_required = 140,
-            ingredients = {{"titanium-dust", 425}},
-            result = util.me.titanium_plate,
-            result_count = 100,
+            ingredients = {util.item("titanium-dust", 425)},
+            results = {util.item(util.me.titanium_plate, 100)},
+            main_product = util.me.titanium_plate,
+            localised_name = {"item-name.titanium-plate"},
           }
     })
     table.insert(data.raw.technology[util.me.titanium_processing].effects, 
