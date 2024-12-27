@@ -767,6 +767,27 @@ function replace_some_ingredient(recipe, old, old_amount, new, new_amount, is_fl
 	end
 end
 
+-- set the probability of a product. 
+function util.set_product_probability(recipe_name, product, probability, options)
+  if not should_force(options) and bypass(recipe_name) then return end
+  me.add_modified(recipe_name)
+  if data.raw.recipe[recipe_name] then
+    set_product_probability(data.raw.recipe[recipe_name], product, probability)
+	end
+end
+
+function set_product_probability(recipe, product, probability)
+  if recipe then
+    if recipe.results then
+      for i, result in pairs(recipe.results) do
+        if result.name == product then
+          result.probability = probability
+        end
+      end
+    end
+  end
+end
+
 -- set the amount of a product. 
 function util.set_product_amount(recipe_name, product, amount, options)
   if not should_force(options) and bypass(recipe_name) then return end
@@ -778,9 +799,6 @@ end
 
 function set_product_amount(recipe, product, amount)
   if recipe then
-    if recipe.result_count then
-      recipe.result_count = amount
-    end
     if recipe.results then
       for i, result in pairs(recipe.results) do
         if result.name == product then
