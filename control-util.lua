@@ -13,13 +13,15 @@ function decode(data)
 end
 
 function util.check_fluid_mining()
-  for i, force in pairs(game.forces) do
-    if (
-        (force.technologies["uranium-processing"] and force.technologies["uranium-processing"].researched) or
-        (force.technologies["titanium-processing"] and force.technologies["titanium-processing"].researched) or
-        false
-    ) then
-      force.technologies["fluid-mining"].researched = true
+  if me.fluid_mining then
+    for i, force in pairs(game.forces) do
+      if (
+          (force.technologies["uranium-processing"] and force.technologies["uranium-processing"].researched) or
+          (force.technologies["titanium-processing"] and force.technologies["titanium-processing"].researched) or
+          false
+      ) then
+        force.technologies["fluid-mining"].researched = true
+      end
     end
   end
 end
