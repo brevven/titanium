@@ -1356,4 +1356,13 @@ function util.set_vtk_dcm_ingredients()
   end
 end
 
+-- Recalculate recycling recipes, since our mod might make updates after quality generates them
+function util.redo_recycling()
+  if mods.quality then
+    local recycling = require("__quality__.prototypes.recycling")
+    for _, recipe in pairs(data.raw.recipe) do
+      recycling.generate_recycling_recipe(recipe)
+    end
+  end
+end
 return util
