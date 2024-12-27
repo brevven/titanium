@@ -31,11 +31,15 @@ util.vacuum_icon = { icon="__base__/graphics/icons/fluid/steam.png", tint={r=.1,
 util.vacuum_icon_small = { icon="__base__/graphics/icons/fluid/steam.png", tint={r=.1, g=.1, b=.5, a=.5}, scale=0.25, shift={-8,-8}, }
 util.vacuum_vis = {r=.1, g=.1, b=.5}
 
-function util.item(item, quantity)
+function util.item(item, quantity, probability)
   if not quantity then
     quantity = 1
   end
-  return {type="item", name=item, amount=quantity}
+  if probability then
+    return {type="item", name=item, amount=quantity, probability=probability}
+  else
+    return {type="item", name=item, amount=quantity}
+  end
 end
 
 function util.fluid(fluid, quantity)
