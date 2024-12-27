@@ -201,6 +201,7 @@ data:extend({
     results =
     {
       {type = "item", name = "titanium-ore", amount = 5},
+      {type = "item", name = "jellynut-seed", amount = 1, probability = 0.02},
       {type = "item", name = "spoilage", amount = 10}
     },
     crafting_machine_tint =
