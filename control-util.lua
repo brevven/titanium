@@ -95,6 +95,19 @@ function util.warptorio2_expansion_helper()
   end
 end
 
+function util.ore_fix()
+  for _, resource in pairs(me.resources) do
+    local map_gen_settings = game.surfaces.nauvis.map_gen_settings
+    if map_gen_settings.autoplace_controls[resource] == nil then
+      map_gen_settings.autoplace_controls[resource] = {}
+    end
+    if map_gen_settings.autoplace_settings.entity.settings[resource] == nil then
+      map_gen_settings.autoplace_settings.entity.settings[resource] = {}
+    end
+    game.surfaces.nauvis.map_gen_settings = map_gen_settings
+  end
+end
+
 
 -- A workaround for generating ores until this bug is fixed:
 -- https://forums.factorio.com/viewtopic.php?f=7&t=124996&p=655013#p655013
