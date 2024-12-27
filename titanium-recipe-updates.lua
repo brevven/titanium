@@ -24,6 +24,11 @@ if mods["space-age"] then
   util.set_tech_recipe("bulk-inserter", util.ALC)
   util.set_tech_recipe("inserter-capacity-bonus-1", util.ALC)
   util.set_tech_recipe("inserter-capacity-bonus-2", util.ALC)
+
+  -- LDS casting
+  util.remove_ingredient("casting-low-density-structure", "molten-iron")
+  util.add_ingredient("casting-low-density-structure", "titanium-plate", 2)
+  util.add_ingredient("casting-low-density-structure", "vacuum", 10)
 end
 
 if (not mods["bobplates"]) then
