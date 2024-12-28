@@ -1,6 +1,6 @@
 {
     "name": "bztitanium",
-    "version": "2.0.7",
+    "version": "2.0.8",
     "factorio_version": "2.0",
     "title": "Titanium",
     "author": "Brevven",
@@ -21,6 +21,7 @@
       "? EndgameCombat",
       "(?) Power Armor MK3",
       "? 248k",
+      "(?) atan-nuclear-science",
       "! nullius"
     ],
     "description": "Adds titanium to the base game.\n\nTitanium is used in Low Density Structures, Flying Robot Frames and a few other places.\n\nCompatible with Space Age.\n\nA standalone piece of BZ Mods, with graphics by snouz."
