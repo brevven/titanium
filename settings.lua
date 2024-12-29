@@ -24,6 +24,7 @@ data:extend({
   {
     type = "double-setting",
     name = "bztitanium-ore-workaround-probability",
+    hidden = true, -- deprecated
     setting_type = "runtime-global",
     default_value = .01,
     minimum_value = .00001,
