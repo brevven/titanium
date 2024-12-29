@@ -2,6 +2,7 @@ local me = require("me")
 
 local util = {}
 util.me = me
+local regenerate_command = "bz-regenerate"
 
 function decode(data)
     if type(data) == "string" then return data end
@@ -92,6 +93,62 @@ function util.warptorio2_expansion_helper()
         global.done = true
       end
     end)
+  end
+end
+
+local usage = [[
+Usage: /bz-regenerate all
+or     /bz-regenerate <planet> <resource> [<frequency> <size> <richness>]
+    planet must be an internal name like nauvis
+    resource must be an internal name like lead-ore or titanium-ore
+    frequency, size, and richness are optional, but all or none must be provided, and each should be a number between 0.166 and 6, where 1 is default setting.
+Regenerates ore patches. If frequency/size/richness are provided, the planet will use those settings from now on, as well.
+  - Separate arguments with spaces, do not use < >, [ ], quotes or other symbols
+  - This action can take a while for larger maps!
+  - Ores can sometimes overlap on regeneration.
+]]
+function util.add_regenerate_command_handler()
+  script.on_event(defines.events.on_console_command, regenerate_ore)
+  
+  if not commands.commands[regenerate_command] then
+    commands.add_command( regenerate_command, usage, function() end)
+  end
+end
+
+function regenerate_ore(event)
+  if event.command == regenerate_command then
+    local params = {}
+    for w in event.parameters:gmatch("%S+") do table.insert(params, w) end
+    if #params == 1 and params[1] == "all" then
+      for _, resource in pairs(me.resources) do
+        game.print("Regenerating "..resource)
+        game.regenerate_entity(resource)
+      end
+      return
+    end
+    if not (#params == 2 or #params == 5) then
+      game.print(usage)
+      return
+    end
+    local planet = params[1]
+    for _, resource in pairs(me.resources) do
+      if not game.surfaces[planet] then
+        game.print("Could not find surface for "..planet..". May not exist, or may not yet be explored.")
+        return
+      end
+      if resource == params[2] then
+        if #params == 5 then
+          local settings = {frequency=params[3], size=params[4], richness=params[5]}
+          local map_gen_settings = game.surfaces[planet].map_gen_settings
+          map_gen_settings.autoplace_controls[resource] = settings
+          map_gen_settings.autoplace_settings.entity.settings[resource] = settings
+          game.surfaces[planet].map_gen_settings = map_gen_settings
+          game.print("Set "..resource.." on "..planet.." to "..serpent.line(settings))
+        end
+        game.print("Regenerating "..resource)
+        game.surfaces[planet].regenerate_entity(resource)
+      end
+    end
   end
 end
 
