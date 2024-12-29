@@ -96,15 +96,22 @@ function util.warptorio2_expansion_helper()
 end
 
 function util.ore_fix()
+  ore_fix("nauvis")
+  if game.surfaces.tenebris then
+    ore_fix("tenebris")
+  end
+end
+
+function ore_fix(surface_name)
   for _, resource in pairs(me.resources) do
-    local map_gen_settings = game.surfaces.nauvis.map_gen_settings
+    local map_gen_settings = game.surfaces[surface_name].map_gen_settings
     if map_gen_settings.autoplace_controls[resource] == nil then
       map_gen_settings.autoplace_controls[resource] = {}
     end
     if map_gen_settings.autoplace_settings.entity.settings[resource] == nil then
       map_gen_settings.autoplace_settings.entity.settings[resource] = {}
     end
-    game.surfaces.nauvis.map_gen_settings = map_gen_settings
+    game.surfaces[surface_name].map_gen_settings = map_gen_settings
   end
 end
 

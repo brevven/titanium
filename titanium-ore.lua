@@ -8,6 +8,11 @@ end
 data.raw.planet.nauvis.map_gen_settings.autoplace_controls["titanium-ore"] = {}
 data.raw.planet.nauvis.map_gen_settings.autoplace_settings.entity.settings["titanium-ore"] = {}
 
+if mods.tenebris then
+  data.raw.planet.tenebris.map_gen_settings.autoplace_controls["titanium-ore"] = {}
+  data.raw.planet.tenebris.map_gen_settings.autoplace_settings.entity.settings["titanium-ore"] = {}
+end
+
 if (not mods["pyrawores"]) then
 data:extend({
 	{
