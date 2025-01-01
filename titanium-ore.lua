@@ -59,20 +59,12 @@ data:extend({
         {
           sheet =
           {
-      filename = "__bztitanium__/graphics/entity/ores/titanium-ore.png",
-      priority = "extra-high",
-      size = 64,
-      frame_count = 8,
-      variation_count = 8,
-      hr_version =
-      {
-      filename = "__bztitanium__/graphics/entity/ores/hr-titanium-ore.png",
+        filename = "__bztitanium__/graphics/entity/ores/hr-titanium-ore.png",
         priority = "extra-high",
         size = 128,
         frame_count = 8,
         variation_count = 8,
         scale = 0.5
-      }
           }
     },
   },
