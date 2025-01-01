@@ -165,6 +165,17 @@ function util.use_fluid_mining_final()
   end
 end
 
+-- If Hot metals mod is enabled, mark these metals as hot
+function util.add_hot_metals(metals)
+  if HotMetals and HotMetals.items then
+    for _, metal in pairs(metals) do
+      if data.raw.item[metal] or (metal.name and data.raw.item[metal.name]) then
+        table.insert(HotMetals.items, metal)
+      end
+    end
+  end
+end
+
 
 -- se landfill
 -- params: ore, icon_size
@@ -770,8 +781,8 @@ end
 -- set the probability of a product. 
 function util.set_product_probability(recipe_name, product, probability, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
     set_product_probability(data.raw.recipe[recipe_name], product, probability)
 	end
 end
@@ -791,8 +802,8 @@ end
 -- set the amount of a product. 
 function util.set_product_amount(recipe_name, product, amount, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
     set_product_amount(data.raw.recipe[recipe_name], product, amount)
 	end
 end
@@ -823,8 +834,8 @@ end
 -- multiply the cost, energy, and results of a recipe by a multiple
 function util.multiply_recipe(recipe_name, multiple, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
     multiply_recipe(data.raw.recipe[recipe_name], multiple)
 	end
 end
@@ -889,8 +900,8 @@ end
 -- Remove a product from a recipe, WILL NOT remove the only product
 function util.remove_product(recipe_name, old, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
     remove_product(data.raw.recipe[recipe_name], old)
   end
 end
@@ -967,8 +978,8 @@ end
 -- Set energy required
 function util.set_recipe_time(recipe_name, time, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
     set_recipe_time(data.raw.recipe[recipe_name], time)
 	end
 end
@@ -984,8 +995,8 @@ end
 -- Multiply energy required
 function util.multiply_time(recipe_name, factor, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
     multiply_time(data.raw.recipe[recipe_name], factor)
 	end
 end
@@ -1001,8 +1012,8 @@ end
 -- Add to energy required
 function util.add_time(recipe_name, amount, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  me.add_modified(recipe_name)
   if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
     add_time(data.raw.recipe[recipe_name], amount)
 	end
 end
@@ -1243,7 +1254,9 @@ function util.create_list()
         icon = "__core__/graphics/empty.png",
         icon_size = 1,
         stack_size = 1,
-        flags = {"hidden", "hide-from-bonus-gui"}
+        hidden = true,
+        hidden_in_factoriopedia = true,
+        flags = {"hide-from-bonus-gui"}
       }})
     end
 
