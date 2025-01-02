@@ -1144,6 +1144,28 @@ function util.add_crafting_category(entity_type, entity, category)
    end
 end
 
+-- Add crafting category to all entities that have another category
+function util.add_crafting_category_if(entity_type, category, other_category)
+  if data.raw[entity_type] and data.raw["recipe-category"][category] and data.raw["recipe-category"][other_category] then
+    for _, entity in pairs(data.raw[entity_type]) do
+      local found_good = false
+      local found_bad = false
+      for _, existing in pairs(entity.crafting_categories) do
+        if existing == other_category then
+          found_good = true
+        end
+        if existing == category then
+          found_bad = true
+        end
+      end
+      if found_good and not found_bad then
+        table.insert(entity.crafting_categories, category)
+      end
+    end
+  end
+end
+
+
 function util.add_to_ingredient(recipe, ingredient, amount, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe] then
