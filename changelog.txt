@@ -4,6 +4,7 @@ Date: 2025-01-03
   Changes:
     - Capture bot rocket requires titanium instead of steel
     - Add weights for rockets
+    - Hot metals: use default cooling time
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.11
 Date: 2025-01-01
