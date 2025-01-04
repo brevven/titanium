@@ -9,6 +9,7 @@ if mods["space-age"] then
   util.replace_ingredient("electromagnetic-plant", "steel-plate", util.me.titanium_plate)
   util.add_ingredient("superconductor", util.me.titanium_plate, 1)
   util.add_product("scrap-recycling", {type="item", name=util.me.titanium_plate, amount=1, probability=0.01})
+  util.replace_ingredient("capture-bot-rocket", "steel-plate", "titanium-plate")
 
   util.add_unlock("foundry", "titanium-sublimation")
   util.add_unlock("foundry", "titanium-in-foundry")
