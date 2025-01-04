@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.12
-Date: 2025-01-03
+Date: 2025-01-04
   Changes:
     - Capture bot rocket requires titanium instead of steel
     - Add weights for rockets
