@@ -50,7 +50,8 @@ data:extend({
     icon_size = 64, icon_mipmaps = 3,
     subgroup = "raw-material",
     order = "b[titanium-plate]",
-    stack_size = util.get_stack_size(100)
+    stack_size = util.get_stack_size(100),
+    weight = 1*kg,
   },
   {
     type = "technology",
