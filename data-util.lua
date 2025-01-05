@@ -120,7 +120,6 @@ end
 -- Replace 'uranium-mining' tech with 'fluid-mining', defaulting to same costs
 function util.add_fluid_mining()
   if data.raw.technology["fluid-mining"] then return end
-  util.remove_raw("technology", "uranium-mining")
   data:extend({
   {
     type = "technology",
@@ -163,6 +162,7 @@ function util.use_fluid_mining_final()
       end
     end
   end
+  util.remove_raw("technology", "uranium-mining")
 end
 
 -- If Hot metals mod is enabled, mark these metals as hot

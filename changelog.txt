@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.13
+Date: 2025-01-05
+  Fixes:
+    - Fix compatibility with Any Planet Start on Vulcanus/Fulgora (and potential others that rely on Uranium Mining tech)
+---------------------------------------------------------------------------------------------------
 Version: 2.0.12
 Date: 2025-01-04
   Changes:
