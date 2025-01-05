@@ -117,6 +117,204 @@ function util.contains(table, sought)
   return false
 end
 
+-- Add the gleba rock. If it exists, still add resource to mine from it
+function util.add_gleba_rock(resource, amount_min, amount_max)
+  if not data.raw.planet.gleba then return end
+  if not data.raw["simple-entity"]["gleba-rock"] then
+    local autoplace_utils = require("autoplace_utils")
+    local hit_effects = require ("__base__.prototypes.entity.hit-effects")
+    local sounds = require ("__base__.prototypes.entity.sounds")
+    local decorative_trigger_effects = require("__base__.prototypes.decorative.decorative-trigger-effects")
+    data.raw.planet.gleba.map_gen_settings.autoplace_settings.entity.settings["gleba-rock"] = {}
+    data:extend({
+    {
+      type = "simple-entity",
+      name = "gleba-rock",
+      localised_name = {"entity-name.big-rock"},
+      flags = {"placeable-neutral", "placeable-off-grid"},
+      icon = "__base__/graphics/icons/big-sand-rock.png",
+      subgroup = "grass",
+      order = "b[decorative]-l[rock]-a[big]",
+      deconstruction_alternative = "big-rock",
+      collision_box = {{-0.75, -0.75}, {0.75, 0.75}},
+      selection_box = {{-1.0, -1.0}, {1.0, 0.75}},
+      damaged_trigger_effect = hit_effects.rock(),
+      render_layer = "object",
+      max_health = 500,
+      autoplace = {
+        control = "gleba_plants",
+        order = "z[gleba]-a[rock]-b[big]",
+        probability_expression = "max(main_probability, invasion_tall_probability)",
+        richness_expression = "random_penalty_at(3, 1)",
+        tile_restriction = {
+          "highland-yellow-rock", 
+          "highland-dark-rock", 
+          "highland-dark-rock-2", 
+        },
+        local_expressions = {
+          main_box = "gleba_select(gleba_moisture, 0, 0.25, 0.01, -10, 1) - 1",
+          main_probability = "min(0.08, 0.15 * (main_box + gleba_plants_noise_b - 0.45) * control:gleba_plants:size)", -- bigger patches, denser
+          invasion_tall_box = "gleba_select(gleba_moisture, 0, 0.35, 0.01, -10, 1) - 1",
+          invasion_tall_probability = "min(0.05, 0.15 * (invasion_tall_box + gleba_plants_noise_b - 0.4) * control:gleba_plants:size)", -- smaller patches, sparser
+        }
+      },
+
+      dying_trigger_effect = decorative_trigger_effects.big_rock(),
+      minable =
+      {
+        mining_particle = "stone-particle",
+        mining_time = 2,
+        results = {
+          {type = "item", name = "stone", amount_min = 5, amount_max = 10},
+        }
+      },
+      resistances =
+      {
+        {
+          type = "fire",
+          percent = 100
+        }
+      },
+      map_color = {129, 105, 78},
+      count_as_rock_for_filtered_deconstruction = true,
+      mined_sound = sounds.deconstruct_bricks(1.0),
+      impact_category = "stone",
+      pictures =
+      {
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-01.png",
+          width = 209,
+          height = 138,
+          shift = {0.304688, -0.4},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-02.png",
+          width = 165,
+          height = 129,
+          shift = {0.0, 0.0390625},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-03.png",
+          width = 151,
+          height = 139,
+          shift = {0.151562, 0.0},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-04.png",
+          width = 216,
+          height = 110,
+          shift = {0.390625, 0.0},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-05.png",
+          width = 154,
+          height = 147,
+          shift = {0.328125, 0.0703125},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-06.png",
+          width = 154,
+          height = 132,
+          shift = {0.16875, -0.1},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-07.png",
+          width = 193,
+          height = 130,
+          shift = {0.3, -0.2},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-08.png",
+          width = 136,
+          height = 117,
+          shift = {0.0, 0.0},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-09.png",
+          width = 157,
+          height = 115,
+          shift = {0.1, 0.0},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-10.png",
+          width = 198,
+          height = 153,
+          shift = {0.325, -0.1},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-11.png",
+          width = 190,
+          height = 115,
+          shift = {0.453125, 0.0},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-12.png",
+          width = 229,
+          height = 126,
+          shift = {0.539062, -0.015625},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-13.png",
+          width = 151,
+          height = 125,
+          shift = {0.0703125, 0.179688},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-14.png",
+          width = 137,
+          height = 117,
+          shift = {0.160938, 0.0},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-15.png",
+          width = 201,
+          height = 141,
+          shift = {0.242188, -0.195312},
+          scale = 0.5
+        },
+        {
+          filename = "__base__/graphics/decorative/sand-rock/big-sand-rock-16.png",
+          width = 209,
+          height = 154,
+          shift = {0.351562, -0.1},
+          scale = 0.5
+        }
+      }
+    },
+    })
+    local probability = data.raw["simple-entity"]["gleba-rock"].autoplace.probability_expression  
+    -- A lot more common near starting point when aps gleba
+    local factor = (mods["any-planet-start"] and me.get_setting("aps-planet") == "gleba" and 20) or 1
+    data.raw["simple-entity"]["gleba-rock"].autoplace.probability_expression = probability..[[*
+    if(distance_from_nearest_point{x = x, y = y, points = starting_positions} < 200, ]]..factor..[[,
+       if(distance_from_nearest_point{x = x, y = y, points = starting_positions} < 700,
+          100/(distance_from_nearest_point{x = x, y = y, points = starting_positions} - 100), 0.17))
+    ]]
+
+  end
+  if data.raw.item[resource] then
+    amount_min = (amount_min or 10) * ((mods["any-planet-start"] and me.get_setting("aps-planet") == "gleba" and 4) or 1)
+    amount_max = (amount_max or 20) * ((mods["any-planet-start"] and me.get_setting("aps-planet") == "gleba" and 4) or 1)
+    util.add_minable_result(
+        "simple-entity", "gleba-rock",
+        {type="item", name=resource, amount_min=amount_min, amount_max=amount_max})
+  end
+end
+
 -- Replace 'uranium-mining' tech with 'fluid-mining', defaulting to same costs
 function util.add_fluid_mining()
   if data.raw.technology["fluid-mining"] then return end
@@ -497,7 +695,21 @@ end
 function util.set_tech_recipe(technology_name, ingredients)
   local technology = data.raw.technology[technology_name]
   if technology then
+    if not technology.unit then
+      -- set a sane unit just in case
+      technology.unit = {time = 30, count = 50}
+    end
     technology.unit.ingredients = ingredients
+    technology.research_trigger = nil
+  end
+end
+
+-- Set technology trigger
+function util.set_tech_trigger(technology_name, trigger)
+  local technology = data.raw.technology[technology_name]
+  if technology then
+    technology.unit = nil
+    technology.research_trigger = trigger
   end
 end
 
@@ -510,6 +722,23 @@ end
 function util.set_hidden(recipe_name)
   if data.raw.recipe[recipe_name] then
     data.raw.recipe[recipe_name].hidden = true
+  end
+end
+
+-- adds a crafting category if it doesn't exist, also optionally allowing handcrafting 
+function util.add_new_crafting_category(category, by_hand)
+  if not data.raw["recipe-category"][category] then
+    data:extend({{
+      type="recipe-category",
+      name=category,
+    }})
+  end
+  if by_hand then
+    for i, character in pairs(data.raw.character) do
+      if character.crafting_categories then
+        table.insert(character.crafting_categories, category)
+      end
+    end
   end
 end
 
@@ -1419,3 +1648,4 @@ function util.redo_recycling()
   end
 end
 return util
+
