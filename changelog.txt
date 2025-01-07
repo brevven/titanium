@@ -5,6 +5,7 @@ Date: 2025-01-06
     - Fix crash when used with Quality but not Space Age
   Changes:
     - Do more to respect disabling of certain recycling recipes.
+    - Boost scrap recycling to have 2% chance of titanium plate unless tin mod is also active.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.14
 Date: 2025-01-05

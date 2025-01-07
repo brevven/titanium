@@ -8,7 +8,7 @@ if mods["space-age"] then
   util.replace_some_ingredient("space-platform-foundation", "steel-plate", 15, util.me.titanium_plate, 15)
   util.replace_ingredient("electromagnetic-plant", "steel-plate", util.me.titanium_plate)
   util.add_ingredient("superconductor", util.me.titanium_plate, 1)
-  util.add_product("scrap-recycling", {type="item", name=util.me.titanium_plate, amount=1, probability=0.01})
+  util.add_product("scrap-recycling", {type="item", name=util.me.titanium_plate, amount=1, probability=mods.bztin and 0.01 or 0.02})
   util.replace_ingredient("capture-bot-rocket", "steel-plate", "titanium-plate")
 
   util.add_unlock("foundry", "titanium-sublimation")
