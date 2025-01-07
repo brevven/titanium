@@ -2,7 +2,7 @@
 
 local util = require("__bztitanium__.data-util");
 
-if deadlock then
+if deadlock and deadlock["add_stack"] then
   deadlock.add_stack("titanium-ore",  "__bztitanium__/graphics/icons/stacked/titanium-ore-stacked.png", "deadlock-stacking-2", 64)
   deadlock.add_stack(util.me.titanium_plate, "__bztitanium__/graphics/icons/stacked/titanium-plate-stacked.png" , "deadlock-stacking-2", 64)
   if mods["Krastorio2"] then
