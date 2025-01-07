@@ -742,11 +742,13 @@ function util.add_new_crafting_category(category, by_hand)
   end
 end
 
+
 -- Add a given quantity of ingredient to a given recipe
 function util.add_or_add_to_ingredient(recipe_name, ingredient, quantity, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] and data.raw.item[ingredient] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     add_or_add_to_ingredient(data.raw.recipe[recipe_name], ingredient, quantity)
   end
 end
@@ -769,6 +771,7 @@ function util.add_ingredient(recipe_name, ingredient, quantity, options)
   local is_fluid = not not data.raw.fluid[ingredient]
   if data.raw.recipe[recipe_name] and (data.raw.item[ingredient] or is_fluid) then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     add_ingredient(data.raw.recipe[recipe_name], ingredient, quantity, is_fluid)
   end
 end
@@ -793,6 +796,7 @@ function util.add_ingredient_raw(recipe_name, ingredient, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] and data.raw.item[ingredient.name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     add_ingredient_raw(data.raw.recipe[recipe_name], ingredient)
   end
 end
@@ -813,6 +817,7 @@ function util.set_ingredient(recipe_name, ingredient, quantity, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] and data.raw.item[ingredient] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     set_ingredient(data.raw.recipe[recipe_name], ingredient, quantity)
   end
 end
@@ -902,6 +907,7 @@ function util.replace_ingredient(recipe_name, old, new, amount, multiply, option
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] and (data.raw.item[new] or data.raw.fluid[new]) then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     replace_ingredient(data.raw.recipe[recipe_name], old, new, amount, multiply)
   end
 end
@@ -933,6 +939,7 @@ function util.remove_ingredient(recipe_name, old, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     remove_ingredient(data.raw.recipe[recipe_name], old)
   end
 end
@@ -958,6 +965,7 @@ function util.replace_some_product(recipe_name, old, old_amount, new, new_amount
   local is_fluid = not not data.raw.fluid[new]  -- NOTE CURRENTLY UNUSUED
   if data.raw.recipe[recipe_name] and (data.raw.item[new] or is_fluid) then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     replace_some_product(data.raw.recipe[recipe_name], old, old_amount, new, new_amount, is_fluid)
   end
 end
@@ -987,6 +995,7 @@ function util.replace_some_ingredient(recipe_name, old, old_amount, new, new_amo
   local is_fluid = not not data.raw.fluid[new]
   if data.raw.recipe[recipe_name] and (data.raw.item[new] or is_fluid) then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     replace_some_ingredient(data.raw.recipe[recipe_name], old, old_amount, new, new_amount, is_fluid)
   end
 end
@@ -1012,6 +1021,7 @@ function util.set_product_probability(recipe_name, product, probability, options
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     set_product_probability(data.raw.recipe[recipe_name], product, probability)
 	end
 end
@@ -1033,6 +1043,7 @@ function util.set_product_amount(recipe_name, product, amount, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     set_product_amount(data.raw.recipe[recipe_name], product, amount)
 	end
 end
@@ -1065,6 +1076,7 @@ function util.multiply_recipe(recipe_name, multiple, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     multiply_recipe(data.raw.recipe[recipe_name], multiple)
 	end
 end
@@ -1131,6 +1143,7 @@ function util.remove_product(recipe_name, old, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     remove_product(data.raw.recipe[recipe_name], old)
   end
 end
@@ -1209,6 +1222,7 @@ function util.set_recipe_time(recipe_name, time, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     set_recipe_time(data.raw.recipe[recipe_name], time)
 	end
 end
@@ -1226,6 +1240,7 @@ function util.multiply_time(recipe_name, factor, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     multiply_time(data.raw.recipe[recipe_name], factor)
 	end
 end
@@ -1243,6 +1258,7 @@ function util.add_time(recipe_name, amount, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     add_time(data.raw.recipe[recipe_name], amount)
 	end
 end
@@ -1260,6 +1276,7 @@ function util.set_category(recipe_name, category, options)
   if not should_force(options) and bypass(recipe_name) then return end
   if data.raw.recipe[recipe_name] and data.raw["recipe-category"][category] then
     me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
     data.raw.recipe[recipe_name].category = category
   end
 end
@@ -1638,14 +1655,61 @@ function util.set_vtk_dcm_ingredients()
   end
 end
 
--- Recalculate recycling recipes, since our mod might make updates after quality generates them
+-- Set correct number of outputs for recyclers
+function util.size_recycler_output()
+  if data.raw.recipe["scrap-recycling"] and data.raw.recipe["scrap-recycling"].results then
+    for i, entity in pairs(data.raw.furnace) do
+      if util.contains(entity.crafting_categories, "recycling-or-hand-crafting") then
+        if entity.result_inventory_size < #data.raw.recipe["scrap-recycling"].results then
+          entity.result_inventory_size = #data.raw.recipe["scrap-recycling"].results
+        end
+      end
+    end
+  else
+    local most = 0
+    for i, recipe in pairs(data.raw.recipe) do
+      if data.raw.recipe.ingredients and #data.raw.recipe.ingredients > most then
+        most = #data.raw.recipe.ingredients
+      end
+    end
+    for i, entity in pairs(data.raw.furnace) do
+      if util.contains(entity.crafting_categories, "recycling-or-hand-crafting") then
+        if entity.result_inventory_size < most then
+          entity.result_inventory_size = most
+        end
+      end
+    end
+  end
+end
+
+
+-- Save recycling metadata that is later removed by quality mod. Call near end of data.lua
+function util.prepare_recycling_helper()
+  if mods.quality then
+    for _, recipe in pairs(data.raw.recipe) do
+      recipe.auto_recycle_helper = recipe.auto_recycle
+    end
+  end
+end
+
+-- Recalculate recycling recipes, call near end of data-updates.lua, after calling
+-- util.prepare_recycling_helper from data.lua
 function util.redo_recycling()
   if mods.quality then
     local recycling = require("__quality__.prototypes.recycling")
     for _, recipe in pairs(data.raw.recipe) do
-      recycling.generate_recycling_recipe(recipe)
+      recipe.auto_recycle = recipe.auto_recycle_helper -- keeping this outside conditional to improve fidelity across multiple mods
+      if recipe.redo_recycling then
+        recycling.generate_recycling_recipe(recipe)
+      end
     end
   end
 end
-return util
 
+-- Preps the recipe to have recycling recalculated. Expects the recipe exists.
+function prepare_redo_recycling(recipe_name)
+  data.raw.recipe[recipe_name].redo_recycling = true
+end
+
+
+return util
