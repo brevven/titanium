@@ -98,6 +98,7 @@ data:extend({
 })
 end
 if mods["space-age"] then
+util.add_vacuum()
 data:extend({
   {
     type = "recipe",
@@ -129,10 +130,10 @@ data:extend({
         },
     enabled = false,
     allow_productivity = true,
-    energy_required = 2, 
+    energy_required = 5, 
     ingredients = {util.item("titanium-plate")},
     results = {
-      util.fluid("vacuum", 40),
+      util.fluid("vacuum", 100),
       util.item("stone", 1),
     },
     show_amount_in_title = false,
@@ -157,22 +158,6 @@ data:extend({
     },
     results = {util.item("titanium-plate")},
   },
-  {
-    type = "fluid",
-    name = "vacuum",
-    icons = { util.vacuum_icon, },
-    visualization_color = util.vacuum_vis,
-    subgroup = "fluid",
-    order = "d[vacuum]",
-    default_temperature = 1500,
-    max_temperature = 2000,
-    gas_temperature = 0,
-    heat_capacity = "0.01kJ",
-    base_color = {0.9, 0.9, 0.9},
-    flow_color = {0.8, 0.8, 0.9},
-    auto_barrel = false,
-  },
-  
   {
     type = "recipe",
     name = "titanium-extraction",
