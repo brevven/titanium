@@ -2,6 +2,7 @@
 Version: 2.0.17
 Date: 2025-01-14
   Changes:
+    - Support for Asteroid Mining mod
     - Space Age: More vacuum created per unit titanium
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.16
