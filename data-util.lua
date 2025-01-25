@@ -2,6 +2,7 @@
 -- This file will be overwritten in mod zipfiles, edit bzlib/data-util.lua
 -- WARNING WARNING WARNING
 
+local futil = require("util")
 local me = require("me")
 local util = {}
 
@@ -117,9 +118,23 @@ function util.contains(table, sought)
   return false
 end
 
+-- copies a recipe, giving the copy a new name
+function util.copy_recipe(recipe_name, new_recipe_name)
+  if data.raw.recipe[recipe_name] then
+    new_recipe = futil.table.deepcopy(data.raw.recipe[recipe_name])
+    new_recipe.name = new_recipe_name
+    data:extend({new_recipe})
+  end
+end
+
 -- Add the gleba rock. If it exists, still add resource to mine from it
 function util.add_gleba_rock(resource, amount_min, amount_max)
-  if not data.raw.planet.gleba then return end
+  if (not data.raw.planet.gleba or
+      not data.raw.planet.gleba.map_gen_settings or -- attempted compatibility fixes
+      not data.raw.planet.gleba.map_gen_settings.autoplace_settings or
+      not data.raw.planet.gleba.map_gen_settings.autoplace_settings.entity or
+      not data.raw.planet.gleba.map_gen_settings.autoplace_settings.entity.settings
+  ) then return end
   if not data.raw["simple-entity"]["gleba-rock"] then
     local autoplace_utils = require("autoplace_utils")
     local hit_effects = require ("__base__.prototypes.entity.hit-effects")
@@ -361,6 +376,30 @@ function util.use_fluid_mining_final()
     end
   end
   util.remove_raw("technology", "uranium-mining")
+end
+
+
+-- Add vacuum if it hasn't been added yet
+function util.add_vacuum()
+  if not data.raw.fluid.vacuum then
+    data:extend({
+      {
+        type = "fluid",
+        name = "vacuum",
+        icons = { util.vacuum_icon, },
+        visualization_color = util.vacuum_vis,
+        subgroup = "fluid",
+        order = "d[vacuum]",
+        default_temperature = 1500,
+        max_temperature = 2000,
+        gas_temperature = 0,
+        heat_capacity = "0.01kJ",
+        base_color = {0.9, 0.9, 0.9},
+        flow_color = {0.8, 0.8, 0.9},
+        auto_barrel = false,
+      },
+    })
+  end
 end
 
 -- If Hot metals mod is enabled, mark these metals as hot
@@ -873,14 +912,20 @@ function util.get_ingredient_amount(recipe_name, ingredient_name)
   return 0
 end
 
--- Get the amount of the result
+-- Get the amount of the result (currently ignores probability)
 function util.get_amount(recipe_name, product)
   if not product then product = recipe_name end
   local recipe = data.raw.recipe[recipe_name]
   if recipe then
     if recipe.results then
       for i, result in pairs(recipe.results) do
-        if result.name == product then return result.amount end
+        if result.name == product then
+          if result.amount then
+            return result.amount
+          elseif result.amount_min then
+            return (result.amount_min + result.amount_max) / 2
+          end
+        end
       end
     end
     return 0
@@ -905,7 +950,7 @@ end
 --    Use amount to set an amount. If that amount is a multiplier instead of an exact amount, set multiply true.
 function util.replace_ingredient(recipe_name, old, new, amount, multiply, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  if data.raw.recipe[recipe_name] and (data.raw.item[new] or data.raw.fluid[new]) then
+  if data.raw.recipe[recipe_name] and (data.raw.item[new] or data.raw.fluid[new]) and (data.raw.item[old] or data.raw.fluid[old]) then
     me.add_modified(recipe_name)
     prepare_redo_recycling(recipe_name)
     replace_ingredient(data.raw.recipe[recipe_name], old, new, amount, multiply)
@@ -980,7 +1025,7 @@ function replace_some_product(recipe, old, old_amount, new, new_amount)
         end
       end
     end
-    add_product(recipe, {new, new_amount})
+    add_product(recipe, util.item(new, new_amount))
 		for i, product in pairs(recipe.results) do 
 			if product.name == old then
         product.amount = math.max(1, product.amount - old_amount)
@@ -1088,9 +1133,6 @@ function multiply_recipe(recipe, multiple)
     else
       recipe.energy_required = 0.5 * multiple  -- 0.5 is factorio default
     end
-    if recipe.result_count then
-      recipe.result_count = recipe.result_count * multiple
-    end
     if recipe.results then
       for i, result in pairs(recipe.results) do
         if result.name then
@@ -1107,10 +1149,22 @@ function multiply_recipe(recipe, multiple)
         end
       end
     end
-    if not recipe.results and not recipe.result_count then
-      -- implicit one item result
-      recipe.result_count = multiple
-    end
+    multiply_ingredients(recipe, multiple)
+  end
+end
+
+-- multiply the ingredient cost of a recipe
+function util.multiply_ingredients(recipe_name, multiple, options)
+  if not should_force(options) and bypass(recipe_name) then return end
+  if data.raw.recipe[recipe_name] then
+    me.add_modified(recipe_name)
+    prepare_redo_recycling(recipe_name)
+    multiply_ingredients(data.raw.recipe[recipe_name], multiple)
+	end
+end
+
+function multiply_ingredients(recipe, multiple)
+  if recipe then
     if recipe.ingredients then
       for i, ingredient in pairs(recipe.ingredients) do
         if ingredient.name then
@@ -1268,6 +1322,13 @@ function add_time(recipe, amount)
     if recipe.energy_required then
       recipe.energy_required = recipe.energy_required + amount
     end
+  end
+end
+
+-- Set localised name
+function util.set_localised_name(recipe_name, localised_name)
+  if data.raw.recipe[recipe_name] then
+    data.raw.recipe[recipe_name].localised_name = localised_name
   end
 end
 
@@ -1458,15 +1519,20 @@ end
 
 -- Adds a result to a mineable type
 function util.add_minable_result(t, name, result)
-  if data.raw[t] and data.raw[t][name] and data.raw[t][name].minable then
+  if data.raw[t] and data.raw[t][name] and data.raw[t][name].minable and data.raw.item[result.name] then
     if data.raw[t][name].minable.result and not data.raw[t][name].minable.results then
       data.raw[t][name].minable.results = {
-        {data.raw[t][name].minable.result ,data.raw[t][name].minable.count}}
+        util.item(data.raw[t][name].minable.result ,data.raw[t][name].minable.count)}
       data.raw[t][name].minable.result = nil
       data.raw[t][name].minable.result_count = nil
     end
     if data.raw[t][name].minable.results then
+      for _, other in pairs(data.raw[t][name].minable.results) do
+        if other.name == result.name then return end -- don't add if already present
+      end
       table.insert(data.raw[t][name].minable.results, result)
+    else
+      data.raw[t][name].minable.results = {result}
     end
   end
 end
@@ -1711,5 +1777,246 @@ function prepare_redo_recycling(recipe_name)
   data.raw.recipe[recipe_name].redo_recycling = true
 end
 
+
+-- According to https://mods.factorio.com/mod/Asteroid_Mining, the
+-- following function is under this MIT license (similar license, different author):
+--
+-- Copyright (c) 2021 Silari
+-- Permission is hereby granted, free of charge, to any person obtaining a copy of
+-- this software and associated documentation files (the "Software"), to deal in
+-- the Software without restriction, including without limitation the rights to
+-- use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+-- the Software, and to permit persons to whom the Software is furnished to do so,
+-- subject to the following conditions:
+-- 
+-- The above copyright notice and this permission notice shall be included in all
+-- copies or substantial portions of the Software.
+-- 
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+-- FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+-- COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+-- IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+-- CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+function util.addtype(name,atint,desc) --,pictures)
+  require("__Asteroid_Mining__/scripts/icons.lua") -- Has generateicons function
+
+  local allowprod = settings.startup["astmine-allowprod"].value
+  local useminer = settings.startup["astmine-enableminer"].value
+  local hiderec = not settings.startup["astmine-hiderecipes"].value
+  local recenabled = false
+
+  local chunkstacksize = 1000
+  if mods["space-exploration"] then
+      chunkstacksize = 200
+  end
+
+  --Adds given recipe to prod modules allowed list
+  function addmodules(name)
+      if useminer then -- Only add these if we're actually enabled.
+          table.insert(data.raw.module["productivity-module"].limitation, name)
+          table.insert(data.raw.module["productivity-module-2"].limitation, name)
+          table.insert(data.raw.module["productivity-module-3"].limitation, name)
+      end
+  end
+
+  --Result for processing resource specific chunks
+  local normal = { -- Gives 4000 chunks on average
+      {
+        amount_min = 3,
+        amount_max = 5,
+        probability = 1
+      }
+  }
+  local chunkamount = 1000
+
+  -- Space age makes rockets cost 1/20th as much. Give less materials, same ratio.
+  if mods["space-age"] then 
+      chunkamount = 50
+  end
+
+  --ITEM: Miner-module, which is what we send into space to get the asteroid-mixed item
+  local minermodule = {
+      icon = "__Asteroid_Mining__/graphics/mining-sat.png",
+      icon_mipmaps = 4,
+      icon_size = 64,
+      name = "miner-module",
+      localised_name = {"item-name.miner-module", "Mixed"},
+      localised_description = {"item-description.miner-module", "mixed"},
+      order = "n[miner-module]",
+      rocket_launch_products = {{
+          name="asteroid-mixed",
+          amount=chunkamount,
+          type="item"
+      }},
+      send_to_orbit_mode = "automated",
+      stack_size = 1,
+      subgroup = subminer,
+      type = "item"
+  }
+  --Make a new item with the given name+"-chunk" and recipe to turn into name
+  --eg addtype('iron-ore') makes iron-ore-chunk and recipe for iron-ore-chunk->100 iron-ore
+  --log("Making new items for " .. name)
+  --ITEM Resource chunk for this item
+      
+  local suffix = "-chunk"
+  -- Sometimes we need to override the default suffix because the item name already exists.
+  -- TODO - change this so it automatically detects name-chunk item exists and change suffix - BUT
+  --  that would cause issues if 'name' is in more than one module - eg angels/bobs overlap, bob+bzlead, etc.
+  --  Maybe add in something that tracks what 'name's have been added and skip it if it has.
+  if string.find(name,"angels-ore",1,true) then
+      suffix = "-chunk-am"
+  end
+  --log(name .. " name:suffix " .. suffix)
+  
+  local reschunk = {
+    icons = {
+      {
+        icon = "__Asteroid_Mining__/graphics/resource-chunk.png",
+        icon_mipmaps = 4,
+        icon_size = 64
+      },
+      {
+        icon = "__Asteroid_Mining__/graphics/resource-chunk-mask.png",
+        icon_mipmaps = 4,
+        icon_size = 64,
+        tint = atint
+      }
+    },
+    name = name .. suffix,
+    localised_name = {"item-name.resource-chunk", {"item-name." .. name}},
+    localised_description = {"item-description.resource-chunk", {"item-name." .. name}},
+    order = "d[asteroidchunk-" .. name .. "]",
+    stack_size = 25,
+    subgroup = subchunk,
+    type = "item"
+  }
+  
+  --RECIPE Turn resource chunk into 24 of item
+  local procreschunk = {
+    allow_decomposition = false,
+    always_show_products = true,
+    category = reccategory,
+    enabled = hiderec,
+    energy_required = 5,
+    ingredients = {
+      {
+        name=name .. suffix,
+        amount=1,
+        type="item"
+      }
+    },
+    name = name .. suffix,
+    order = "d[asteroidchunk-" .. name .. "]",
+    localised_name = {"recipe-name.resource-chunk", {"item-name." .. name}},
+    localised_description = {"recipe-description.resource-chunk", {"item-name." .. name}},
+    results = {{name=name,amount=24,type="item"}},
+    type = "recipe"
+  }
+  if desc == nil then
+      desc = ""
+  end
+  
+  --ITEM Resource specific asteroid chunk.
+  local newasteroid = {
+    icons = {
+      {
+        icon = "__Asteroid_Mining__/graphics/asteroid-chunk.png",
+        icon_mipmaps = 4,
+        icon_size = 64
+      },
+      {
+        icon = "__Asteroid_Mining__/graphics/asteroid-chunk-mask.png",
+        icon_mipmaps = 4,
+        icon_size = 64,
+        tint = atint
+      }
+    },
+    name = "asteroid-" .. name,
+    localised_name = {"item-name.asteroid-chunk", {"item-name." .. name}},
+    localised_description = {"item-description.asteroid-chunk", {"item-name." .. name}, desc},
+    order = "k[zasteroid-" .. name .. "]",
+    stack_size = chunkstacksize,
+    subgroup = subchunk,
+    type = "item"        
+  }
+  --log(serpent.block(newasteroid))
+  --We need to set the result name to the name of our resource chunk
+  mynormal = table.deepcopy(normal)
+  mynormal[1].name = name .. suffix
+  mynormal[1].type = "item"
+  --Expensive mode is gone.
+  --myexpensive = table.deepcopy(expensive)
+  --myexpensive[1].name = name .. suffix
+  
+  --RECIPE: Processing the asteroid chunks into resource chunks
+  local processasteroid = {
+    allow_decomposition = false,
+    category = reccategory,
+    name = "asteroid-" .. name,
+    localised_name = {"recipe-name.asteroid-chunk", {"item-name." .. name}},
+    localised_description = {"recipe-description.asteroid-chunk", {"item-name." .. name}},
+    order = "k[zasteroid-" .. name .. "]",
+    ingredients = {{name="asteroid-" .. name,amount=1,type="item"}},
+    results = mynormal,
+    always_show_products = true,
+    enabled = hiderec,
+    energy_required = 10,
+    --subgroup = subchunk,
+    type = "recipe"
+  }
+
+  --ITEM Miner module to get resource specific asteroids.
+  local minerres = table.deepcopy(minermodule)
+  minerres.name = "miner-module-" .. name
+  minerres.rocket_launch_products = {{
+      name="asteroid-" .. name,
+      amount=chunkamount,
+      type="item"
+  }}
+  minerres.order = "n[miner-module" .. name .. "]"
+  minerres.icons = generateicons(name,atint) --Generate icon layers using given item
+  minerres.localised_name = {"item-name.miner-module", {"item-name." .. name}}
+  minerres.localised_description = {"item-description.miner-module", {"item-name." .. name}}
+  
+  --RECIPE: Recipe to make miner module to get resource specific asteroids. Always the default category
+  local newminer = {
+      enabled = recenabled,
+      ingredients = {
+          {
+            name="electric-mining-drill",
+            amount=5,
+            type="item"
+          },
+          {
+            name="radar",
+            amount=5,
+            type="item"
+          },
+          {
+            name=name,
+            amount=5,
+            type="item"
+          }
+      },
+      name = "miner-module-" .. name,
+      results = {{name="miner-module-" .. name,amount=1,type="item"}},
+      type = "recipe"        
+  }
+  data:extend{reschunk,procreschunk,newasteroid,processasteroid}
+  if useminer then -- Disabled in 1.0 for the new generation system, once in place.
+      data:extend{minerres,newminer}
+      --This makes the miner module available when rocket silo is researched
+      table.insert(data.raw.technology["rocket-silo"].effects, {type = "unlock-recipe", recipe = "miner-module-" .. name})
+      if not hiderec then
+          table.insert(data.raw.technology["rocket-silo"].effects, {type = "unlock-recipe", recipe = "asteroid-" .. name})
+          table.insert(data.raw.technology["rocket-silo"].effects, {type = "unlock-recipe", recipe = name .. suffix})
+      end
+  end
+  if allowprod then -- Setting to enable prod module usage in asteroid processing
+      addmodules(processasteroid.name)
+  end
+end
+-- END of alternate licenscing
 
 return util

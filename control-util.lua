@@ -147,8 +147,10 @@ function regenerate_ore(event)
     for w in event.parameters:gmatch("%S+") do table.insert(params, w) end
     if #params == 1 and params[1] == "all" then
       for _, resource in pairs(me.resources) do
-        game.print("Regenerating "..resource)
-        game.regenerate_entity(resource)
+        if prototypes.entity[resource] then
+          game.print("Regenerating "..resource)
+          game.regenerate_entity(resource)
+        end
       end
       return
     end
