@@ -27,5 +27,6 @@ require("compatibility/titanium-auto-train-depot-final")
 
 local util = require("__bztitanium__.data-util");
 
+util.redo_recycling()
 util.size_recycler_output()
 util.use_fluid_mining_final()

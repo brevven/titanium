@@ -1,6 +1,6 @@
 {
     "name": "bztitanium",
-    "version": "2.0.17",
+    "version": "2.0.18",
     "factorio_version": "2.0",
     "title": "Titanium",
     "author": "Brevven",
@@ -22,6 +22,7 @@
       "(?) Power Armor MK3",
       "? 248k",
       "? tenebris",
+      "? Cerys-Moon-of-Fulgora",
       "(?) atan-nuclear-science",
       "? hot-metals",
       "! nullius"
