@@ -21,3 +21,5 @@ if mods["any-planet-start"] then
     {"chemical-science-pack", 1},
   })
 end
+
+util.add_shiftite_recipe("titanium-plate", "beta", 2)

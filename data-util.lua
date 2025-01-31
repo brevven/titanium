@@ -127,6 +127,35 @@ function util.copy_recipe(recipe_name, new_recipe_name)
   end
 end
 
+function util.add_shiftite_recipe(item, shiftites, quantity)
+  if not mods["janus"] then return end
+  if not data.raw.item[item] then return end
+  local its = {}
+  for _, shiftite in pairs(shiftites) do
+    local it = "janus-shiftite-"..shiftite
+    if data.raw.item[it] then
+      table.insert(its, util.item(it, quantity))
+    end
+  end
+  if its then
+    local name = "shiftite-to-"..item
+    data:extend({{
+      type = "recipe",
+      name = name,
+      localised_name = {"", {"item-name."..item}, " ← Shiftite"},
+      category = "janus-shiftite",
+      subgroup = "janus-basic-from-shiftite",
+      ingredients = its,
+      results = {util.item(item, 5)},
+      energy_required = 2.5,
+      order = "zzz",
+      enabled = false,
+      auto_recycle = false,
+    }})
+    util.add_unlock("janus-time-distorter", name)
+  end
+end
+
 -- Add the gleba rock. If it exists, still add resource to mine from it
 function util.add_gleba_rock(resource, amount_min, amount_max)
   if (not data.raw.planet.gleba or
