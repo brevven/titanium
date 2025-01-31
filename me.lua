@@ -1,7 +1,7 @@
 local me = {}
 
 me.name = "bztitanium"
-me.resources = {"titanium-ore"}
+me.resources = {{"titanium-ore", "nauvis"}}
 me.fluid_mining = true
 me.titanium_plate = ""
 me.titanium_processing = ""

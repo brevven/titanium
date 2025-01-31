@@ -785,7 +785,7 @@ end
 -- Add a given quantity of ingredient to a given recipe
 function util.add_or_add_to_ingredient(recipe_name, ingredient, quantity, options)
   if not should_force(options) and bypass(recipe_name) then return end
-  if data.raw.recipe[recipe_name] and data.raw.item[ingredient] then
+  if data.raw.recipe[recipe_name] and util.get_item(ingredient) then
     me.add_modified(recipe_name)
     prepare_redo_recycling(recipe_name)
     add_or_add_to_ingredient(data.raw.recipe[recipe_name], ingredient, quantity)
@@ -800,15 +800,25 @@ function add_or_add_to_ingredient(recipe, ingredient, quantity)
         return
       end
     end
-    table.insert(recipe.ingredients, {ingredient, quantity})
+    table.insert(recipe.ingredients, util.item(ingredient, quantity))
   end
+end
+
+function util.get_item(name)
+  if data.raw.item[name] then return data.raw.item[name] end
+  if data.raw.armor[name] then return data.raw.armor[name] end
+  if data.raw.fluid[name] then return data.raw.fluid[name] end
+  if data.raw.capsule[name] then return data.raw.capsule[name] end
+  if data.raw["space-platform-starter-pack"] and data.raw["space-platform-starter-pack"][name] then return data.raw["space-platform-starter-pack"][name] end
+  -- TODO add more subtypes of item here
+  return nil
 end
 
 -- Add a given quantity of ingredient to a given recipe
 function util.add_ingredient(recipe_name, ingredient, quantity, options)
   if not should_force(options) and bypass(recipe_name) then return end
   local is_fluid = not not data.raw.fluid[ingredient]
-  if data.raw.recipe[recipe_name] and (data.raw.item[ingredient] or is_fluid) then
+  if data.raw.recipe[recipe_name] and (util.get_item(ingredient) or is_fluid) then
     me.add_modified(recipe_name)
     prepare_redo_recycling(recipe_name)
     add_ingredient(data.raw.recipe[recipe_name], ingredient, quantity, is_fluid)
@@ -1481,14 +1491,10 @@ function util.add_to_ingredient(recipe, ingredient, amount, options)
 end
 
 function add_to_ingredient(recipe, it, amount)
-	if recipe ~= nil and recipe.ingredients ~= nil then
+	if recipe and recipe.ingredients then
 		for i, ingredient in pairs(recipe.ingredients) do
 			if ingredient.name == it then
         ingredient.amount = ingredient.amount + amount
-        return
-      end
-			if ingredient[1] == it then
-        ingredient[2] = ingredient[2] + amount
         return
       end
 		end
@@ -1534,6 +1540,16 @@ function util.add_minable_result(t, name, result)
     else
       data.raw[t][name].minable.results = {result}
     end
+  end
+end
+
+function util.set_surface_property(surface, condition, value)
+  if not data.raw["surface-property"][condition] then return end
+  if data.raw.surface[surface] then
+    data.raw.surface[surface].surface_properties[condition] = value
+  end
+  if data.raw.planet[surface] then
+    data.raw.planet[surface].surface_properties[condition] = value
   end
 end
 
@@ -1621,6 +1637,7 @@ end
 function remove_prior_unlocks(tech, recipe)
   local technology = data.raw.technology[tech]
   if technology then
+    log("Removing prior unlocks for ".. tech)
     util.remove_recipe_effect(tech, recipe)
     if technology.prerequisites then
       for i, prerequisite in pairs(technology.prerequisites) do
@@ -1656,6 +1673,7 @@ function util.replace_ingredients_prior_to(tech, old, new, multiplier)
 end
 
 function replace_ingredients_prior_to(tech, old, new, multiplier)
+  log("Replacing for tech "..tech)
   local technology = data.raw.technology[tech]
   if technology then
     if technology.effects then
@@ -1769,12 +1787,36 @@ function util.redo_recycling()
         recycling.generate_recycling_recipe(recipe)
       end
     end
+    -- Find all recycling recipes that result in armor and make sure not to output more than 1
+    for _, recipe in pairs(data.raw.recipe) do
+      if recipe.name:find("recycling") then
+        for _, product in pairs(recipe.results) do
+          if data.raw.armor[product.name] then
+            if product.amount then
+              if product.amount > .99 then 
+                product.amount = 1 
+                product.extra_count_fraction = nil
+              end
+            end
+          end
+        end
+      end
+    end
   end
 end
 
 -- Preps the recipe to have recycling recalculated. Expects the recipe exists.
 function prepare_redo_recycling(recipe_name)
   data.raw.recipe[recipe_name].redo_recycling = true
+end
+
+-- Change furnace output count
+function util.set_minimum_furnace_outputs(category, count)
+  for i, entity in pairs(data.raw.furnace) do
+    if entity.result_inventory_size ~= nil and entity.result_inventory_size < count and util.contains(entity.crafting_categories, category) then
+      entity.result_inventory_size = count
+    end
+  end
 end
 
 

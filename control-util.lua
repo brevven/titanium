@@ -58,8 +58,17 @@ function list(event)
   end
 end
 
+function util.add_command_handler()
+  script.on_event(defines.events.on_console_command, route)
+end
+
+function route(event)
+  if event.command == regenerate_command then regenerate_ore(event) end
+  if event.command == list_command then list(event) end
+end
+
 function util.add_list_command_handler()
-  script.on_event(defines.events.on_console_command, list)
+  util.add_command_handler()
   
   if not commands.commands[list_command] then
     commands.add_command(list_command, "", function() end)
@@ -134,7 +143,7 @@ Regenerates ore patches. If frequency/size/richness are provided, the planet wil
   - Ores can sometimes overlap on regeneration. This can sometimes hide ore patches. If none seem to be made for a resource, regenerate just that resource and tweak frequency/size. 
 ]]
 function util.add_regenerate_command_handler()
-  script.on_event(defines.events.on_console_command, regenerate_ore)
+  util.add_command_handler()
   
   if not commands.commands[regenerate_command] then
     commands.add_command( regenerate_command, usage_regenerate, function() end)
@@ -147,9 +156,9 @@ function regenerate_ore(event)
     for w in event.parameters:gmatch("%S+") do table.insert(params, w) end
     if #params == 1 and params[1] == "all" then
       for _, resource in pairs(me.resources) do
-        if prototypes.entity[resource] then
-          game.print("Regenerating "..resource)
-          game.regenerate_entity(resource)
+        if prototypes.entity[resource[1]] then
+          game.print("Regenerating "..resource[1])
+          game.regenerate_entity(resource[1])
         end
       end
       return
@@ -164,17 +173,17 @@ function regenerate_ore(event)
         game.print("Could not find surface for "..planet..". May not exist, or may not yet be explored.")
         return
       end
-      if resource == params[2] then
+      if resource[1] == params[2] and (resource[2] == planet or "tenebris" == planet) then
         if #params == 5 then
           local settings = {frequency=params[3], size=params[4], richness=params[5]}
           local map_gen_settings = game.surfaces[planet].map_gen_settings
-          map_gen_settings.autoplace_controls[resource] = settings
-          map_gen_settings.autoplace_settings.entity.settings[resource] = settings
+          map_gen_settings.autoplace_controls[resource[1]] = settings
+          map_gen_settings.autoplace_settings.entity.settings[resource[1]] = settings
           game.surfaces[planet].map_gen_settings = map_gen_settings
-          game.print("Set "..resource.." on "..planet.." to "..serpent.line(settings))
+          game.print("Set "..resource[1].." on "..planet.." to "..serpent.line(settings))
         end
-        game.print("Regenerating "..resource)
-        game.surfaces[planet].regenerate_entity(resource)
+        game.print("Regenerating "..resource[1])
+        game.surfaces[planet].regenerate_entity(resource[1])
       end
     end
   end
@@ -182,6 +191,7 @@ end
 
 function util.ore_fix()
   ore_fix("nauvis")
+  ore_fix("vulcanus")
   if game.surfaces.tenebris then
     ore_fix("tenebris")
   end
@@ -189,14 +199,18 @@ end
 
 function ore_fix(surface_name)
   for _, resource in pairs(me.resources) do
-    local map_gen_settings = game.surfaces[surface_name].map_gen_settings
-    if map_gen_settings.autoplace_controls[resource] == nil then
-      map_gen_settings.autoplace_controls[resource] = {}
+    if resource[2] == surface_name then
+      if game.surfaces[resource[2]] then
+        local map_gen_settings = game.surfaces[surface_name].map_gen_settings
+        if map_gen_settings.autoplace_controls[resource[1]] == nil then
+          map_gen_settings.autoplace_controls[resource[1]] = {}
+        end
+        if map_gen_settings.autoplace_settings.entity.settings[resource[1]] == nil then
+          map_gen_settings.autoplace_settings.entity.settings[resource[1]] = {}
+        end
+        game.surfaces[surface_name].map_gen_settings = map_gen_settings
+      end
     end
-    if map_gen_settings.autoplace_settings.entity.settings[resource] == nil then
-      map_gen_settings.autoplace_settings.entity.settings[resource] = {}
-    end
-    game.surfaces[surface_name].map_gen_settings = map_gen_settings
   end
 end
 
