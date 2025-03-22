@@ -5,7 +5,6 @@ require("omni")
 require("map-gen-preset-updates")
 require("strange-matter")
 require("compatibility/248k")
-require("compatibility/crafting-efficiency")
 
 local util = require("data-util")
 util.redo_recycling()
@@ -22,4 +21,4 @@ if mods["any-planet-start"] then
   })
 end
 
-util.add_shiftite_recipe("titanium-plate", "beta", 2)
+util.add_shiftite_recipe("titanium-plate", {"beta"}, 2)

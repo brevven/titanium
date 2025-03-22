@@ -1,6 +1,6 @@
 local resource_autoplace = require('resource-autoplace');
-
 local util = require("__bztitanium__.data-util");
+local item_sounds = require('__base__.prototypes.item_sounds')
 
 if mods["FactorioExtended-Plus-Core"] then
   util.remove_raw("item", "titanium-ore")
@@ -73,6 +73,9 @@ data:extend({
       name = "titanium-ore",
       icon_size = 64, icon_mipmaps = 3,
       icon = "__bztitanium__/graphics/icons/titanium-ore.png",
+      inventory_move_sound = item_sounds.resource_inventory_move,
+      pick_sound = item_sounds.resource_inventory_pickup,
+      drop_sound = item_sounds.resource_inventory_move,
       pictures = {
         {filename="__bztitanium__/graphics/icons/titanium-ore.png", size=64, scale=0.5},
         {filename="__bztitanium__/graphics/icons/titanium-ore-2.png", size=64, scale=0.5},

@@ -1,6 +1,7 @@
 -- Titanium smelting
 
 local util = require("__bztitanium__.data-util");
+local item_sounds = require('__base__.prototypes.item_sounds')
 
 if mods["FactorioExtended-Plus-Core"] then
   util.remove_raw("recipe", "titanium-ore")
@@ -52,6 +53,9 @@ data:extend({
     order = "b[titanium-plate]",
     stack_size = util.get_stack_size(100),
     weight = 1*kg,
+    inventory_move_sound = item_sounds.metal_small_inventory_move,
+    pick_sound = item_sounds.metal_small_inventory_pickup,
+    drop_sound = item_sounds.metal_small_inventory_move,
   },
   {
     type = "technology",
@@ -163,8 +167,8 @@ data:extend({
     name = "titanium-extraction",
     category = "organic-or-hand-crafting",
     icons = {
-          { icon = "__space-age__/graphics/icons/jellynut.png", icon_size = 64, scale = 0.5, shift = {-4, -6}},
-          { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, scale = 0.5, icon_mipmaps = 3, shift = {4,6}},
+          { icon = "__bztitanium__/graphics/icons/titanium-ore.png", icon_size = 64, scale = 0.5, icon_mipmaps = 3, shift = {6,8}},
+          { icon = "__space-age__/graphics/icons/jellynut.png", icon_size = 64, scale = 0.5, shift = {-6, -8}},
         },
     surface_conditions =
     {
