@@ -12,7 +12,7 @@ util.get_setting = util.me.get_setting
 util.titanium_plate = ""
 util.titanium_processing = ""
 
-local foo = [[
+local item_sounds_helper = [[
 local item_sounds = require('__base__.prototypes.item_sounds')
 
     inventory_move_sound = item_sounds.wire_inventory_move,
@@ -26,6 +26,14 @@ local item_sounds = require('__base__.prototypes.item_sounds')
     inventory_move_sound = item_sounds.resource_inventory_move,
     pick_sound = item_sounds.resource_inventory_pickup,
     drop_sound = item_sounds.resource_inventory_move,
+
+    inventory_move_sound = item_sounds.brick_inventory_move,
+    pick_sound = item_sounds.brick_inventory_pickup,
+    drop_sound = item_sounds.brick_inventory_move,
+
+    inventory_move_sound = item_sounds.sulfur_inventory_move,
+    pick_sound = item_sounds.resource_inventory_pickup,
+    drop_sound = item_sounds.sulfur_inventory_move,
 ]]
 
 util.A = {{"automation-science-pack", 1}}
@@ -1855,11 +1863,7 @@ end
 
 -- Save recycling metadata that is later removed by quality mod. Call near end of data.lua
 function util.prepare_recycling_helper()
-  if mods.quality then
-    for _, recipe in pairs(data.raw.recipe) do
-      recipe.auto_recycle_helper = recipe.auto_recycle
-    end
-  end
+  -- DEPRECATED
 end
 
 -- Recalculate recycling recipes, call near end of data-updates.lua, after calling
@@ -1868,7 +1872,6 @@ function util.redo_recycling()
   if mods.quality then
     local recycling = require("__quality__.prototypes.recycling")
     for _, recipe in pairs(data.raw.recipe) do
-      recipe.auto_recycle = recipe.auto_recycle_helper -- keeping this outside conditional to improve fidelity across multiple mods
       if recipe.redo_recycling then
         recycling.generate_recycling_recipe(recipe)
       end
