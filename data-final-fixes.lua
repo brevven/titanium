@@ -27,6 +27,9 @@ require("compatibility/titanium-auto-train-depot-final")
 
 local util = require("__bztitanium__.data-util");
 
+-- this is introduced in casting mod data final fixes
+util.replace_some_ingredient("adamo-casting-space-platform-foundation", "molten-iron", 450, util.me.titanium_plate, 15)
+
 util.redo_recycling()
 util.size_recycler_output()
 util.use_fluid_mining_final()
