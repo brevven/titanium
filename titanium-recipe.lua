@@ -100,7 +100,6 @@ data:extend({
 --     }
 --   } or nil,
 })
-end
 if mods["space-age"] then
 util.add_vacuum()
 data:extend({
@@ -201,4 +200,5 @@ data:extend({
     }
   },
   })
+end
 end
