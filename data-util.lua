@@ -78,6 +78,10 @@ function util.se6()
   return mods["space-exploration"] and mods["space-exploration"] >= "0.6" 
 end
 
+function util.k2()
+  return mods.Krastorio2 or mods["Krastorio2-spaced-out"]
+end
+
 util.cablesg = util.se6() and "electronic" or "cable"
 
 function get_setting(name)
@@ -116,7 +120,7 @@ function util.fe_plus(sub)
 end
 
 function util.get_stack_size(default)
-  if mods.Krastorio2 and kr_adjust_stack_sizes then
+  if util.k2() and kr_adjust_stack_sizes then
     return tonumber(200)
   end
   return default
@@ -512,7 +516,12 @@ end
 -- k2 matter 
 -- params: {k2matter}, k2baseicon , {icon}
 function util.k2matter(params)
-  local matter = require("__Krastorio2__/prototypes/libraries/matter")
+  local matter
+  if mods.Krastorio2 then
+    matter = require("__Krastorio2__/prototypes/libraries/matter")
+  else
+    matter = require("__Krastorio2-spaced-out__/prototypes/libraries/matter")
+  end
   if mods["space-exploration"] then 
     params.k2matter.needs_stabilizer = true
   end
@@ -579,8 +588,8 @@ function util.se_matter(params)
     if not params.quant_in then params.quant_in = params.quant_out end
     if not params.icon_size then params.icon_size = 64 end
     local fname = "matter-fusion-"..params.ore
-    local sedata = mods.Krastorio2 and "se-kr-matter-synthesis-data" or "se-fusion-test-data"
-    local sejunk = mods.Krastorio2 and "se-broken-data" or "se-junk-data"
+    local sedata = util.k2() and "se-kr-matter-synthesis-data" or "se-fusion-test-data"
+    local sejunk = util.k2() and "se-broken-data" or "se-junk-data"
     data:extend({
       {
         type = "recipe",
@@ -617,7 +626,7 @@ function util.se_matter(params)
     })
     util.add_unlock("se-space-matter-fusion", fname) 
 
-    if mods.Krastorio2 then
+    if util.k2() then
       local lname = params.ore.."-to-particle-stream"
       data:extend({
         enabled = false,

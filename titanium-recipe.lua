@@ -34,9 +34,9 @@ data:extend({
         } or nil),
     enabled = false,
     allow_productivity = true,
-    energy_required = mods.Krastorio2 and 16 or 8,
-    ingredients = {util.item("titanium-ore", mods.Krastorio2 and 10 or (mods["space-age"] and 10 or 5))},
-    results = {mods.Krastorio2 and {type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3} or util.item(util.me.titanium_plate)},
+    energy_required = util.k2() and 16 or 8,
+    ingredients = {util.item("titanium-ore", util.k2() and 10 or (mods["space-age"] and 10 or 5))},
+    results = {util.k2() and {type="item", name= util.me.titanium_plate, amount_min=2, amount_max=3} or util.item(util.me.titanium_plate)},
     -- expensive =
     -- {
     --   energy_required = 16,

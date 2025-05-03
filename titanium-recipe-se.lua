@@ -46,11 +46,11 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
     name = "molten-titanium",
     subgroup = "titanium",
     results = {
-      {type = "fluid", name = "molten-titanium", amount = mods.Krastorio2 and 750 or 900},
+      {type = "fluid", name = "molten-titanium", amount = util.k2() and 750 or 900},
     },
     energy_required = 60,
     ingredients = {
-      {name = mods.Krastorio2 and "enriched-titanium" or "titanium-ore", amount = 24},
+      {name = util.k2() and "enriched-titanium" or "titanium-ore", amount = 24},
       {type = "fluid", name = "se-pyroflux", amount = 10},
     },
     enabled = false,
