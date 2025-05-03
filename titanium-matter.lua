@@ -1,7 +1,6 @@
 -- Matter recipes for Krastorio2
 if mods["Krastorio2"] then
 local util = require("__bztitanium__.data-util");
-local matter = require("__Krastorio2__/lib/public/data-stages/matter-util")
 
 data:extend(
 {
@@ -20,6 +19,7 @@ data:extend(
         scale = 1.5,
       }
     },
+    effects = {},
     prerequisites = {"kr-matter-processing"},
     unit =
   	{
@@ -28,35 +28,42 @@ data:extend(
       {
         {"production-science-pack", 1},
         {"utility-science-pack", 1},
-        {"matter-tech-card", 1}
+        {"kr-matter-tech-card", 1}
       },
       time = 45
     }
   },
 })
 
-local titanium_ore_matter = 
-	{
-    item_name = "titanium-ore",
-    minimum_conversion_quantity = 10,
-    matter_value = 8,
+util.k2matter({
+	k2matter = {
+    material = {
+      name = "titanium-ore",
+      type = "item",
+      amount = 10,
+    },
+    matter_count = 8,
     energy_required = 1,
-    need_stabilizer = false,
-    unlocked_by_technology = "titanium-matter-processing"
+    needs_stabilizer = false,
+    allow_productivity = true,
+    unlocked_by = "titanium-matter-processing"
 	}
-matter.createMatterRecipe(titanium_ore_matter)
+})
 
-
-local titanium_plate_matter = 
-	{
-    item_name = util.me.titanium_plate,
-    minimum_conversion_quantity = 10,
-    matter_value = 14,
+util.k2matter({
+	k2matter = {
+    material = {
+      name = "titanium-plate",
+      type = "item",
+      amount = 10,
+    },
+    matter_count = 14,
     energy_required = 2,
+    needs_stabilizer = true,
+    allow_productivity = true,
     only_deconversion = true,
-    need_stabilizer = true,
-    unlocked_by_technology = "titanium-matter-processing"
+    unlocked_by = "titanium-matter-processing"
 	}
-matter.createMatterRecipe(titanium_plate_matter)
+})
 
 end

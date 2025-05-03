@@ -3,6 +3,8 @@ Version: 2.0.23
 Date: 2025-05-03
   Fixes:
     - Fix load issue with Bob's
+  Changes:
+    - K2: Updated compatibility (with thanks to autechr3 and pla)
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.22
 Date: 2025-03-10

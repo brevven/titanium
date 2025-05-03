@@ -34,14 +34,14 @@ data:extend(
 	subgroup = "raw-material",
     ingredients =
     {
-      {type = "fluid", name = "hydrogen-chloride", amount = 10},
-      {type = "fluid", name = "water", amount = 25, catalyst_amount = 25},
+      {type = "fluid", name = "kr-hydrogen-chloride", amount = 10},
+      {type = "fluid", name = "water", amount = 25, ignored_by_stats=25, ignored_by_productivity=25},
       {type = "item",  name = "titanium-ore", amount = 9}
     },
     results =
     { 
       {type = "item",  name = "enriched-titanium", amount = 6},
-      {type = "fluid", name = "dirty-water", amount = 25, catalyst_amount = 25}
+      {type = "fluid", name = "kr-dirty-water", amount = 25, ignored_by_stats=25, ignored_by_productivity=25}
     },
     crafting_machine_tint =
     {
@@ -68,10 +68,9 @@ data:extend(
       allow_productivity = true,
       ingredients = 
       {
-        {"enriched-titanium", 10}
+        util.item("enriched-titanium", 10),
       },
-      result = util.me.titanium_plate,
-      result_count = 5,
+      results = {util.item(util.me.titanium_plate, 5)},
       order = "b[titanium-plate]-b[enriched-titanium-plate]"
   },	
   {
@@ -122,21 +121,21 @@ data:extend(
 	{
 		type = "recipe",
 		name = "dirty-water-filtration-titanium",
-		category = "fluid-filtration",
+		category = "kr-fluid-filtration",
 		icons =
 		{
 			{
-				icon = data.raw.fluid["dirty-water"].icon,
-				icon_size = data.raw.fluid["dirty-water"].icon_size
+				icon = data.raw.fluid["kr-dirty-water"].icon,
+				icon_size = data.raw.fluid["kr-dirty-water"].icon_size
 			},
 			{
 				icon = data.raw.item["titanium-ore"].icon,
 				icon_size =	data.raw.item["titanium-ore"].icon_size,
-				scale = 0.20 * (data.raw.fluid["dirty-water"].icon_size/data.raw.item["titanium-ore"].icon_size),
+				scale = 0.20 * 64 / (data.raw.item["titanium-ore"].icon_size or 64),
 				shift = {0, 4}
 			}
 		},
-		icon_size = data.raw.fluid["dirty-water"].icon_size,
+		icon_size = data.raw.fluid["kr-dirty-water"].icon_size,
 		energy_required = 2,
 		enabled = false,
 		allow_as_intermediate = false,
@@ -144,11 +143,11 @@ data:extend(
 		always_show_products = true,
 		ingredients =
 		{
-			{type = "fluid", name = "dirty-water", amount = 100, catalyst_amount = 100},
+			{type = "fluid", name = "kr-dirty-water", amount = 100, ignored_by_stats=100, ignored_by_productivity=100},
 		},
 		results =
 		{
-			{type = "fluid", name = "water", amount = 90, catalyst_amount = 90},
+			{type = "fluid", name = "water", amount = 90, ignored_by_stats=90, ignored_by_productivity=90},
 			{type = "item",  name = "stone", probability = 0.30, amount = 1},
 			{type = "item",  name = "titanium-ore", probability = 0.05, amount = 1}
 		},

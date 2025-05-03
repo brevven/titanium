@@ -115,12 +115,9 @@ function util.fe_plus(sub)
   end
 end
 
-function util.get_stack_size(default) 
-  if mods.Krastorio2 then
-    local size = get_setting("kr-stack-size")
-    if size and tonumber(size) then
-      return tonumber(size)
-    end
+function util.get_stack_size(default)
+  if mods.Krastorio2 and kr_adjust_stack_sizes then
+    return tonumber(200)
   end
   return default
 end
@@ -515,14 +512,11 @@ end
 -- k2 matter 
 -- params: {k2matter}, k2baseicon , {icon}
 function util.k2matter(params)
-  local matter = require("__Krastorio2__/lib/public/data-stages/matter-util")
+  local matter = require("__Krastorio2__/prototypes/libraries/matter")
   if mods["space-exploration"] then 
-    params.k2matter.need_stabilizer = true
+    params.k2matter.needs_stabilizer = true
   end
-  if not params.k2matter.minimum_conversion_quantity then
-    params.k2matter.minimum_conversion_quantity = 10
-  end
-  if not data.raw.technology[params.k2matter.unlocked_by_technology] then
+  if not data.raw.technology[params.k2matter.unlocked_by] then
     local icon = ""
     if params.k2baseicon then
       icon = util.k2assets().."/technologies/matter-"..params.k2baseicon..".png"
@@ -534,7 +528,7 @@ function util.k2matter(params)
         {
           {
             type = "technology",
-            name = params.k2matter.unlocked_by_technology,
+            name = params.k2matter.unlocked_by,
             icons =
             {
               {
@@ -561,15 +555,20 @@ function util.k2matter(params)
               {
                 {"production-science-pack", 1},
                 {"utility-science-pack", 1},
-                {"matter-tech-card", 1}
+                {"kr-matter-tech-card", 1}
               },
               time = 45,
             },
+            effects = {}
             -- (ignore for now) localised_name = {"technology-name.k2-conversion", {"item-name."..params.k2matter.item_name}},
           },
         })
   end
-  matter.createMatterRecipe(params.k2matter)
+  if params.k2matter.only_deconversion then
+    matter.make_deconversion_recipe(params.k2matter)
+  else
+    matter.make_recipes(params.k2matter)
+  end
 end
 
 
