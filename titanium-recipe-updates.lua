@@ -109,7 +109,7 @@ if not mods["pyrawores"] then
 end
 
 -- Krastorio 2 changes
-if mods["Krastorio2"] then
+if util.k2() then
   util.add_prerequisite("kr-electric-mining-drill-mk2", util.me.titanium_processing)
   util.add_prerequisite("kr-quarry-minerals-extraction", util.me.titanium_processing)
 end
@@ -208,3 +208,4 @@ util.replace_ingredient("turbo-inserter", "steel-plate", util.me.titanium_plate)
 util.replace_ingredient("express-filter-inserter", "steel-plate", util.me.titanium_plate)
 util.replace_ingredient("express-stack-inserter", "steel-plate", util.me.titanium_plate)
 util.replace_ingredient("express-stack-filter-inserter", "steel-plate", util.me.titanium_plate)
+

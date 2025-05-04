@@ -11,7 +11,7 @@ data:extend({
 		name = "bztitanium-mining-fluid",
 		setting_type = "startup",
 		default_value = "lubricant",
-    allowed_values = (mods["Krastorio2"] and {"lubricant", "sulfuric-acid", "chlorine"} or {"lubricant", "sulfuric-acid"}),
+    allowed_values = ((mods.Krastorio or mods["Krastorio-spaced-out"]) and {"lubricant", "sulfuric-acid", "kr-chlorine"} or {"lubricant", "sulfuric-acid"}),
 	},
   {
 		type = "int-setting",

@@ -1,6 +1,6 @@
 -- Matter recipes for Krastorio2
-if mods["Krastorio2"] then
 local util = require("__bztitanium__.data-util");
+if util.k2() then
 
 data:extend(
 {

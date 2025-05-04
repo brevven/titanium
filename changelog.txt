@@ -3,6 +3,7 @@ Version: 2.0.25
 Date: 2025-05-04
   Changes:
     - Support for Krastorio2 spaced out
+    - Further tweaks to K2 2 integration
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.24
 Date: 2025-05-03
