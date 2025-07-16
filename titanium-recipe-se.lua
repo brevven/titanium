@@ -6,7 +6,7 @@ if mods["space-exploration"] then
   se_delivery_cannon_recipes[util.me.titanium_plate] = {name= util.me.titanium_plate}
   util.se_landfill({ore="titanium-ore"})
   
-if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
+if string.sub(mods["space-exploration"], 1, 3) >= "0.6" and string.sub(mods["space-exploration"], 1, 3) < "0.8" then
   util.se_matter({ore="titanium-ore", energy_required=2, quant_out=10, stream_out=60})
   data:extend({
   {
@@ -50,7 +50,7 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
     },
     energy_required = 60,
     ingredients = {
-      {name = util.k2() and "enriched-titanium" or "titanium-ore", amount = 24},
+      {type = "item", name = util.k2() and "enriched-titanium" or "titanium-ore", amount = 24},
       {type = "fluid", name = "se-pyroflux", amount = 10},
     },
     enabled = false,
@@ -62,7 +62,9 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
     type = "recipe",
     name = "titanium-ingot",
     category = "casting",
-    results = {{"titanium-ingot", 1}},
+    results = {
+      {type = "item", name = "titanium-ingot", amount = 1},
+    },
     energy_required = 100,
     ingredients = {
       {type = "fluid", name = "molten-titanium", amount = 500},
@@ -81,11 +83,11 @@ if string.sub(mods["space-exploration"], 1, 3) == "0.6" then
       {icon = "__bztitanium__/graphics/icons/titanium-ingot.png", icon_size = 128, scale = 0.125, shift = {-8, -8}},
     },
     results = {
-      {name = "titanium-plate", amount = 10},
+      {type = "item", name = "titanium-plate", amount = 10},
     },
     energy_required = 5,
     ingredients = {
-      {name = "titanium-ingot", amount = 1}
+      {type = "item", name = "titanium-ingot", amount = 1}
     },
     enabled = false,
     always_show_made_in = true,
@@ -121,11 +123,11 @@ else
       always_show_made_in = true,
       allow_as_intermediate = false,
       ingredients = {
-        {name = "enriched-titanium", amount = 8},
-        {name = "se-vulcanite-block", amount = 1},
+        {type = "item", name = "enriched-titanium", amount = 8},
+        {type = "item", name = "se-vulcanite-block", amount = 1},
       },
       results = {
-        {name = util.me.titanium_plate, amount = 6},
+        {type = "item", name = util.me.titanium_plate, amount = 6},
       },
       icons =
       {
@@ -151,11 +153,11 @@ else
       always_show_made_in = true,
       allow_as_intermediate = false,
       ingredients = {
-        {name = "titanium-ore", amount = 20},
-        {name = "se-vulcanite-block", amount = 1},
+        {type = "item", name = "titanium-ore", amount = 20},
+        {type = "item", name = "se-vulcanite-block", amount = 1},
       },
       results = {
-        {name = util.me.titanium_plate, amount = 6},
+        {type = "item", name = util.me.titanium_plate, amount = 6},
       },
       icons =
       {
